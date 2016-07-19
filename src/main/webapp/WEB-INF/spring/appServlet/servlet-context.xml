@@ -30,7 +30,7 @@
 
 	<beans:bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!-- 连接池中最大连接数。高版本：maxTotal，低版本：maxActive -->
-		<beans:property name="maxTotal" value="8" />
+		<beans:property name="maxTotal" value="20" />
 		<!-- 连接池中最大空闲的连接数. -->
 		<beans:property name="maxIdle" value="4" />
 		<!-- 连接池中最少空闲的连接数. -->
