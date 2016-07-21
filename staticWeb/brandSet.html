@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="webkit" name="renderer">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>圣德西货品管理</title>
+
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="css/src/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<script src="header.js"></script>
+
+<div class="left">
+
+    <script src="menu.js"></script>
+
+</div>
+
+<div class="right">
+    <div class="main">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">品牌设置</h1>
+            </div>
+            <div class="panel-body" id="opt-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal" action="#" method="post" id="myForm">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8" >
+                                    <input type="text"  class="form-control" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8">
+                                    <button type="submit" class="btn btn-primary">添加</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <table id="myTable" class="dataTable">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加子品牌-->
+<div class="modal fade" id="addSubModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加子品牌</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addSubForm" data-action="manager/comments/:id/reply"
+                      action="#/:id/#" method="post">
+                    <div class="form-group">
+                        <label  class="control-label col-md-2">名称*</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="content" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-success" value="确定">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="loading.js"></script>
+
+<script src="js/lib/jquery-2.0.3.min.js"></script>
+<script src="js/lib/jquery.form.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/jquery.dataTables.min.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/jquery.toastmessage.js"></script>
+<script src="js/src/config.js"></script>
+<script src="js/src/functions.js"></script>
+<script src="js/src/brandSet.js"></script>
+</body>
+</html>
