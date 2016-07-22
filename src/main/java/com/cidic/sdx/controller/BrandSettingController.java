@@ -48,7 +48,7 @@ public class BrandSettingController {
 		return "boardMgr";
 	}
 	
-	@RequestMapping(value = "/getDate", method = RequestMethod.POST)  
+	@RequestMapping(value = "/getData", method = RequestMethod.POST)  
 	@ResponseBody
 	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam String id){
 		
@@ -63,7 +63,7 @@ public class BrandSettingController {
 			if (id == null){
 				BrandModel brandModel = new BrandModel();
 				brandModel.setId(0);
-				brandModel.setBroadName("Ê¥µÂÎ÷");
+				brandModel.setBroadName("åœ£å¾·è¥¿");
 				resultModel.setObject(brandModel);
 			}
 			else{
@@ -76,7 +76,7 @@ public class BrandSettingController {
 		}
 		
 		catch(Exception e){
-			throw new SdxException(500, "»ñÈ¡Êı¾İ³ö´í");
+			throw new SdxException(500, "è·å–æ•°æ®å¤±è´¥");
 		}
 		return resultModel;
 	}
@@ -98,7 +98,7 @@ public class BrandSettingController {
 		}
 		
 		catch(Exception e){
-			throw new SdxException(500, "»ñÈ¡Êı¾İ³ö´í");
+			throw new SdxException(500, "å†™å…¥æ•°æ®å¤±è´¥");
 		}
 		return resultModel;
 	}
@@ -120,7 +120,7 @@ public class BrandSettingController {
 		}
 		
 		catch(Exception e){
-			throw new SdxException(500, "»ñÈ¡Êı¾İ³ö´í");
+			throw new SdxException(500, "æ›´æ–°æ•°æ®å¤±è´¥");
 		}
 		return resultModel;
 	}
@@ -142,7 +142,7 @@ public class BrandSettingController {
 		}
 		
 		catch(Exception e){
-			throw new SdxException(500, "»ñÈ¡Êı¾İ³ö´í");
+			throw new SdxException(500, "åˆ é™¤æ•°æ®å¤±è´¥");
 		}
 		return resultModel;
 	}
