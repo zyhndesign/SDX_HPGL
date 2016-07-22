@@ -1,4 +1,4 @@
-var brandSet=(function(config,functions){
+var brandMgr=(function(config,functions){
     function remove(id,pId){
         functions.showLoading();
         var me=this;
@@ -6,7 +6,7 @@ var brandSet=(function(config,functions){
             url:config.ajaxUrls.brandDelete.replace(":id",id),
             type:"post",
             data:{
-                pId:pId,
+                parentId:pId,
                 id:id
             },
             dataType:"json",
@@ -15,7 +15,7 @@ var brandSet=(function(config,functions){
                     functions.hideLoading();
                     $().toastmessage("showSuccessToast",config.messages.optSuccess);
                 }else{
-                    functions.ajaxReturnErrorHandler(response.error_code);
+                    functions.ajaxReturnErrorHandler(response.message);
                 }
 
             },
@@ -27,12 +27,13 @@ var brandSet=(function(config,functions){
     function add(treeNode){
         functions.showLoading();
         var me=this;
+        var no=(new Date()).getTime();
         $.ajax({
             url:config.ajaxUrls.brandAdd,
             type:"post",
             data:{
-                name:"新系列",
-                pId:treeNode.id
+                name:"新系列"+no,
+                id:treeNode.id
             },
             dataType:"json",
             success:function(response){
@@ -41,9 +42,14 @@ var brandSet=(function(config,functions){
                     $().toastmessage("showSuccessToast",config.messages.optSuccess);
 
                     var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                    zTree.addNodes(treeNode, {id:Math.random(response.id), pId:treeNode.id, name:"新系列" +response.id});
+
+                    if(treeNode.check_Child_State!=-1){
+                        zTree.addNodes(treeNode, {id:response.object, pId:treeNode.id, name:"新系列" +no});
+                    }
+                    zTree.expandNode(treeNode);
+
                 }else{
-                    functions.ajaxReturnErrorHandler(response.error_code);
+                    functions.ajaxReturnErrorHandler(response.message);
                 }
 
             },
@@ -56,11 +62,11 @@ var brandSet=(function(config,functions){
         functions.showLoading();
         var me=this;
         $.ajax({
-            url:config.ajaxUrls.brandAdd,
+            url:config.ajaxUrls.brandUpdate,
             type:"post",
             data:{
                 name:name,
-                pId:pId,
+                parentId:pId,
                 id:id
             },
             dataType:"json",
@@ -69,7 +75,7 @@ var brandSet=(function(config,functions){
                     functions.hideLoading();
                     $().toastmessage("showSuccessToast",config.messages.optSuccess);
                 }else{
-                    functions.ajaxReturnErrorHandler(response.error_code);
+                    functions.ajaxReturnErrorHandler(response.message);
                 }
 
             },
@@ -86,12 +92,11 @@ var brandSet=(function(config,functions){
         }
 
         //转换数据
-        var childNodes=response.results;
-
-
+        var childNodes=response.object;
 
         if (!childNodes) return null;
         for (var i=0, l=childNodes.length; i<l; i++) {
+            childNodes[i].isParent=true;
             childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
         }
         return childNodes;
@@ -139,6 +144,7 @@ var brandSet=(function(config,functions){
         setting : {
             async: {
                 enable: true,
+                type:"GET",
                 url:config.ajaxUrls.brandGetAll,
                 //autoParam:["id", "name=n", "level=lv"],
                 autoParam:["id"],
@@ -152,8 +158,14 @@ var brandSet=(function(config,functions){
                 selectedMulti: false
             },
             data: {
+                keep:{
+                    parent:true
+                },
                 simpleData: {
-                    enable: true
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: 0
                 }
             },
             edit: {
@@ -171,7 +183,7 @@ var brandSet=(function(config,functions){
 
 $(document).ready(function(){
 
-    $.fn.zTree.init($("#treeDemo"), brandSet.setting);
+    $.fn.zTree.init($("#treeDemo"), brandMgr.setting);
 
 });
 

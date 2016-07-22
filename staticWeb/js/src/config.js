@@ -14,10 +14,10 @@ var config={
         swfUrl:"resources/js/lib/Moxie.swf"
     },
     ajaxUrls:{
-        brandGetAll:"http://192.168.2.8:8080/SDX_HPGL/brand/getData",
-        brandAdd:"http://192.168.2.8:8080/SDX_HPGL/brand/insert",
-        brandUpdate:"http://192.168.2.8:8080/SDX_HPGL/brand/update",
-        brandDelete:"http://192.168.2.8:8080/SDX_HPGL/brand/delete"
+        brandGetAll:"http://192.168.2.8:8080/sdx/brand/getData",
+        brandAdd:"http://192.168.2.8:8080/sdx/brand/insert",
+        brandUpdate:"http://192.168.2.8:8080/sdx/brand/update",
+        brandDelete:"http://192.168.2.8:8080/sdx/brand/delete"
     },
     dataTable:{
         langUrl:"lang/de_DE.txt"
