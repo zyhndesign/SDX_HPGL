@@ -1,5 +1,6 @@
 package com.cidic.sdx.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,6 +41,7 @@ public class BrandSettingController {
 		ResultModel resultModel = new ResultModel();
 		resultModel.setResultCode(ex.getErrCode());
 		resultModel.setMessage(ex.getErrMsg());
+		resultModel.setSuccess(false);
 		return resultModel;
 	}
 	
@@ -48,9 +50,9 @@ public class BrandSettingController {
 		return "boardMgr";
 	}
 	
-	@RequestMapping(value = "/getData", method = RequestMethod.POST)  
+	@RequestMapping(value = "/getData", method = RequestMethod.GET)  
 	@ResponseBody
-	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam String id){
+	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String id){
 		
 		response.setContentType("text/html;charset=UTF-8");
 		response.addHeader("Access-Control-Allow-Origin","*");
@@ -61,18 +63,21 @@ public class BrandSettingController {
 		try{
 			resultModel = new ResultModel();
 			if (id == null){
+				List<BrandModel> list = new ArrayList<>();
 				BrandModel brandModel = new BrandModel();
 				brandModel.setId(0);
-				brandModel.setBroadName("圣德西");
-				resultModel.setObject(brandModel);
+				brandModel.setName("圣德西");
+				list.add(brandModel);
+				resultModel.setObject(list);
 			}
 			else{
-				List<BrandModel> list = brandServiceImpl.getBoardDate(id);
+				
+				List<BrandModel> list = brandServiceImpl.getBoardData(id);
 				resultModel.setObject(list);
 			}
 			
 			resultModel.setResultCode(200);
-			
+			resultModel.setSuccess(true);
 		}
 		
 		catch(Exception e){
@@ -92,9 +97,11 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			brandServiceImpl.insertBoardData(id, name);
+			Long back_id = brandServiceImpl.insertBoardData(id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
+			resultModel.setObject(back_id);
+			resultModel.setSuccess(true);
 		}
 		
 		catch(Exception e){
@@ -117,6 +124,7 @@ public class BrandSettingController {
 			brandServiceImpl.updateBoardData(parentId, id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
+			resultModel.setSuccess(true);
 		}
 		
 		catch(Exception e){
@@ -139,6 +147,7 @@ public class BrandSettingController {
 			brandServiceImpl.deleteBoardData(parentId, id);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
+			resultModel.setSuccess(true);
 		}
 		
 		catch(Exception e){

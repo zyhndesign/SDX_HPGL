@@ -1,6 +1,7 @@
 package com.cidic.sdx.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import com.cidic.sdx.util.RedisVariableUtil;
 
 @Service
 @Component
-@Qualifier(value = "boardServiceImpl")
+@Qualifier(value = "brandServiceImpl")
 public class BrandServiceImpl implements BrandService {
 
 	private String brand_key = RedisVariableUtil.BOARD_PREFIX+".";
@@ -26,16 +27,18 @@ public class BrandServiceImpl implements BrandService {
 	private BrandDao brandDaoImpl;
 	
 	@Override
-	public List<BrandModel> getBoardDate(String key) {
+	public List<BrandModel> getBoardData(String key) {
 		String boardKey = brand_key + key;
 		Map<String,String> map = brandDaoImpl.getBrandDateByKey(boardKey);
-		
 		List<BrandModel> list = new ArrayList<BrandModel>();
 		map.forEach((k,v)->{
 			BrandModel boardModel = new BrandModel();
-			boardModel.setId(Integer.parseInt(k.split(".")[1]));
-			boardModel.setBroadName(v);
+			boardModel.setId(Integer.parseInt(k.split("\\.")[1]));
+			boardModel.setName(v);
+			boardModel.setpId(Integer.parseInt(key));
 			list.add(boardModel);
+			Collections.reverse(list);
+			
 		});
 		return list;
 	}

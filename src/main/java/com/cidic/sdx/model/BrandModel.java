@@ -3,7 +3,6 @@ package com.cidic.sdx.model;
 import java.io.Serializable;
 
 /**
- * 品牌数据模型
  * @author dev
  *
  */
@@ -12,7 +11,8 @@ public class BrandModel implements Serializable {
 	private static final long serialVersionUID = -2651214827910333046L;
 	
 	private int id;
-	private String broadName;
+	private String name;
+	private int pId;
 	
 	public int getId() {
 		return id;
@@ -21,14 +21,23 @@ public class BrandModel implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getBroadName() {
-		return broadName;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 	
-	public void setBroadName(String broadName) {
-		this.broadName = broadName;
-	}
 	
 	
 }

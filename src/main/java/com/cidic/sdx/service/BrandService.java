@@ -7,7 +7,7 @@ import com.cidic.sdx.model.BrandModel;
 
 public interface BrandService {
 	
-	public List<BrandModel> getBoardDate(String key);
+	public List<BrandModel> getBoardData(String key);
 	
 	public Long insertBoardData(String key, String value);
 	
