@@ -14,8 +14,9 @@ var config={
         swfUrl:"resources/js/lib/Moxie.swf"
     },
     ajaxUrls:{
-        brandGetAll:"data/brand.json",
-        brandDelete:"#"
+        brandGetAll:"http://192.168.2.8:8080/SDX_HPGL/",
+        brandAdd:"add.php",
+        brandDelete:"add.php"
     },
     dataTable:{
         langUrl:"lang/de_DE.txt"

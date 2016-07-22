@@ -1,13 +1,8 @@
 {
-    "sEcho":1,
     "success":true,
-    "iTotalRecords":20,
-    "iTotalDisplayRecords":20,
-    "aaData":[{
-        "id":1,
+    "results":[{
+        "id":0,
         "name":"圣德西"
-    },{
-        "id":2,
-        "name":"阿诗玛"
     }]
 }
+
