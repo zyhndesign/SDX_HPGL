@@ -1,4 +1,4 @@
-var brandMgr=(function(config,functions){
+var sizeMgr=(function(config,functions){
     function remove(id,pId){
         functions.showLoading();
         var me=this;
@@ -185,7 +185,7 @@ var brandMgr=(function(config,functions){
 
 $(document).ready(function(){
 
-    $.fn.zTree.init($("#treeDemo"), brandMgr.setting);
+    $.fn.zTree.init($("#treeDemo"), sizeMgr.setting);
 
 });
 

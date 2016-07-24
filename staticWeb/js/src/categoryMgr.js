@@ -1,4 +1,4 @@
-var brandMgr=(function(config,functions){
+var categoryMgr=(function(config,functions){
     function remove(id,pId){
         functions.showLoading();
         var me=this;
@@ -147,7 +147,7 @@ var brandMgr=(function(config,functions){
             async: {
                 enable: true,
                 type:"GET",
-                url:config.ajaxUrls.brandGetAll,
+                url:config.ajaxUrls.categoryGetAll,
                 //autoParam:["id", "name=n", "level=lv"],
                 autoParam:["id"],
                 //otherParam:{otherParam:"zTreeAsyncTest"},
@@ -185,7 +185,7 @@ var brandMgr=(function(config,functions){
 
 $(document).ready(function(){
 
-    $.fn.zTree.init($("#treeDemo"), brandMgr.setting);
+    $.fn.zTree.init($("#treeDemo"), categoryMgr.setting);
 
 });
 
