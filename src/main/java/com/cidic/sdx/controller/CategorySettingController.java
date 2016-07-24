@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cidic.sdx.exception.SdxException;
-import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.CategoryModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.CategoryService;

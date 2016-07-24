@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cidic.sdx.dao.CategoryDao;
-import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.CategoryModel;
 import com.cidic.sdx.service.CategoryService;
 import com.cidic.sdx.util.RedisVariableUtil;

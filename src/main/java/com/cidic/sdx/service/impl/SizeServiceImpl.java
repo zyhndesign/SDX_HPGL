@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cidic.sdx.dao.SizeDao;
-import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.SizeModel;
 import com.cidic.sdx.service.SizeService;
 import com.cidic.sdx.util.RedisVariableUtil;
