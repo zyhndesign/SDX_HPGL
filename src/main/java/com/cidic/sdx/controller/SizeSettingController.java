@@ -22,17 +22,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.ResultModel;
-import com.cidic.sdx.service.BrandService;
+import com.cidic.sdx.model.SizeModel;
+import com.cidic.sdx.service.SizeService;
 
 @Controller
-@RequestMapping("/brand")
-public class BrandSettingController {
-
-	private static final Logger logger = LoggerFactory.getLogger(BrandSettingController.class);
+@RequestMapping("/size")
+public class SizeSettingController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SizeSettingController.class);
 	
 	@Autowired
-	@Qualifier(value = "brandServiceImpl")
-	private BrandService brandServiceImpl;
+	@Qualifier(value = "sizeServiceImpl")
+	private SizeService sizeServiceImpl;
 	
 	private ResultModel resultModel = null;
 	
@@ -63,16 +64,16 @@ public class BrandSettingController {
 		try{
 			resultModel = new ResultModel();
 			if (id == null){
-				List<BrandModel> list = new ArrayList<>();
-				BrandModel brandModel = new BrandModel();
-				brandModel.setId(0);
-				brandModel.setName("圣德西");
-				list.add(brandModel);
+				List<SizeModel> list = new ArrayList<>();
+				SizeModel sizeModel = new SizeModel();
+				sizeModel.setId(0);
+				sizeModel.setName("圣德西");
+				list.add(sizeModel);
 				resultModel.setObject(list);
 			}
 			else{
 				
-				List<BrandModel> list = brandServiceImpl.getBrandData(id);
+				List<SizeModel> list = sizeServiceImpl.getSizeData(id);
 				resultModel.setObject(list);
 			}
 			
@@ -97,7 +98,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			Long back_id = brandServiceImpl.insertBrandData(id, name);
+			Long back_id = sizeServiceImpl.insertSizeData(id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setObject(back_id);
@@ -121,7 +122,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			brandServiceImpl.updateBrandData(parentId, id, name);
+			sizeServiceImpl.updateSizeData(parentId, id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
@@ -144,7 +145,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			brandServiceImpl.deleteBrandData(parentId, id);
+			sizeServiceImpl.deleteSizeData(parentId, id);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);

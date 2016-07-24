@@ -21,18 +21,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.BrandModel;
+import com.cidic.sdx.model.ColorModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.BrandService;
+import com.cidic.sdx.service.ColorService;
 
 @Controller
-@RequestMapping("/brand")
-public class BrandSettingController {
-
-	private static final Logger logger = LoggerFactory.getLogger(BrandSettingController.class);
+@RequestMapping("/color")
+public class ColorSettingController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ColorSettingController.class);
 	
 	@Autowired
-	@Qualifier(value = "brandServiceImpl")
-	private BrandService brandServiceImpl;
+	@Qualifier(value = "colorServiceImpl")
+	private ColorService colorServiceImpl;
 	
 	private ResultModel resultModel = null;
 	
@@ -63,16 +65,16 @@ public class BrandSettingController {
 		try{
 			resultModel = new ResultModel();
 			if (id == null){
-				List<BrandModel> list = new ArrayList<>();
-				BrandModel brandModel = new BrandModel();
-				brandModel.setId(0);
-				brandModel.setName("圣德西");
-				list.add(brandModel);
+				List<ColorModel> list = new ArrayList<>();
+				ColorModel colorModel = new ColorModel();
+				colorModel.setId(0);
+				colorModel.setName("圣德西");
+				list.add(colorModel);
 				resultModel.setObject(list);
 			}
 			else{
 				
-				List<BrandModel> list = brandServiceImpl.getBrandData(id);
+				List<ColorModel> list = colorServiceImpl.getColorData(id);
 				resultModel.setObject(list);
 			}
 			
@@ -97,7 +99,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			Long back_id = brandServiceImpl.insertBrandData(id, name);
+			Long back_id = colorServiceImpl.insertColorData(id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setObject(back_id);
@@ -121,7 +123,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			brandServiceImpl.updateBrandData(parentId, id, name);
+			colorServiceImpl.updateColorData(parentId, id, name);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
@@ -144,7 +146,7 @@ public class BrandSettingController {
 	    }
 	    
 		try{
-			brandServiceImpl.deleteBrandData(parentId, id);
+			colorServiceImpl.deleteColorData(parentId, id);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);

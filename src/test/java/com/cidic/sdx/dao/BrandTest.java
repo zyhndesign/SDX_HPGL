@@ -22,12 +22,12 @@ public class BrandTest {
 	
 	//@Test
 	public void insertData(){
-		brandServiceImpl.insertBoardData("board", "hello");
+		brandServiceImpl.insertBrandData("board", "hello");
 	}
 	
 	@Test
 	public void getData(){
-		List<BrandModel> list = brandServiceImpl.getBoardData("1");
+		List<BrandModel> list = brandServiceImpl.getBrandData("1");
 		System.out.println(list.size());
 	}
 }

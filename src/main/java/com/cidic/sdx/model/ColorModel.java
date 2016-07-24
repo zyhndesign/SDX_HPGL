@@ -3,7 +3,7 @@ package com.cidic.sdx.model;
 import java.io.Serializable;
 
 /**
- * ÑÕÉ«Êý¾ÝÄ£ÐÍ
+ * ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
  * @author dev
  *
  */
@@ -16,7 +16,8 @@ public class ColorModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private String colorName;
+	private String name;
+	private int pId;
 	
 	public int getId() {
 		return id;
@@ -24,11 +25,17 @@ public class ColorModel implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getColorName() {
-		return colorName;
+	public String getName() {
+		return name;
 	}
-	public void setColorName(String colorName) {
-		this.colorName = colorName;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getpId() {
+		return pId;
+	}
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 	
 	

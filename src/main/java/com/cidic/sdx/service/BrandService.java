@@ -7,11 +7,11 @@ import com.cidic.sdx.model.BrandModel;
 
 public interface BrandService {
 	
-	public List<BrandModel> getBoardData(String key);
+	public List<BrandModel> getBrandData(String key);
 	
-	public Long insertBoardData(String key, String value);
+	public Long insertBrandData(String key, String value);
 	
-	public void updateBoardData(String parentKey,String key, String value);
+	public void updateBrandData(String parentKey,String key, String value);
 	
-	public void deleteBoardData(String parentKey,String key);
+	public void deleteBrandData(String parentKey,String key);
 }

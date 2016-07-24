@@ -3,7 +3,7 @@ package com.cidic.sdx.model;
 import java.io.Serializable;
 
 /**
- * 品类数据模型
+ * 品锟斤拷锟斤拷锟斤拷模锟斤拷
  * @author dev
  *
  */
@@ -15,7 +15,8 @@ public class CategoryModel implements Serializable {
 	private static final long serialVersionUID = -4826107560113521685L;
 	
 	private int id;
-	private String categoryName;
+	private String name;
+	private int pId;
 	
 	public int getId() {
 		return id;
@@ -23,11 +24,17 @@ public class CategoryModel implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getpId() {
+		return pId;
+	}
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 	
 	

@@ -20,16 +20,16 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "brandServiceImpl")
 public class BrandServiceImpl implements BrandService {
 
-	private String brand_key = RedisVariableUtil.BOARD_PREFIX+".";
+	private String brand_key = RedisVariableUtil.BRAND_PREFIX+".";
 	
 	@Autowired
 	@Qualifier(value = "brandDaoImpl")
 	private BrandDao brandDaoImpl;
 	
 	@Override
-	public List<BrandModel> getBoardData(String key) {
-		String boardKey = brand_key + key;
-		Map<String,String> map = brandDaoImpl.getBrandDateByKey(boardKey);
+	public List<BrandModel> getBrandData(String key) {
+		String brandKey = brand_key + key;
+		Map<String,String> map = brandDaoImpl.getBrandDataByKey(brandKey);
 		List<BrandModel> list = new ArrayList<BrandModel>();
 		map.forEach((k,v)->{
 			BrandModel boardModel = new BrandModel();
@@ -44,16 +44,16 @@ public class BrandServiceImpl implements BrandService {
 	}
 	
 	@Override
-	public Long insertBoardData(String key, String value) {
+	public Long insertBrandData(String key, String value) {
 		
 		return brandDaoImpl.insertBrandData(key, value);
 	}
 	@Override
-	public void updateBoardData(String parentKey, String key, String value) {
+	public void updateBrandData(String parentKey, String key, String value) {
 		brandDaoImpl.updateBrandData(parentKey, key, value);
 	}
 	@Override
-	public void deleteBoardData(String parentKey, String key) {
+	public void deleteBrandData(String parentKey, String key) {
 		brandDaoImpl.deleteBrandData(parentKey, key);
 	}
 	

@@ -3,7 +3,7 @@ package com.cidic.sdx.model;
 import java.io.Serializable;
 
 /**
- * ³ßÂëÉèÖÃ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author dev
  *
  */
@@ -14,7 +14,8 @@ public class SizeModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private String sizeName;
+	private String name;
+	private int pId;
 	
 	public int getId() {
 		return id;
@@ -22,12 +23,19 @@ public class SizeModel implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getSizeName() {
-		return sizeName;
+	public String getName() {
+		return name;
 	}
-	public void setSizeName(String sizeName) {
-		this.sizeName = sizeName;
+	public void setName(String name) {
+		this.name = name;
 	}
+	public int getpId() {
+		return pId;
+	}
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+	
 	
 	
 }

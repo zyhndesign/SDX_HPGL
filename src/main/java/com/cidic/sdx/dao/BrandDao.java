@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface BrandDao {
 
-	public Map<String,String> getBrandDateByKey(String key);
+	public Map<String,String> getBrandDataByKey(String key);
 	
 	public long insertBrandData(String key, String value);
 	
