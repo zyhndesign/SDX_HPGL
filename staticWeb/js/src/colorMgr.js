@@ -3,7 +3,7 @@ var colorMgr=(function(config,functions){
         functions.showLoading();
         var me=this;
         $.ajax({
-            url:config.ajaxUrls.brandDelete.replace(":id",id),
+            url:config.ajaxUrls.colorDelete.replace(":id",id),
             type:"post",
             data:{
                 parentId:pId,
@@ -29,7 +29,7 @@ var colorMgr=(function(config,functions){
         var me=this;
         var no=(new Date()).getTime();
         $.ajax({
-            url:config.ajaxUrls.brandAdd,
+            url:config.ajaxUrls.colorAdd,
             type:"post",
             data:{
                 name:"新系列"+no,
@@ -64,7 +64,7 @@ var colorMgr=(function(config,functions){
         functions.showLoading();
         var me=this;
         $.ajax({
-            url:config.ajaxUrls.brandUpdate,
+            url:config.ajaxUrls.colorUpdate,
             type:"post",
             data:{
                 name:name,

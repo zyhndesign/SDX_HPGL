@@ -3,7 +3,7 @@ var sizeMgr=(function(config,functions){
         functions.showLoading();
         var me=this;
         $.ajax({
-            url:config.ajaxUrls.brandDelete.replace(":id",id),
+            url:config.ajaxUrls.sizeDelete.replace(":id",id),
             type:"post",
             data:{
                 parentId:pId,
@@ -29,7 +29,7 @@ var sizeMgr=(function(config,functions){
         var me=this;
         var no=(new Date()).getTime();
         $.ajax({
-            url:config.ajaxUrls.brandAdd,
+            url:config.ajaxUrls.sizeAdd,
             type:"post",
             data:{
                 name:"新系列"+no,
@@ -64,7 +64,7 @@ var sizeMgr=(function(config,functions){
         functions.showLoading();
         var me=this;
         $.ajax({
-            url:config.ajaxUrls.brandUpdate,
+            url:config.ajaxUrls.sizeUpdate,
             type:"post",
             data:{
                 name:name,
@@ -147,7 +147,7 @@ var sizeMgr=(function(config,functions){
             async: {
                 enable: true,
                 type:"GET",
-                url:config.ajaxUrls.brandGetAll,
+                url:config.ajaxUrls.sizeGetAll,
                 //autoParam:["id", "name=n", "level=lv"],
                 autoParam:["id"],
                 //otherParam:{otherParam:"zTreeAsyncTest"},
