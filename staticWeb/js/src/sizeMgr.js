@@ -32,7 +32,7 @@ var sizeMgr=(function(config,functions){
             url:config.ajaxUrls.sizeAdd,
             type:"post",
             data:{
-                name:"新系列"+no,
+                name:"新尺寸"+no,
                 id:treeNode.id
             },
             dataType:"json",
@@ -45,7 +45,7 @@ var sizeMgr=(function(config,functions){
 
                     console.log(treeNode.check_Child_State);
                     if(treeNode.check_Child_State!=-1){
-                        zTree.addNodes(treeNode, {id:response.object, pId:treeNode.id, name:"新系列" +no,isParent:true});
+                        zTree.addNodes(treeNode, {id:response.object, pId:treeNode.id, name:"新尺寸" +no,isParent:true});
                     }else{
                         zTree.expandNode(treeNode);
                     }
