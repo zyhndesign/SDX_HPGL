@@ -46,20 +46,18 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Long insertCategoryData(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryDaoImpl.insertCategoryData(key, value);
 	}
 
 	@Override
 	public void updateCategoryData(String parentKey, String key, String value) {
-		// TODO Auto-generated method stub
+		categoryDaoImpl.updateCategoryData(parentKey, key, value);
 
 	}
 
 	@Override
 	public void deleteCategoryData(String parentKey, String key) {
-		// TODO Auto-generated method stub
-
+		categoryDaoImpl.deleteCategoryData(parentKey, key);
 	}
 
 }

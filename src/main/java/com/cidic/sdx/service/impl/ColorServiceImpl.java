@@ -48,18 +48,17 @@ public class ColorServiceImpl implements ColorService {
 	@Override
 	public Long insertColorData(String key, String value) {
 		// TODO Auto-generated method stub
-		return null;
+		return colorDaoImpl.insertColorData(key, value);
 	}
 
 	@Override
 	public void updateColorData(String parentKey, String key, String value) {
-		// TODO Auto-generated method stub
-
+		colorDaoImpl.updateColorData(parentKey, key, value);
 	}
 
 	@Override
 	public void deleteColorData(String parentKey, String key) {
-		// TODO Auto-generated method stub
+		colorDaoImpl.deleteColorData(parentKey, key);
 
 	}
 

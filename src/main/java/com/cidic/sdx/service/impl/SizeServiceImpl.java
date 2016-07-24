@@ -46,20 +46,17 @@ public class SizeServiceImpl implements SizeService {
 
 	@Override
 	public Long insertSizeData(String key, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return sizeDaoImpl.insertSizeData(key, value);
 	}
 
 	@Override
 	public void updateSizeData(String parentKey, String key, String value) {
-		// TODO Auto-generated method stub
-
+		sizeDaoImpl.updateSizeData(parentKey, key, value);
 	}
 
 	@Override
 	public void deleteSizeData(String parentKey, String key) {
-		// TODO Auto-generated method stub
-
+		sizeDaoImpl.deleteSizeData(parentKey, key);
 	}
 
 }
