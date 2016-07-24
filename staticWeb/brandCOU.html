@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="webkit" name="renderer">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>圣德西货品管理</title>
+
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <link href="css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="css/src/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<script src="header.js"></script>
+
+<div class="left">
+
+    <script src="menu.js"></script>
+
+</div>
+
+<div class="right">
+    <div class="main">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">货品录入/修改</h1>
+            </div>
+            <div class="panel-body" id="opt-body">
+                <form class="form-horizontal" id="myForm" action="#" method="post">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">货号*</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" value="" name="no">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">品牌*</label>
+                            <div class="col-md-6">
+                                <input type="text" id="brand" class="form-control" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default showTreePanel" data-type="brand">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">品类*</label>
+                            <div class="col-md-6">
+                                <input type="text" id="category" class="form-control" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default showTreePanel" data-type="category">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">时间*</label>
+                            <div class="col-md-6">
+                                <input type="text" id="date" class="form-control" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default showTreePanel" data-type="date">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">尺寸*</label>
+                            <div class="col-md-6">
+                                <input type="text" id="size" class="form-control" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default showTreePanel" data-type="size">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">颜色*</label>
+                            <div class="col-md-6">
+                                <input type="text" id="color" class="form-control"  value=" ">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default showTreePanel" data-type="color">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-md-2">吊牌价*</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" value="" name="price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">图*</label>
+                            <div class="col-md-10" id="uploadContainer">
+                                <p class="help-block">请上传4:3的jpg，png，宽度400px-800px</p>
+                                <a href="#" class="btn btn-success" id="uploadBtn1">
+                                    <img  id="image1"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                </a>
+                                <a href="#" class="btn btn-success" id="uploadBtn2">
+                                    <img  id="image2"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                </a>
+                                <a href="#" class="btn btn-success" id="uploadBtn3">
+                                    <img  id="image3"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                </a>
+                                <input type="hidden" id="imageUrl1" name="thumb[]" value="">
+                                <input type="hidden" id="imageUrl2" name="thumb[]" value="">
+                                <input type="hidden" id="imageUrl3" name="thumb[]" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                <button type="submit" class="btn btn-success form-control">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--弹出界面-->
+<div class="modal fade" id="showTreeModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">设置xx</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="treeDemo" class="ztree"></ul>
+                <br><br>
+                <button class="btn btn-success" id="saveTreeSelect">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="loading.js"></script>
+
+<script src="js/lib/jquery-2.0.3.min.js"></script>
+<script src="js/lib/jquery.ztree.all.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/plupload.full.min.js"></script>
+<script src="js/lib/qiniu.js"></script>
+<script src="js/lib/jquery.form.js"></script>
+<script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/jquery.toastmessage.js"></script>
+<script src="js/src/config.js"></script>
+<script src="js/src/functions.js"></script>
+<script src="js/src/brandCOU.js"></script>
+</body>
+</html>
