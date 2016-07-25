@@ -14,9 +14,9 @@ public class RedisVariableUtil {
 	
 	public final static String HP_RECORD_PREFIX = "hp"; //货品管理记录前缀
 	
-	public final static String BRAND_TAG_PREFIX = "brand_tag";  //品牌标签前缀
-	public final static String CATEGORY_TAG_PREFIX = "category_tag"; //品类标签前缀
-	public final static String COLOR_TAG_PREFIX = "color_tag"; //颜色标签前缀
-	public final static String SIZE_TAG_PREFIX = "size_tag"; //尺寸标签前缀
+	public final static String BRAND_TAG_PREFIX = "tag_brand";  //品牌标签前缀
+	public final static String CATEGORY_TAG_PREFIX = "tag_category"; //品类标签前缀
+	public final static String COLOR_TAG_PREFIX = "tag_color"; //颜色标签前缀
+	public final static String SIZE_TAG_PREFIX = "tag_size"; //尺寸标签前缀
 	
 }

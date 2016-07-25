@@ -26,6 +26,7 @@ public class BrandServiceImpl implements BrandService {
 	@Qualifier(value = "brandDaoImpl")
 	private BrandDao brandDaoImpl;
 	
+	
 	@Override
 	public List<BrandModel> getBrandData(String key) {
 		String brandKey = brand_key + key;

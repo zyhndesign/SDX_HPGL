@@ -3,7 +3,7 @@ package com.cidic.sdx.model;
 import java.io.Serializable;
 
 /**
- * Ʒ������ģ��
+ * 
  * @author dev
  *
  */
