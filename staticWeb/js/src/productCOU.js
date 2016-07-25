@@ -45,7 +45,9 @@ var brandCOU=(function(config,functions){
                 dataFilter: filter
             },
             check:{
-                enable:true
+                enable:true,
+                chkStyle:"radio",
+                radioType:"all"
             },
             data: {
                 keep:{
@@ -97,13 +99,18 @@ var brandCOU=(function(config,functions){
             var me=this;
             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
             var selects = zTree.getCheckedNodes();
-            var value=[],valueName=[];
-            for(var i= 0,len=selects.length;i<len;i++){
-                value.push(selects[i].id);
-                valueName.push(selects[i].name);
+            var valueArray=[],valueNameArray=[];
+
+            for(var i= 1,len=selects[0].level;i<len;i++){
+                selects.unshift(selects[0].getParentNode());
             }
-            oldValue[currentSetType]=value;
-            $("#"+currentSetType).val(valueName.join("/"));
+
+            for(var j= 0,length=selects.length;j<length;j++){
+                valueArray.push(selects[j].id);
+                valueNameArray.push(selects[j].name);
+            }
+            oldValue[currentSetType]=valueArray;
+            $("#"+currentSetType).val(valueNameArray.join("/"));
             $("#showTreeModal").modal("hide");
 
             /*functions.showLoading();
@@ -113,7 +120,7 @@ var brandCOU=(function(config,functions){
                 dataType:"json",
                 data:{
                     oldValue:oldValue[currentSetType].join(","),
-                    value:value.join(","),
+                    value:valueArray.join(","),
                     type:currentSetType
                 },
                 success:function(response){

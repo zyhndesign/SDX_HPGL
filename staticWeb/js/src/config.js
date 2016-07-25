@@ -30,7 +30,9 @@ var config={
         colorAdd:"http://192.168.2.8:8080/sdx/color/insert",
         colorUpdate:"http://192.168.2.8:8080/sdx/color/update",
         colorDelete:"http://192.168.2.8:8080/sdx/color/delete",
-        productSet:"#"
+        productSet:"#",
+        productSave:"#",
+        productGetAll:"data/datatable.json"
 
     },
     dataTable:{

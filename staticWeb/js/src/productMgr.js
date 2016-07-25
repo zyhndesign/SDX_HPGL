@@ -1,6 +1,12 @@
-var productsMgr=(function(config,functions){
+var productMgr=(function(config,functions){
 
-    var currentBrandId;
+    var searchParams={
+        brand:[],
+        category:[],
+        date:[],
+        color:[],
+        size:[]
+    };
 
     /**
      * 创建datatable
@@ -10,7 +16,7 @@ var productsMgr=(function(config,functions){
 
         var ownTable=$("#myTable").dataTable({
             "bServerSide": true,
-            "sAjaxSource": config.ajaxUrls.brandGetAll,
+            "sAjaxSource": config.ajaxUrls.productGetAll,
             "bInfo":true,
             "bLengthChange": false,
             "bFilter": false,
@@ -38,8 +44,26 @@ var productsMgr=(function(config,functions){
             ] ,
             "fnServerParams": function ( aoData ) {
                 aoData.push({
-                    name:"name",
-                    value:""
+                    name:"no",
+                    value:$("#searchNo").val()
+                },{
+                    name:"status",
+                    value:$("#searchStatus").val()
+                },{
+                    name:"brand",
+                    value:searchParams.brand.join(",")
+                },{
+                    name:"category",
+                    value:searchParams.category.join(",")
+                },{
+                    name:"date",
+                    value:searchParams.date.join(",")
+                },{
+                    name:"size",
+                    value:searchParams.size.join(",")
+                },{
+                    name:"color",
+                    value:searchParams.color.join(",")
                 })
             },
             "fnServerData": function(sSource, aoData, fnCallback) {
@@ -80,6 +104,7 @@ var productsMgr=(function(config,functions){
     }
 
     return {
+        searchParams:searchParams,
         ownTable:null,
         createTable:function(){
             this.ownTable=createTable();
@@ -115,13 +140,49 @@ var productsMgr=(function(config,functions){
 
 $(document).ready(function(){
 
-    productsMgr.createTable();
+    productMgr.createTable();
 
     $("#myTable").on("click","a.remove",function(){
         if(confirm(config.messages.confirmDelete)){
-            productsMgr.delete($(this).attr("href"));
+            productMgr.delete($(this).attr("href"));
         }
         return false;
+    });
+
+    $("#searchBtn").click(function(){
+        productMgr.tableRedraw();
+    });
+
+    $("#searchPanel").on("click",".item",function(){
+        var el=$(this);
+        var type=el.data("type");
+        var id= el.data("id");
+        var index;
+
+        if(el.hasClass("active")){
+            index=productMgr.searchParams[type].indexOf(id);
+            productMgr.searchParams[type].splice(index,1);
+            el.removeClass("active");
+        }else{
+            productMgr.searchParams[type].push(id);
+            el.addClass("active");
+        }
+        productMgr.tableRedraw();
+    });
+
+    $("#searchPanelCtrl").click(function(){
+        if($(this).data("target").indexOf("down")!=-1){
+            $("#searchPanel .row").hide(400);
+            $(this).find(".glyphicon").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+            $(this).data("target","up");
+            $(this).find(".text").text("展开");
+        }else{
+            $("#searchPanel .row").show(400);
+            $(this).find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+            $(this).data("target","down");
+            $(this).find(".text").text("收起");
+        }
+
     });
 
 });

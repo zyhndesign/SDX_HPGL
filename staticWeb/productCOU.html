@@ -11,6 +11,9 @@
     <link href="css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
     <link href="css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
     <link href="css/src/main.css" rel="stylesheet" type="text/css">
+    <script>
+        var id=1;
+    </script>
 </head>
 <body>
 
@@ -40,7 +43,8 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">品牌*</label>
                             <div class="col-md-6">
-                                <input type="text" id="brand" class="form-control" value="">
+                                <input type="text" id="brand" name="brand" class="form-control" value="">
+                                <input type="hidden" id="brandOld" value="">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="brand">
@@ -52,6 +56,7 @@
                             <label  class="control-label col-md-2">品类*</label>
                             <div class="col-md-6">
                                 <input type="text" id="category" class="form-control" value="">
+                                <input type="hidden" id="categoryOld" value="">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="category">
@@ -63,6 +68,7 @@
                             <label  class="control-label col-md-2">时间*</label>
                             <div class="col-md-6">
                                 <input type="text" id="date" class="form-control" value="">
+                                <input type="hidden" id="dateOld" value="">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="date">
@@ -74,6 +80,7 @@
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
                                 <input type="text" id="size" class="form-control" value="">
+                                <input type="hidden" id="sizeOld" value="">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="size">
@@ -85,6 +92,7 @@
                             <label  class="control-label col-md-2">颜色*</label>
                             <div class="col-md-6">
                                 <input type="text" id="color" class="form-control"  value=" ">
+                                <input type="hidden" id="colorOld" value="">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="color">
@@ -160,6 +168,6 @@
 <script src="js/lib/jquery.toastmessage.js"></script>
 <script src="js/src/config.js"></script>
 <script src="js/src/functions.js"></script>
-<script src="js/src/brandCOU.js"></script>
+<script src="js/src/productCOU.js"></script>
 </body>
 </html>

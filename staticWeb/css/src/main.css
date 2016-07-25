@@ -181,8 +181,38 @@ label.error{
 /**
 *复写datatable
 */
-.tableSearchContainer{
-    margin: 10px 0px;
+.searchPanel{
+    margin: 5px 0px 40px 0px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+.searchPanel .ctrl{
+    position: absolute;
+    left:50%;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    bottom:-29px;
+    margin: 0px 0px 0px -40px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+.searchPanel .row{
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    padding:5px 0px;
+}
+.searchPanel .row .item{
+    color: #808080;
+    margin: 0px 5px;
+}
+.searchPanel .row .item:hover,.searchPanel .row .item.active{
+    color: #5dc05f;
+    cursor: pointer;
 }
 table.dataTable{
     margin-top: 20px;

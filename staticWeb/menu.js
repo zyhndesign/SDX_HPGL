@@ -1,7 +1,7 @@
 document.write('<ul class="menu">' +
     '<li class="item">' +
     '<span class="glyphicon glyphicon-flag"></span>' +
-    '<a class="link" href="productsMgr.html">货品管理</a>' +
+    '<a class="link" href="productMgr.html">货品管理</a>' +
     '</li>'+
     '<li class="item">' +
     '<span class="glyphicon glyphicon-th-list"></span>' +

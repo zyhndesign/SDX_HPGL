@@ -12,17 +12,5 @@
         "size":"FF/44",
         "color":"蓝色",
         "price":476
-    },{
-        "id":2,
-        "productNo": "人文",
-        "brand":"圣德西/商务系列"
-    },{
-        "id":3,
-        "productNo": "物语",
-        "brand":"圣德西/商务系列"
-    },{
-        "id":4,
-        "productNo": "社区",
-        "brand":"圣德西/商务系列"
     }]
 }
