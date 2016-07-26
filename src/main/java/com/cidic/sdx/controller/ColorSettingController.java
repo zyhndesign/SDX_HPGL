@@ -48,9 +48,9 @@ public class ColorSettingController {
 		return resultModel;
 	}
 	
-	@RequestMapping(value = "/brandMgr", method = RequestMethod.GET)
+	@RequestMapping(value = "/colorMgr", method = RequestMethod.GET)
 	public String userMgr(Locale locale, Model model) {
-		return "boardMgr";
+		return "colorMgr";
 	}
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  

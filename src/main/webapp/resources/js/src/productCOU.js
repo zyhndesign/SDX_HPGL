@@ -197,9 +197,6 @@ $(document).ready(function(){
             color:{
                 required:true
             },
-            "imageUrl[]":{
-                required:true
-            },
             price:{
                 required:true
             }
@@ -219,9 +216,6 @@ $(document).ready(function(){
                 required:config.validErrors.required
             },
             color:{
-                required:config.validErrors.required
-            },
-            "imageUrl[]":{
                 required:config.validErrors.required
             },
             price:{

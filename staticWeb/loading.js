@@ -1,3 +1,0 @@
-document.write('<div class="loading hidden" id="loading">'+
-    '<span class="text">Loading...</span>'+
-    '</div>');

@@ -7,10 +7,10 @@
     <%@ include file="head.jsp"%>
 
 
-    <link href="css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
-    <link href="css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
-    <link href="css/src/main.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -37,12 +37,12 @@
 
 <%@ include file="loading.jsp"%>
 
-<script src="js/lib/jquery-2.0.3.min.js"></script>
-<script src="js/lib/jquery.ztree.all.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
-<script src="js/lib/jquery.toastmessage.js"></script>
-<script src="js/src/config.js"></script>
-<script src="js/src/functions.js"></script>
-<script src="js/src/colorMgr.js"></script>
+<script src="resources/js/lib/jquery-2.0.3.min.js"></script>
+<script src="resources/js/lib/jquery.ztree.all.min.js"></script>
+<script src="resources/js/lib/bootstrap.min.js"></script>
+<script src="resources/js/lib/jquery.toastmessage.js"></script>
+<script src="resources/js/src/config.js"></script>
+<script src="resources/js/src/functions.js"></script>
+<script src="resources/js/src/colorMgr.js"></script>
 </body>
 </html>

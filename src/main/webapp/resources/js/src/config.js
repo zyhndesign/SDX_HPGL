@@ -14,36 +14,37 @@ var config={
         swfUrl:"resources/js/lib/Moxie.swf"
     },
     ajaxUrls:{
-        brandGetAll:"http://192.168.2.8:8080/sdx/brand/getData",
-        brandAdd:"http://192.168.2.8:8080/sdx/brand/insert",
-        brandUpdate:"http://192.168.2.8:8080/sdx/brand/update",
-        brandDelete:"http://192.168.2.8:8080/sdx/brand/delete",
-        categoryGetAll:"http://192.168.2.8:8080/sdx/category/getData",
-        categoryAdd:"http://192.168.2.8:8080/sdx/category/insert",
-        categoryUpdate:"http://192.168.2.8:8080/sdx/category/update",
-        categoryDelete:"http://192.168.2.8:8080/sdx/category/delete",
-        sizeGetAll:"http://192.168.2.8:8080/sdx/size/getData",
-        sizeAdd:"http://192.168.2.8:8080/sdx/size/insert",
-        sizeUpdate:"http://192.168.2.8:8080/sdx/size/update",
-        sizeDelete:"http://192.168.2.8:8080/sdx/size/delete",
-        colorGetAll:"http://192.168.2.8:8080/sdx/color/getData",
-        colorAdd:"http://192.168.2.8:8080/sdx/color/insert",
-        colorUpdate:"http://192.168.2.8:8080/sdx/color/update",
-        colorDelete:"http://192.168.2.8:8080/sdx/color/delete",
-        productSet:"#",
-        productSave:"#",
-        productGetAll:"data/datatable.json"
+        brandGetAll:"brand/getData",
+        brandAdd:"brand/insert",
+        brandUpdate:"brand/update",
+        brandDelete:"brand/delete",
+        categoryGetAll:"category/getData",
+        categoryAdd:"category/insert",
+        categoryUpdate:"category/update",
+        categoryDelete:"category/delete",
+        sizeGetAll:"size/getData",
+        sizeAdd:"size/insert",
+        sizeUpdate:"size/update",
+        sizeDelete:"size/delete",
+        colorGetAll:"color/getData",
+        colorAdd:"color/insert",
+        colorUpdate:"color/update",
+        colorDelete:"color/delete",
+        productTagSet:"tag/update",
+        productInsert:"hpManage/inset",
+        productUpdate:"hpManage/update",
+        productGetAll:"hpIndexManage/getData"
 
     },
     dataTable:{
-        langUrl:"lang/de_DE.txt"
+        langUrl:"resources/lang/de_DE.txt"
     },
     perLoadCounts:{
         table:10
     },
     uploader:{
         url:"#",
-        swfUrl:"js/plupload/plupload.flash.swf",
+        swfUrl:"resources/js/plupload/plupload.flash.swf",
         sizes:{
             all:"5120m",
             img:"2m"

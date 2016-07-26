@@ -47,9 +47,9 @@ public class SizeSettingController {
 		return resultModel;
 	}
 	
-	@RequestMapping(value = "/brandMgr", method = RequestMethod.GET)
+	@RequestMapping(value = "/sizeMgr", method = RequestMethod.GET)
 	public String userMgr(Locale locale, Model model) {
-		return "boardMgr";
+		return "sizeMgr";
 	}
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  

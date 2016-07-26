@@ -45,9 +45,9 @@ public class CategorySettingController {
 		return resultModel;
 	}
 	
-	@RequestMapping(value = "/brandMgr", method = RequestMethod.GET)
+	@RequestMapping(value = "/categoryMgr", method = RequestMethod.GET)
 	public String userMgr(Locale locale, Model model) {
-		return "boardMgr";
+		return "categoryMgr";
 	}
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  

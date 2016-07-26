@@ -48,7 +48,7 @@ public class BrandSettingController {
 	
 	@RequestMapping(value = "/brandMgr", method = RequestMethod.GET)
 	public String userMgr(Locale locale, Model model) {
-		return "boardMgr";
+		return "brandMgr";
 	}
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  

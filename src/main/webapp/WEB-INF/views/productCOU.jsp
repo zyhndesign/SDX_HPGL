@@ -7,12 +7,12 @@
     <%@ include file="head.jsp"%>
 
 
-    <link href="css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
-    <link href="css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
-    <link href="css/src/main.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
     <script>
-        var id=1;
+        var id="${hp.id}";
     </script>
 </head>
 <body>
@@ -30,19 +30,31 @@
                 <h1 class="panel-title">货品录入/修改</h1>
             </div>
             <div class="panel-body" id="opt-body">
-                <form class="form-horizontal" id="myForm" action="#" method="post">
+
+                <c:choose>
+                    <c:when test="${empty hp}">
+                    <form class="form-horizontal" id="myForm" action="hpManage/insert" method="post">
+                    </c:when>
+                    <c:otherwise>
+                    <form class="form-horizontal" id="myForm" action="hpManage/update" method="post">
+                    <input type="hidden" name="id" value="${hp.id}">
+                    </c:otherwise>
+                </c:choose>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label  class="control-label col-md-2">货号*</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" value="" name="hp_num">
+                                <input type="text" class="form-control" value="${hp.hp_num}" name="hp_num">
                             </div>
                         </div>
                         <div class="form-group">
                             <label  class="control-label col-md-2">品牌*</label>
                             <div class="col-md-6">
-                                <input type="text" id="brand" name="brand" class="form-control" value="">
-                                <input type="hidden" id="brandOld" value="">
+                                <input type="text" id="brand" name="brand" class="form-control" value="${hp.brandList}">
+                                <c:if test="${empty hp.id}">
+                                    <input type="hidden" id="brandOld" value="${hp.brand}">
+                                </c:if>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="brand">
@@ -53,8 +65,10 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">品类*</label>
                             <div class="col-md-6">
-                                <input type="text" id="category" class="form-control" value="">
-                                <input type="hidden" id="categoryOld" value="">
+                                <input type="text" id="category" class="form-control" value="${hp.categoryList}">
+                                <c:if test="${empty hp.id}">
+                                    <input type="hidden" id="categoryOld" value="${hp.category}">
+                                </c:if>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="category">
@@ -77,8 +91,10 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
-                                <input type="text" id="size" class="form-control" value="">
-                                <input type="hidden" id="sizeOld" value="">
+                                <input type="text" id="size" class="form-control" value="${hp.sizeList}">
+                                <c:if test="${empty hp.id}">
+                                    <input type="hidden" id="sizeOld" value="${hp.size}">
+                                </c:if>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="size">
@@ -89,8 +105,10 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">颜色*</label>
                             <div class="col-md-6">
-                                <input type="text" id="color" class="form-control"  value=" ">
-                                <input type="hidden" id="colorOld" value="">
+                                <input type="text" id="color" class="form-control"  value="${hp.colorList}">
+                                <c:if test="${empty hp.id}">
+                                    <input type="hidden" id="colorOld" value="${hp.color}">
+                                </c:if>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="color">
@@ -101,7 +119,7 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">吊牌价*</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" value="" name="price">
+                                <input type="text" class="form-control" value="${hp.price}" name="price">
                             </div>
                         </div>
                     </div>
@@ -111,17 +129,45 @@
                             <div class="col-md-10" id="uploadContainer">
                                 <p class="help-block">请上传4:3的jpg，png，宽度400px-800px</p>
                                 <a href="#" class="btn btn-success" id="uploadBtn1">
-                                    <img  id="image1"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                    <c:if test="${empty hp.imageUrl1}">
+                                    <img  id="image1"  style="width:100px"
+                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    <input type="hidden" id="imageUrl1" name="imageUrl1">
+                                    </c:if>
+
+                                    <c:if test="${!empty hp.imageUrl1}">
+                                    <img  id="image1"  style="width:100px"
+                                    src="${hp.imageUrl1}"/>
+                                    <input type="hidden" id="imageUrl1" value="${hp.imageUrl1}" name="imageUrl1">
+                                    </c:if>
                                 </a>
                                 <a href="#" class="btn btn-success" id="uploadBtn2">
-                                    <img  id="image2"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                    <c:if test="${empty hp.imageUrl2}">
+                                    <img  id="image2"  style="width:100px"
+                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    <input type="hidden" id="imageUrl2" name="imageUrl2">
+                                    </c:if>
+
+                                    <c:if test="${!empty hp.imageUrl2}">
+                                    <img  id="image2"  style="width:100px"
+                                    src="${hp.imageUrl2}"/>
+                                    <input type="hidden" id="imageUrl2" value="${hp.imageUrl2}" name="imageUrl2">
+                                    </c:if>
                                 </a>
                                 <a href="#" class="btn btn-success" id="uploadBtn3">
-                                    <img  id="image3"  style="width:100px" src="images/app/defaultThumb.png"/>
+                                    <c:if test="${empty hp.imageUrl3}">
+                                    <img  id="image3"  style="width:100px"
+                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    <input type="hidden" id="imageUrl3" name="imageUrl3">
+                                    </c:if>
+
+                                    <c:if test="${!empty hp.imageUrl3}">
+                                    <img  id="image3"  style="width:100px"
+                                    src="${hp.imageUrl3}"/>
+                                    <input type="hidden" id="imageUrl3" value="${hp.imageUrl3}" name="imageUrl3">
+                                    </c:if>
                                 </a>
-                                <input type="hidden" id="imageUrl1" name="imageUrl[]" value="">
-                                <input type="hidden" id="imageUrl2" name="imageUrl[]" value="">
-                                <input type="hidden" id="imageUrl3" name="imageUrl[]" value="">
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -156,16 +202,16 @@
 
 <%@ include file="loading.jsp"%>
 
-<script src="js/lib/jquery-2.0.3.min.js"></script>
-<script src="js/lib/jquery.ztree.all.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
-<script src="js/lib/plupload.full.min.js"></script>
-<script src="js/lib/qiniu.js"></script>
-<script src="js/lib/jquery.form.js"></script>
-<script src="js/lib/jquery.validate.min.js"></script>
-<script src="js/lib/jquery.toastmessage.js"></script>
-<script src="js/src/config.js"></script>
-<script src="js/src/functions.js"></script>
-<script src="js/src/productCOU.js"></script>
+<script src="resources/js/lib/jquery-2.0.3.min.js"></script>
+<script src="resources/js/lib/jquery.ztree.all.min.js"></script>
+<script src="resources/js/lib/bootstrap.min.js"></script>
+<script src="resources/js/lib/plupload.full.min.js"></script>
+<script src="resources/js/lib/qiniu.js"></script>
+<script src="resources/js/lib/jquery.form.js"></script>
+<script src="resources/js/lib/jquery.validate.min.js"></script>
+<script src="resources/js/lib/jquery.toastmessage.js"></script>
+<script src="resources/js/src/config.js"></script>
+<script src="resources/js/src/functions.js"></script>
+<script src="resources/js/src/productCOU.js"></script>
 </body>
 </html>
