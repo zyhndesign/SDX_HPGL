@@ -54,8 +54,8 @@ public class ColorDaoImpl implements ColorDao {
 				byte[] bIdKey = ser.serialize(id_key);
 
 				long id = connection.incr(bIdKey);
-				connection.hSet(ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + key),
-						ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + id), ser.serialize(value));
+				connection.hSet(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + key),
+						ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + id), ser.serialize(value));
 
 				return id;
 			}
@@ -68,8 +68,8 @@ public class ColorDaoImpl implements ColorDao {
 			@Override
 			public Object doInRedis(RedisConnection connection) throws DataAccessException {
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
-				connection.hSet(ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + parentKey),
-						ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + key), ser.serialize(value));
+				connection.hSet(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + parentKey),
+						ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + key), ser.serialize(value));
 				return null;
 			}
 		});
@@ -81,8 +81,8 @@ public class ColorDaoImpl implements ColorDao {
 			@Override
 			public Object doInRedis(RedisConnection connection) throws DataAccessException {
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
-				connection.hDel(ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + parentKey),
-						ser.serialize(RedisVariableUtil.COLOR_PREFIX + "." + key));
+				connection.hDel(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + parentKey),
+						ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + key));
 				return null;
 			}
 		});

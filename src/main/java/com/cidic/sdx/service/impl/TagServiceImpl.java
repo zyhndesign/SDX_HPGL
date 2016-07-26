@@ -14,10 +14,10 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "tagServiceImpl")
 public class TagServiceImpl implements TagService {
 
-	private String brand_tag_prefix = RedisVariableUtil.BRAND_TAG_PREFIX + ".";
-	private String category_tag_prefix = RedisVariableUtil.CATEGORY_TAG_PREFIX + ".";
-	private String color_tag_prefix = RedisVariableUtil.COLOR_TAG_PREFIX + ".";
-	private String size_tag_prefix = RedisVariableUtil.SIZE_TAG_PREFIX + ".";
+	private String brand_tag_prefix = RedisVariableUtil.BRAND_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+	private String category_tag_prefix = RedisVariableUtil.CATEGORY_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+	private String color_tag_prefix = RedisVariableUtil.COLOR_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+	private String size_tag_prefix = RedisVariableUtil.SIZE_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
 			
 	@Autowired
 	@Qualifier(value = "tagDaoImpl")

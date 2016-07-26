@@ -33,7 +33,7 @@ public class SizeServiceImpl implements SizeService {
 		List<SizeModel> list = new ArrayList<>();
 		map.forEach((k,v)->{
 			SizeModel sizeModel = new SizeModel();
-			sizeModel.setId(Integer.parseInt(k.split("\\.")[1]));
+			sizeModel.setId(Integer.parseInt(k.split("\\"+RedisVariableUtil.DIVISION_CHAR)[1]));
 			sizeModel.setName(v);
 			sizeModel.setpId(Integer.parseInt(key));
 			list.add(sizeModel);

@@ -1,6 +1,5 @@
 package com.cidic.sdx.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,12 +22,13 @@ import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpManageService;
+import com.cidic.sdx.util.WebRequestUtil;
 
 @Controller
 @RequestMapping("/hpManage")
 public class HpManageController {
 
-private static final Logger logger = LoggerFactory.getLogger(BrandSettingController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BrandSettingController.class);
 	
 	@Autowired
 	@Qualifier(value = "hpManageServiceImpl")
@@ -52,19 +52,15 @@ private static final Logger logger = LoggerFactory.getLogger(BrandSettingControl
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  
 	@ResponseBody
-	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam int page,@RequestParam int limit){
+	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam int pageNum,@RequestParam int limit){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
-			
-			
+			List<HPModel> resultData = hpManageServiceImpl.getHpData(pageNum, limit);
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
+			resultModel.setObject(resultData);
 		}
 		
 		catch(Exception e){
@@ -79,11 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(BrandSettingControl
 			@RequestParam String category,@RequestParam String size,@RequestParam String color,@RequestParam float price, 
 			@RequestParam String imageUrl1, @RequestParam String imageUrl2, @RequestParam String imageUrl3){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			HPModel hpModel = new HPModel();
@@ -104,11 +96,7 @@ private static final Logger logger = LoggerFactory.getLogger(BrandSettingControl
 	public ResultModel update(HttpServletRequest request,HttpServletResponse response,@RequestParam String id,@RequestParam String hp_num,
 			@RequestParam float price,  @RequestParam String imageUrl1, @RequestParam String imageUrl2, @RequestParam String imageUrl3){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			HPModel hpModel = new HPModel();
@@ -128,11 +116,7 @@ private static final Logger logger = LoggerFactory.getLogger(BrandSettingControl
 	@ResponseBody
 	public ResultModel delete(HttpServletRequest request,HttpServletResponse response,@RequestParam String id){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			hpManageServiceImpl.deleteHpData(id);

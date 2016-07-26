@@ -33,7 +33,7 @@ public class ColorServiceImpl implements ColorService {
 		List<ColorModel> list = new ArrayList<>();
 		map.forEach((k,v)->{
 			ColorModel colorModel = new ColorModel();
-			colorModel.setId(Integer.parseInt(k.split("\\.")[1]));
+			colorModel.setId(Integer.parseInt(k.split("\\"+RedisVariableUtil.DIVISION_CHAR)[1]));
 			colorModel.setName(v);
 			colorModel.setpId(Integer.parseInt(key));
 			list.add(colorModel);

@@ -23,6 +23,7 @@ import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.BrandService;
+import com.cidic.sdx.util.WebRequestUtil;
 
 @Controller
 @RequestMapping("/brand")
@@ -54,11 +55,7 @@ public class BrandSettingController {
 	@ResponseBody
 	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String id){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			resultModel = new ResultModel();
@@ -90,11 +87,7 @@ public class BrandSettingController {
 	@ResponseBody
 	public ResultModel insert(HttpServletRequest request,HttpServletResponse response,@RequestParam String id,@RequestParam String name){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			Long back_id = brandServiceImpl.insertBrandData(id, name);
@@ -114,11 +107,7 @@ public class BrandSettingController {
 	@ResponseBody
 	public ResultModel update(HttpServletRequest request,HttpServletResponse response,@RequestParam String parentId,@RequestParam String id,@RequestParam String name){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			brandServiceImpl.updateBrandData(parentId, id, name);
@@ -137,11 +126,7 @@ public class BrandSettingController {
 	@ResponseBody
 	public ResultModel delete(HttpServletRequest request,HttpServletResponse response,@RequestParam String id,@RequestParam String parentId){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			brandServiceImpl.deleteBrandData(parentId, id);

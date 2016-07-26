@@ -7,6 +7,8 @@ package com.cidic.sdx.util;
  */
 public class RedisVariableUtil {
 
+	public final static String DIVISION_CHAR = ":";
+	
 	public final static String BRAND_PREFIX = "brand";  //品牌
 	public final static String CATEGORY_PREFIX = "category"; //品类
 	public final static String COLOR_PREFIX = "color"; //颜色

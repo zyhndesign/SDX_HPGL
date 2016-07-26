@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 		List<CategoryModel> list = new ArrayList<>();
 		map.forEach((k,v)->{
 			CategoryModel categoryModel = new CategoryModel();
-			categoryModel.setId(Integer.parseInt(k.split("\\.")[1]));
+			categoryModel.setId(Integer.parseInt(k.split("\\"+RedisVariableUtil.DIVISION_CHAR)[1]));
 			categoryModel.setName(v);
 			categoryModel.setpId(Integer.parseInt(key));
 			list.add(categoryModel);

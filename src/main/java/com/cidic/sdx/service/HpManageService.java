@@ -6,7 +6,7 @@ import com.cidic.sdx.model.HPModel;
 
 public interface HpManageService {
 
-	public List<HPModel> getHpData(String id);
+	public List<HPModel> getHpData(int pageNum, int limit);
 	
 	public void insertHpData(HPModel hpModel);
 	

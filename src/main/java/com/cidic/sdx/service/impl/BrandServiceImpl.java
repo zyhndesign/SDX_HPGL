@@ -20,7 +20,7 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "brandServiceImpl")
 public class BrandServiceImpl implements BrandService {
 
-	private String brand_key = RedisVariableUtil.BRAND_PREFIX+".";
+	private String brand_key = RedisVariableUtil.BRAND_PREFIX+RedisVariableUtil.DIVISION_CHAR;
 	
 	@Autowired
 	@Qualifier(value = "brandDaoImpl")
@@ -34,7 +34,7 @@ public class BrandServiceImpl implements BrandService {
 		List<BrandModel> list = new ArrayList<BrandModel>();
 		map.forEach((k,v)->{
 			BrandModel boardModel = new BrandModel();
-			boardModel.setId(Integer.parseInt(k.split("\\.")[1]));
+			boardModel.setId(Integer.parseInt(k.split("\\"+RedisVariableUtil.DIVISION_CHAR)[1]));
 			boardModel.setName(v);
 			boardModel.setpId(Integer.parseInt(key));
 			list.add(boardModel);

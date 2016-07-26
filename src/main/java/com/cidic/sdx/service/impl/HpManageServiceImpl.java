@@ -22,9 +22,9 @@ public class HpManageServiceImpl implements HpManageService {
 	private HpManageDao hpManageDaoImpl;
 	
 	@Override
-	public List<HPModel> getHpData(String id) {
-
-		return null;
+	public List<HPModel> getHpData(int pageNum, int limit) {
+		
+		return hpManageDaoImpl.getHpData(pageNum, limit);
 	}
 
 	@Override

@@ -25,6 +25,7 @@ import com.cidic.sdx.model.ColorModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.BrandService;
 import com.cidic.sdx.service.ColorService;
+import com.cidic.sdx.util.WebRequestUtil;
 
 @Controller
 @RequestMapping("/color")
@@ -56,11 +57,7 @@ public class ColorSettingController {
 	@ResponseBody
 	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String id){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			resultModel = new ResultModel();
@@ -92,11 +89,7 @@ public class ColorSettingController {
 	@ResponseBody
 	public ResultModel insert(HttpServletRequest request,HttpServletResponse response,@RequestParam String id,@RequestParam String name){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			Long back_id = colorServiceImpl.insertColorData(id, name);
@@ -116,11 +109,7 @@ public class ColorSettingController {
 	@ResponseBody
 	public ResultModel update(HttpServletRequest request,HttpServletResponse response,@RequestParam String parentId,@RequestParam String id,@RequestParam String name){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			colorServiceImpl.updateColorData(parentId, id, name);
@@ -139,11 +128,7 @@ public class ColorSettingController {
 	@ResponseBody
 	public ResultModel delete(HttpServletRequest request,HttpServletResponse response,@RequestParam String id,@RequestParam String parentId){
 		
-		response.setContentType("text/html;charset=UTF-8");
-		response.addHeader("Access-Control-Allow-Origin","*");
-	    if("IE".equals(request.getParameter("type"))){
-	    	response.addHeader("XDomainRequestAllowed","1");
-	    }
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
 			colorServiceImpl.deleteColorData(parentId, id);
