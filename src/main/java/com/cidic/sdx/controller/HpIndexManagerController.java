@@ -1,5 +1,8 @@
 package com.cidic.sdx.controller;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,13 +56,42 @@ public class HpIndexManagerController {
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)  
 	@ResponseBody
 	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String brand,
-			@RequestParam(required=false) String color,@RequestParam(required=false) String size,@RequestParam(required=false) String category){
+			@RequestParam(required=false) String color,@RequestParam(required=false) String size,@RequestParam(required=false) String category,
+			@RequestParam int pageNum,@RequestParam int limit){
 		
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
 	    
 		try{
-			String[] brandArray = 
-			List<HPModel> resultData = hpIndexServiceImpl.getIndexDataByTag(tagList)
+			List<String> tagList = new ArrayList<>();
+			if (brand != null){
+				String[] brandArray = brand.split("\\,");
+				Arrays.asList(brandArray).stream().forEach((b)->{
+					tagList.add(b);
+				});
+			}
+			
+			if (color != null){
+				String[] colorArray = color.split("\\,");
+				Arrays.asList(colorArray).stream().forEach((b)->{
+					tagList.add(b);
+				});
+			}
+			
+			if (size != null){
+				String[] sizeArray = size.split("\\,");
+				Arrays.asList(sizeArray).stream().forEach((b)->{
+					tagList.add(b);
+				});
+			}
+			
+			if (category != null){
+				String[] categoryArray = category.split("\\,");
+				Arrays.asList(categoryArray).stream().forEach((b)->{
+					tagList.add(b);
+				});
+			}
+			
+			List<HPModel> resultData = hpIndexServiceImpl.getIndexDataByTag(tagList,pageNum,limit);
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
 			resultModel.setObject(resultData);

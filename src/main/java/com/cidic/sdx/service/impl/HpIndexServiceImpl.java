@@ -21,9 +21,9 @@ public class HpIndexServiceImpl implements HpIndexService {
 	private HpIndexDao hpIndexDaoImpl;
 	
 	@Override
-	public List<HPModel> getIndexDataByTag(List<String> tagList) {
+	public List<HPModel> getIndexDataByTag(List<String> tagList,int pageNum, int limit) {
 		// TODO Auto-generated method stub
-		return hpIndexDaoImpl.getIndexDataByTag(tagList);
+		return hpIndexDaoImpl.getIndexDataByTag(tagList,pageNum,limit);
 	}
 
 }

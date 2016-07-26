@@ -6,6 +6,6 @@ import com.cidic.sdx.model.HPModel;
 
 public interface HpIndexService {
 
-	public List<HPModel> getIndexDataByTag(List<String> tagList);
+	public List<HPModel> getIndexDataByTag(List<String> tagList,int pageNum, int limit);
 	
 }

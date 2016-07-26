@@ -171,7 +171,6 @@ public class HpManageDaoImpl implements HpManageDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
-				
 				connection.openPipeline();
 				
 				List<byte[]> id_list = connection.lRange(ser.serialize(id_key), (pageNum - 1) * limit, pageNum * limit);
