@@ -181,11 +181,23 @@ $(document).ready(function(){
     $("#myForm").validate({
         ignore:[],
         rules:{
-            no:{
+            hp_num:{
                 required:true,
                 maxlength:32
             },
-            "thumb[]":{
+            brand:{
+                required:true
+            },
+            category:{
+                required:true
+            },
+            size:{
+                required:true
+            },
+            color:{
+                required:true
+            },
+            "imageUrl[]":{
                 required:true
             },
             price:{
@@ -193,11 +205,23 @@ $(document).ready(function(){
             }
         },
         messages:{
-            no:{
+            hp_num:{
                 required:config.validErrors.required,
                 maxlength:config.validErrors.maxLength.replace("${max}",32)
             },
-            "thumb[]":{
+            brand:{
+                required:config.validErrors.required
+            },
+            category:{
+                required:config.validErrors.required
+            },
+            size:{
+                required:config.validErrors.required
+            },
+            color:{
+                required:config.validErrors.required
+            },
+            "imageUrl[]":{
                 required:config.validErrors.required
             },
             price:{
