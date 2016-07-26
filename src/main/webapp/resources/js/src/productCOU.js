@@ -109,35 +109,40 @@ var brandCOU=(function(config,functions){
                 valueArray.push(selects[j].id);
                 valueNameArray.push(selects[j].name);
             }
-            oldValue[currentSetType]=valueArray;
-            $("#"+currentSetType).val(valueNameArray.join("/"));
-            $("#showTreeModal").modal("hide");
 
-            /*functions.showLoading();
-            $.ajax({
-                url:config.ajaxUrls.productSet,
-                type:"post",
-                dataType:"json",
-                data:{
-                    oldValue:oldValue[currentSetType].join(","),
-                    value:valueArray.join(","),
-                    type:currentSetType
-                },
-                success:function(response){
-                    if(response.success){
-                        $().toastmessage("showSuccessToast",config.messages.optSuccess);
-                        functions.hideLoading();
-                        oldValue[currentSetType]=value;
-                        $("#"+type).val(valueName.join("/"));
-                        $("#showTreeModal").modal("hide");
-                    }else{
-                        functions.ajaxReturnErrorHandler(response.error_code);
+            if(!id){
+                //如果是在录入页面，直接设置值即可
+                oldValue[currentSetType]=valueArray;
+                $("#"+currentSetType).val(valueNameArray.join("/"));
+                $("#showTreeModal").modal("hide");
+            }else{
+                functions.showLoading();
+                $.ajax({
+                    url:config.ajaxUrls.productTagSet,
+                    type:"post",
+                    dataType:"json",
+                    data:{
+                        p_id:id,
+                        pre_id:$("#"+currentSetType+"Old").val(),
+                        new_id:valueArray.join(","),
+                        type:currentSetType
+                    },
+                    success:function(response){
+                        if(response.success){
+                            $().toastmessage("showSuccessToast",config.messages.optSuccess);
+                            functions.hideLoading();
+                            oldValue[currentSetType]=value;
+                            $("#"+type).val(valueName.join("/"));
+                            $("#showTreeModal").modal("hide");
+                        }else{
+                            functions.ajaxReturnErrorHandler(response.error_code);
+                        }
+                    },
+                    error:function(){
+                        functions.ajaxErrorHandler();
                     }
-                },
-                error:function(){
-                    functions.ajaxErrorHandler();
-                }
-            });*/
+                });
+            }
         },
         createUploaders:function(){
             for(var i= 1;i<=3;i++){
