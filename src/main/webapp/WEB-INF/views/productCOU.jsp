@@ -131,7 +131,7 @@
                                 <a href="#" class="btn btn-success" id="uploadBtn1">
                                     <c:if test="${empty hp.imageUrl1}">
                                     <img  id="image1"  style="width:100px"
-                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    src="resources/images/app/defaultThumb.png"/>
                                     <input type="hidden" id="imageUrl1" name="imageUrl1">
                                     </c:if>
 
@@ -144,7 +144,7 @@
                                 <a href="#" class="btn btn-success" id="uploadBtn2">
                                     <c:if test="${empty hp.imageUrl2}">
                                     <img  id="image2"  style="width:100px"
-                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    src="resources/images/app/defaultThumb.png"/>
                                     <input type="hidden" id="imageUrl2" name="imageUrl2">
                                     </c:if>
 
@@ -157,7 +157,7 @@
                                 <a href="#" class="btn btn-success" id="uploadBtn3">
                                     <c:if test="${empty hp.imageUrl3}">
                                     <img  id="image3"  style="width:100px"
-                                    src="resources/images/app/defaultThumb.jpg"/>
+                                    src="resources/images/app/defaultThumb.png"/>
                                     <input type="hidden" id="imageUrl3" name="imageUrl3">
                                     </c:if>
 
