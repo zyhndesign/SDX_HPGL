@@ -76,7 +76,7 @@ var productMgr=(function(config,functions){
                     "data":aoData,
                     "success": function (response) {
                         if(response.success===false){
-                            functions.ajaxReturnErrorHandler(response.error_code);
+                            functions.ajaxReturnErrorHandler(response.message);
                         }else{
                             var json = {
                                 "sEcho" : response.sEcho
@@ -126,7 +126,7 @@ var productMgr=(function(config,functions){
                         $().toastmessage("showSuccessToast",config.messages.optSuccess);
                         me.ownTable.fnDraw();
                     }else{
-                        functions.ajaxReturnErrorHandler(response.error_code);
+                        functions.ajaxReturnErrorHandler(response.message);
                     }
 
                 },

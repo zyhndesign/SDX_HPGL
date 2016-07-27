@@ -72,7 +72,7 @@ var brandCOU=(function(config,functions){
                         functions.hideLoading();
                         me.ownTable.fnDraw();
                     }else{
-                        functions.ajaxReturnErrorHandler(response.error_code);
+                        functions.ajaxReturnErrorHandler(response.message);
                     }
                 },
                 error:function(){
