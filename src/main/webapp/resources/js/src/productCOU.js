@@ -69,8 +69,9 @@ var brandCOU=(function(config,functions){
                 success:function(response){
                     if(response.success){
                         $().toastmessage("showSuccessToast",config.messages.optSuccess);
-                        functions.hideLoading();
-                        me.ownTable.fnDraw();
+                        setTimeout(function(){
+                            window.location.href="hpManage/productMgr";
+                        },3000);
                     }else{
                         functions.ajaxReturnErrorHandler(response.message);
                     }
