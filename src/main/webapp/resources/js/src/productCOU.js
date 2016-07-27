@@ -164,7 +164,7 @@ var brandCOU=(function(config,functions){
 
                                 $("#image"+i).attr("src",info.url);
 
-                                $(".error[for='imageUrl"+i+"')]").remove();
+                                $(".error[for='imageUrl"+i+"']").remove();
                             }else{
                                 $().toastmessage("showErrorToast",config.messages.imageSizeError);
                             }
