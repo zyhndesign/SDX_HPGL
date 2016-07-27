@@ -1,4 +1,4 @@
-var brandCOU=(function(config,functions){
+var productCOU=(function(config,functions){
     var preValue={
         brand:[],
         category:[],
@@ -113,7 +113,7 @@ var brandCOU=(function(config,functions){
 
             if(!id){
                 //如果是在录入页面，直接设置值即可
-                preValue[currentSetType]=valueArray;
+                preValue[currentSetType]=valueArray.join(",");
                 $("#"+currentSetType).val(valueNameArray.join("/"));
                 $("#"+currentSetType+"Id").val(valueArray.join(","));
                 $("#showTreeModal").modal("hide");
@@ -175,19 +175,28 @@ var brandCOU=(function(config,functions){
                 })(i);
 
             }
+        },
+        initValues:function(){
+            preValue.brand=preBrand;
+            preValue.category=preCategory;
+            preValue.size=preSize;
+            preValue.color=preColor;
         }
     }
 })(config,functions);
 
 $(document).ready(function(){
+    if(id){
+        productCOU.initValues();
+    }
 
-    brandCOU.createUploaders();
+    productCOU.createUploaders();
 
     $(".showTreePanel").click(function(){
-        brandCOU.showTree($(this).data("type"));
+        productCOU.showTree($(this).data("type"));
     });
     $("#saveTreeSelect").click(function(){
-        brandCOU.saveTreeSelect();
+        productCOU.saveTreeSelect();
     });
 
     $("#myForm").validate({
@@ -235,7 +244,7 @@ $(document).ready(function(){
             }
         },
         submitHandler:function(form) {
-            brandCOU.submitForm(form);
+            productCOU.submitForm(form);
         }
     });
 });
