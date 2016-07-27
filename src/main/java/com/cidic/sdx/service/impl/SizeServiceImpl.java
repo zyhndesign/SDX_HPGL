@@ -20,7 +20,7 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "sizeServiceImpl")
 public class SizeServiceImpl implements SizeService {
 
-	private String size_key = RedisVariableUtil.SIZE_PREFIX+".";
+	private String size_key = RedisVariableUtil.SIZE_PREFIX+RedisVariableUtil.DIVISION_CHAR;
 	
 	@Autowired
 	@Qualifier(value = "sizeDaoImpl")

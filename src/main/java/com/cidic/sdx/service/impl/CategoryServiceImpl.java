@@ -20,7 +20,7 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "categoryServiceImpl")
 public class CategoryServiceImpl implements CategoryService {
 
-	private String category_key = RedisVariableUtil.CATEGORY_PREFIX+".";
+	private String category_key = RedisVariableUtil.CATEGORY_PREFIX+RedisVariableUtil.DIVISION_CHAR;
 	
 	@Autowired
 	@Qualifier(value = "categoryDaoImpl")

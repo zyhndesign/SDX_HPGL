@@ -20,7 +20,7 @@ import com.cidic.sdx.util.RedisVariableUtil;
 @Qualifier(value = "colorServiceImpl")
 public class ColorServiceImpl implements ColorService {
 
-	private String color_key = RedisVariableUtil.COLOR_PREFIX+".";
+	private String color_key = RedisVariableUtil.COLOR_PREFIX+RedisVariableUtil.DIVISION_CHAR;
 	
 	@Autowired
 	@Qualifier(value = "colorDaoImpl")
