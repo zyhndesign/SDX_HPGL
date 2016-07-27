@@ -146,29 +146,32 @@ var brandCOU=(function(config,functions){
         },
         createUploaders:function(){
             for(var i= 1;i<=3;i++){
-                functions.createQiNiuUploader({
-                    maxSize:config.uploader.sizes.img,
-                    filter:config.uploader.filters.img,
-                    uploadBtn:"uploadBtn"+i,
-                    multiSelection:false,
-                    multipartParams:null,
-                    uploadContainer:"uploadContainer",
-                    fileAddCb:null,
-                    progressCb:null,
-                    uploadedCb:function(info,file,up){
-                        var oi=i;
-                        console.log(oi);
-                        if(info.w/info.h==4/3&&info.w>=400&&info.w<=800){
-                            $("#imageUrl"+i).val(info.url);
 
-                            $("#image"+i).attr("src",info.url);
+                //使用立即执行，将i作为参数传入，不然受闭包影响，i总是4
+                (function(i){
+                    functions.createQiNiuUploader({
+                        maxSize:config.uploader.sizes.img,
+                        filter:config.uploader.filters.img,
+                        uploadBtn:"uploadBtn"+i,
+                        multiSelection:false,
+                        multipartParams:null,
+                        uploadContainer:"uploadContainer",
+                        fileAddCb:null,
+                        progressCb:null,
+                        uploadedCb:function(info,file,up){
+                            if(info.w/info.h==4/3&&info.w>=400&&info.w<=800){
+                                $("#imageUrl"+i).val(info.url);
 
-                            $(".error[for='imageUrl"+i+"')]").remove();
-                        }else{
-                            $().toastmessage("showErrorToast",config.messages.imageSizeError);
+                                $("#image"+i).attr("src",info.url);
+
+                                $(".error[for='imageUrl"+i+"')]").remove();
+                            }else{
+                                $().toastmessage("showErrorToast",config.messages.imageSizeError);
+                            }
                         }
-                    }
-                });
+                    });
+                })(i);
+
             }
         }
     }
