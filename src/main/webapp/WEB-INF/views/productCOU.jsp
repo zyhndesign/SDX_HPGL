@@ -78,21 +78,6 @@
                                 </button>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                            <label  class="control-label col-md-2">时间*</label>
-                            <div class="col-md-6">
-                                <input type="text" id="date" class="form-control" value="">
-                                <input type="hidden" id="dateId" name="date">
-                                <c:if test="${!empty hp.id}">
-                                    <input type="hidden" id="dateOld" value="${hp.date}">
-                                </c:if>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default showTreePanel" data-type="date">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>-->
                         <div class="form-group">
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
