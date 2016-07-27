@@ -53,7 +53,7 @@
                             <div class="col-md-6">
                                 <input type="text" id="brand" class="form-control" value="${hp.brandList}">
                                 <input type="hidden" id="brandId" name="brand">
-                                <c:if test="${empty hp.id}">
+                                <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="brandOld" value="${hp.brand}">
                                 </c:if>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <input type="text" id="category" class="form-control" value="${hp.categoryList}">
                                 <input type="hidden" id="categoryId" name="category">
-                                <c:if test="${empty hp.id}">
+                                <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="categoryOld" value="${hp.category}">
                                 </c:if>
                             </div>
@@ -83,7 +83,9 @@
                             <div class="col-md-6">
                                 <input type="text" id="date" class="form-control" value="">
                                 <input type="hidden" id="dateId" name="date">
-                                <input type="hidden" id="dateOld" value="">
+                                <c:if test="${!empty hp.id}">
+                                    <input type="hidden" id="dateOld" value="${hp.date}">
+                                </c:if>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default showTreePanel" data-type="date">
@@ -96,7 +98,7 @@
                             <div class="col-md-6">
                                 <input type="text" id="size" class="form-control" value="${hp.sizeList}">
                                 <input type="hidden" id="sizeId" name="size">
-                                <c:if test="${empty hp.id}">
+                                <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="sizeOld" value="${hp.size}">
                                 </c:if>
                             </div>
@@ -111,7 +113,7 @@
                             <div class="col-md-6">
                                 <input type="text" id="color" class="form-control"  value="${hp.colorList}">
                                 <input type="hidden" id="colorId" name="color">
-                                <c:if test="${empty hp.id}">
+                                <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="colorOld" value="${hp.color}">
                                 </c:if>
                             </div>
