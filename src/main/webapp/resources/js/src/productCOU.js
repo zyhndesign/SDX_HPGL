@@ -156,6 +156,8 @@ var brandCOU=(function(config,functions){
                     fileAddCb:null,
                     progressCb:null,
                     uploadedCb:function(info,file,up){
+                        var oi=i;
+                        console.log(oi);
                         if(info.w/info.h==4/3&&info.w>=400&&info.w<=800){
                             $("#imageUrl"+i).val(info.url);
 
