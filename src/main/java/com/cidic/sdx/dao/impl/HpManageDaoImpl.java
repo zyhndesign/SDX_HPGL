@@ -198,40 +198,44 @@ public class HpManageDaoImpl implements HpManageDao {
 					hpModel.setImageUrl3(resultMap.get("imageUrl3"));
 					
 					
-					List<String> brandList = new ArrayList<>();
-					List<String> categoryList  = new ArrayList<>();
-					List<String> sizeList = new ArrayList<>();
-					List<String> colorList = new ArrayList<>();
+					StringBuilder brandList = new StringBuilder();
+					StringBuilder categoryList  = new StringBuilder();
+					StringBuilder sizeList = new StringBuilder();
+					StringBuilder colorList = new StringBuilder();
 					
 					Map<byte[],byte[]> mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
 					String[] brandArray = resultMap.get("brand").split("\\,");
 					for (String brand : brandArray){
-						brandList.add(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand)));
+						brandList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand)));
+						brandList.append("/");
 						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + brand));
 					}
 					
 					String[] categoryArray = resultMap.get("category").split("\\,");
 					for (String category : categoryArray){
-						categoryList.add(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +category)));
+						categoryList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +category)));
+						categoryList.append("/");
 						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + category));
 					}
 					
 					String[] sizeArray = resultMap.get("size").split("\\,");
 					for (String size : sizeArray){
-						sizeList.add(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +size)));
+						sizeList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +size)));
+						sizeList.append("/");
 						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + size));
 					}
 					
 					String[] colorArray = resultMap.get("color").split("\\,");
 					for (String color : colorArray){
-						colorList.add(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +color)));
+						colorList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +color)));
+						colorList.append("/");
 						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + color));
 					}
 					
-					hpModel.setBrandList(brandList);
-					hpModel.setCategoryList(categoryList);
-					hpModel.setColorList(colorList);
-					hpModel.setSizeList(sizeList);
+					hpModel.setBrandList(brandList.toString());
+					hpModel.setCategoryList(categoryList.toString());
+					hpModel.setColorList(colorList.toString());
+					hpModel.setSizeList(sizeList.toString());
 					
 					hpModelList.add(hpModel);
 				}
@@ -283,42 +287,46 @@ public class HpManageDaoImpl implements HpManageDao {
 				hpModel.setImageUrl3(resultMap.get("imageUrl3"));
 				
 				
-				List<String> brandList = new ArrayList<>();
-				List<String> categoryList  = new ArrayList<>();
-				List<String> sizeList = new ArrayList<>();
-				List<String> colorList = new ArrayList<>();
+				StringBuilder brandList = new StringBuilder();
+				StringBuilder categoryList  = new StringBuilder();
+				StringBuilder sizeList = new StringBuilder();
+				StringBuilder colorList = new StringBuilder();
 				
 				
 				String[] brandArray = resultMap.get("brand").split("\\,");
 				for (String brand : brandArray){
-					brandList.add(ser.deserialize(brandMapList.get(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand))));
+					brandList.append(ser.deserialize(brandMapList.get(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand))));
+					brandList.append("/");
 					brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + brand));
 				}
 				
 				String[] categoryArray = resultMap.get("category").split("\\,");
 				for (String category : categoryArray){
-					categoryList.add(ser.deserialize(categoryMapList.get(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR +category))));
+					categoryList.append(ser.deserialize(categoryMapList.get(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR +category))));
+					categoryList.append("/");
 					categoryMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR + category));
 				}
 				
 				String[] sizeArray = resultMap.get("size").split("\\,");
 				for (String size : sizeArray){
 					
-					sizeList.add(ser.deserialize(sizeMapList.get(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR +size))));
+					sizeList.append(ser.deserialize(sizeMapList.get(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR +size))));
+					sizeList.append("/");
 					sizeMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR + size));
 				}
 				
 				String[] colorArray = resultMap.get("color").split("\\,");
 
 				for (String color : colorArray){
-					colorList.add(ser.deserialize(colorMapList.get(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR +color))));
+					colorList.append(ser.deserialize(colorMapList.get(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR +color))));
+					colorList.append("/");
 					colorMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + color));
 				}
 				
-				hpModel.setBrandList(brandList);
-				hpModel.setCategoryList(categoryList);
-				hpModel.setColorList(colorList);
-				hpModel.setSizeList(sizeList);
+				hpModel.setBrandList(brandList.toString());
+				hpModel.setCategoryList(categoryList.toString());
+				hpModel.setColorList(colorList.toString());
+				hpModel.setSizeList(sizeList.toString());
 					
 				
 				return hpModel;

@@ -22,10 +22,10 @@ public class HPModel implements Serializable{
 	private String imageUrl2;
 	private String imageUrl3;
 	
-	private List<String> brandList;
-	private List<String> categoryList;
-	private List<String> sizeList;
-	private List<String> colorList;
+	private String brandList;
+	private String categoryList;
+	private String sizeList;
+	private String colorList;
 	
 	public String getHp_num() {
 		return hp_num;
@@ -93,29 +93,30 @@ public class HPModel implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<String> getBrandList() {
+	public String getBrandList() {
 		return brandList;
 	}
-	public void setBrandList(List<String> brandList) {
+	public void setBrandList(String brandList) {
 		this.brandList = brandList;
 	}
-	public List<String> getCategoryList() {
+	public String getCategoryList() {
 		return categoryList;
 	}
-	public void setCategoryList(List<String> categoryList) {
+	public void setCategoryList(String categoryList) {
 		this.categoryList = categoryList;
 	}
-	public List<String> getSizeList() {
+	public String getSizeList() {
 		return sizeList;
 	}
-	public void setSizeList(List<String> sizeList) {
+	public void setSizeList(String sizeList) {
 		this.sizeList = sizeList;
 	}
-	public List<String> getColorList() {
+	public String getColorList() {
 		return colorList;
 	}
-	public void setColorList(List<String> colorList) {
+	public void setColorList(String colorList) {
 		this.colorList = colorList;
 	}
+	
 	
 }
