@@ -43,7 +43,6 @@ var brandMgr=(function(config,functions){
 
                     var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 
-                    console.log(treeNode.check_Child_State);
                     if(treeNode.check_Child_State!=-1){
                         zTree.addNodes(treeNode, {id:response.object, pId:treeNode.id, name:"新系列" +no,isParent:true});
                     }else{
