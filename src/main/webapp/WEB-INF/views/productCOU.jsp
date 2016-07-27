@@ -51,7 +51,8 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">品牌*</label>
                             <div class="col-md-6">
-                                <input type="text" id="brand" name="brand" class="form-control" value="${hp.brandList}">
+                                <input type="text" id="brand" class="form-control" value="${hp.brandList}">
+                                <input type="hidden" id="brandId" name="brand">
                                 <c:if test="${empty hp.id}">
                                     <input type="hidden" id="brandOld" value="${hp.brand}">
                                 </c:if>
@@ -65,7 +66,8 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">品类*</label>
                             <div class="col-md-6">
-                                <input type="text" id="category" name="category" class="form-control" value="${hp.categoryList}">
+                                <input type="text" id="category" class="form-control" value="${hp.categoryList}">
+                                <input type="hidden" id="categoryId" name="category">
                                 <c:if test="${empty hp.id}">
                                     <input type="hidden" id="categoryOld" value="${hp.category}">
                                 </c:if>
@@ -79,7 +81,8 @@
                         <!--<div class="form-group">
                             <label  class="control-label col-md-2">时间*</label>
                             <div class="col-md-6">
-                                <input type="text" id="date" name="date" class="form-control" value="">
+                                <input type="text" id="date" class="form-control" value="">
+                                <input type="hidden" id="dateId" name="date">
                                 <input type="hidden" id="dateOld" value="">
                             </div>
                             <div class="col-md-2">
@@ -91,7 +94,8 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
-                                <input type="text" id="size" name="size" class="form-control" value="${hp.sizeList}">
+                                <input type="text" id="size" class="form-control" value="${hp.sizeList}">
+                                <input type="hidden" id="sizeId" name="size">
                                 <c:if test="${empty hp.id}">
                                     <input type="hidden" id="sizeOld" value="${hp.size}">
                                 </c:if>
@@ -105,7 +109,8 @@
                         <div class="form-group">
                             <label  class="control-label col-md-2">颜色*</label>
                             <div class="col-md-6">
-                                <input type="text" id="color" name="color" class="form-control"  value="${hp.colorList}">
+                                <input type="text" id="color" class="form-control"  value="${hp.colorList}">
+                                <input type="hidden" id="colorId" name="color">
                                 <c:if test="${empty hp.id}">
                                     <input type="hidden" id="colorOld" value="${hp.color}">
                                 </c:if>

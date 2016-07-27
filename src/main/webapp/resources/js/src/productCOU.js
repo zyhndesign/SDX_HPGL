@@ -1,5 +1,5 @@
 var brandCOU=(function(config,functions){
-    var oldValue={
+    var preValue={
         brand:[],
         category:[],
         date:[],
@@ -24,7 +24,7 @@ var brandCOU=(function(config,functions){
                 childNodes[i].nocheck=true;
             }
             //设置checkbox的选中状态
-            if(oldValue[currentSetType].indexOf(childNodes[i].id)!=-1){
+            if(preValue[currentSetType].indexOf(childNodes[i].id)!=-1){
                 childNodes[i].checked=true;
             }
 
@@ -112,8 +112,9 @@ var brandCOU=(function(config,functions){
 
             if(!id){
                 //如果是在录入页面，直接设置值即可
-                oldValue[currentSetType]=valueArray;
+                preValue[currentSetType]=valueArray;
                 $("#"+currentSetType).val(valueNameArray.join("/"));
+                $("#"+currentSetType+"Id").val(valueArray.join(","));
                 $("#showTreeModal").modal("hide");
             }else{
                 functions.showLoading();
@@ -131,7 +132,7 @@ var brandCOU=(function(config,functions){
                         if(response.success){
                             $().toastmessage("showSuccessToast",config.messages.optSuccess);
                             functions.hideLoading();
-                            oldValue[currentSetType]=value;
+                            preValue[currentSetType]=value;
                             $("#"+type).val(valueName.join("/"));
                             $("#showTreeModal").modal("hide");
                         }else{
