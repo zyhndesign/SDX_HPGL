@@ -8,7 +8,7 @@
 var config={
     baseUrl:"",
     qiNiu:{
-    	upTokenUrl:"getUploadKey",
+    	upTokenUrl:"hpManage/getUploadKey",
         uploadDomain:"http://qiniu-plupload.qiniudn.com/",
         bucketDomain:"http://oaycvzlnh.bkt.clouddn.com/",
         swfUrl:"resources/js/lib/Moxie.swf"
