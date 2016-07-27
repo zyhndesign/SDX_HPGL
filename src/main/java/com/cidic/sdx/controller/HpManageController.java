@@ -62,8 +62,8 @@ public class HpManageController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/updateProductCOU", method = RequestMethod.GET)
-	public ModelAndView updateProductCOU(HttpServletRequest request,HttpServletResponse response,@RequestParam int id) {
+	@RequestMapping(value = "/productCOU/{id}", method = RequestMethod.GET)
+	public ModelAndView updateProductCOU(HttpServletRequest request,@PathVariable int id) {
 
 		HPModel hpModel = null;
 		if (id > 0){
