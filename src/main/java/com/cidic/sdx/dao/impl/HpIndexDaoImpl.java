@@ -39,9 +39,9 @@ public class HpIndexDaoImpl implements HpIndexDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
-				List<byte[]> id_list = connection.lRange(ser.serialize(id_key), (pageNum - 1) * limit, pageNum * limit);
+				List<byte[]> id_list = null;//connection.lRange(ser.serialize(id_key), (pageNum - 1) * limit, pageNum * limit);
 				
-				connection.sInter(id_list);
+				//connection.sInter(id_list);
 				
 				List<HPModel> hpModelList = new ArrayList<>();
 				
