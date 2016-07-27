@@ -146,7 +146,7 @@ var colorMgr=(function(config,functions){
             async: {
                 enable: true,
                 type:"GET",
-                url:config.ajaxUrls.categoryGetAll,
+                url:config.ajaxUrls.colorGetAll,
                 //autoParam:["id", "name=n", "level=lv"],
                 autoParam:["id"],
                 //otherParam:{otherParam:"zTreeAsyncTest"},
