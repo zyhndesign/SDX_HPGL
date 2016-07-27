@@ -55,10 +55,23 @@ public class HpManageController {
 	}
 	
 	@RequestMapping(value = "/productCOU", method = RequestMethod.GET)
-	public ModelAndView submit(String username, String password, HttpServletRequest request) {
+	public ModelAndView getProductCOU(HttpServletRequest request) {
 
 		ModelAndView view = new ModelAndView();
 		view.setViewName("/productCOU");
+		return view;
+	}
+	
+	@RequestMapping(value = "/updateProductCOU", method = RequestMethod.GET)
+	public ModelAndView updateProductCOU(HttpServletRequest request,HttpServletResponse response,@RequestParam int id) {
+
+		HPModel hpModel = null;
+		if (id > 0){
+			hpModel = hpManageServiceImpl.getHpDataById(id);
+		}
+		ModelAndView view = new ModelAndView();
+		view.setViewName("/productCOU");
+		view.addObject("hp",hpModel);
 		return view;
 	}
 	
@@ -91,13 +104,22 @@ public class HpManageController {
 	    
 		try{
 			HPModel hpModel = new HPModel();
+			hpModel.setHp_num(hp_num);
+			hpModel.setBrand(brand);
+			hpModel.setCategory(category);
+			hpModel.setSize(size);
+			hpModel.setColor(color);
+			hpModel.setPrice(price);
+			hpModel.setImageUrl1(imageUrl1);
+			hpModel.setImageUrl2(imageUrl2);
+			hpModel.setImageUrl3(imageUrl3);
 			hpManageServiceImpl.insertHpData(hpModel);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
 		}
-		
 		catch(Exception e){
+			System.out.println(e.getMessage());
 			throw new SdxException(500, "写入数据失败");
 		}
 		return resultModel;
@@ -112,6 +134,12 @@ public class HpManageController {
 	    
 		try{
 			HPModel hpModel = new HPModel();
+			hpModel.setId(Integer.parseInt(id));
+			hpModel.setHp_num(hp_num);
+			hpModel.setPrice(price);
+			hpModel.setImageUrl1(imageUrl1);
+			hpModel.setImageUrl2(imageUrl2);
+			hpModel.setImageUrl3(imageUrl3);
 			hpManageServiceImpl.updateHpData(hpModel);
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);

@@ -13,4 +13,6 @@ public interface HpManageService {
 	public void updateHpData(HPModel hpModel);
 	
 	public void deleteHpData(String id);
+	
+	public HPModel getHpDataById(int id);
 }

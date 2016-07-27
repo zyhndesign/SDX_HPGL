@@ -42,4 +42,10 @@ public class HpManageServiceImpl implements HpManageService {
 		hpManageDaoImpl.deleteHpData(id);
 	}
 
+	@Override
+	public HPModel getHpDataById(int id) {
+		// TODO Auto-generated method stub
+		return hpManageDaoImpl.getHpDataById(id);
+	}
+
 }
