@@ -133,8 +133,8 @@ var productCOU=(function(config,functions){
                         if(response.success){
                             $().toastmessage("showSuccessToast",config.messages.optSuccess);
                             functions.hideLoading();
-                            preValue[currentSetType]=value;
-                            $("#"+type).val(valueName.join("/"));
+                            preValue[currentSetType]=valueArray.join(",");
+                            $("#"+currentSetType).val(valueNameArray.join("/"));
                             $("#showTreeModal").modal("hide");
                         }else{
                             functions.ajaxReturnErrorHandler(response.error_code);
