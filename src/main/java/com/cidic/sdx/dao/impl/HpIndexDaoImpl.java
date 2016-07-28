@@ -41,6 +41,12 @@ public class HpIndexDaoImpl implements HpIndexDao {
 				
 				List<byte[]> id_list = null;//connection.lRange(ser.serialize(id_key), (pageNum - 1) * limit, pageNum * limit);
 				
+
+				Map<byte[],byte[]> brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> categoryMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> colorMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> sizeMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				
 				//connection.sInter(id_list);
 				
 				List<HPModel> hpModelList = new ArrayList<>();
@@ -69,33 +75,57 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					StringBuilder sizeList = new StringBuilder();
 					StringBuilder colorList = new StringBuilder();
 					
-					Map<byte[],byte[]> mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
 					String[] brandArray = resultMap.get("brand").split("\\,");
+					int brandCount = 0;
 					for (String brand : brandArray){
-						brandList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand)));
-						brandList.append("/");
-						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + brand));
+						
+						String tempKey = RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand;
+						brandList.append(ser.deserialize(brandMapList.get(ser.serialize(tempKey))));
+						++brandCount;
+						if (brandCount != brandArray.length){
+							brandList.append("/");
+						}
+						
+						brandMapList = connection.hGetAll(ser.serialize(tempKey));
 					}
 					
+					int categoryCount = 0;
 					String[] categoryArray = resultMap.get("category").split("\\,");
 					for (String category : categoryArray){
-						categoryList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +category)));
-						categoryList.append("/");
-						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + category));
+						String tempKey = RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR +category;
+						categoryList.append(ser.deserialize(categoryMapList.get(ser.serialize(tempKey))));
+						++categoryCount;
+						if (categoryCount != categoryArray.length){
+							categoryList.append("/");
+						}
+						
+						categoryMapList = connection.hGetAll(ser.serialize(tempKey));
 					}
 					
+					int sizeCount = 0;
 					String[] sizeArray = resultMap.get("size").split("\\,");
 					for (String size : sizeArray){
-						sizeList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +size)));
-						sizeList.append("/");
-						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + size));
+						String tempKey = RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR +size;
+						sizeList.append(ser.deserialize(sizeMapList.get(ser.serialize(tempKey))));
+						++sizeCount;
+						if (sizeCount != sizeArray.length){
+							sizeList.append("/");
+						}
+						
+						sizeMapList = connection.hGetAll(ser.serialize(tempKey));
 					}
 					
+					int colorCount = 0;
 					String[] colorArray = resultMap.get("color").split("\\,");
 					for (String color : colorArray){
-						colorList.append(ser.deserialize(mapList.get(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +color)));
-						colorList.append("/");
-						mapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + color));
+						String tempKey = RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR +color;
+						colorList.append(ser.deserialize(colorMapList.get(ser.serialize(tempKey))));
+						++colorCount;
+						if (colorCount != colorArray.length){
+							colorList.append("/");
+						}
+						
+						colorMapList = connection.hGetAll(ser.serialize(tempKey));
 					}
 					
 					hpModel.setBrandList(brandList.toString());

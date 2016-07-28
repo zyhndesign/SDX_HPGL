@@ -42,6 +42,7 @@ public class HpManageTest {
 	public void testHpDataById(){
 		HPModel hPModel = hpManageServiceImpl.getHpDataById(7);
 		System.out.println(hPModel.getHp_num());
-		//hPModel.getColorList().stream().forEach(System.out::println);
+		System.out.println(hPModel.getBrandList());
+		System.out.println(hPModel.getColorList());
 	}
 }
