@@ -124,7 +124,7 @@ var productCOU=(function(config,functions){
                     type:"post",
                     dataType:"json",
                     data:{
-                        p_id:id,
+                        hp_id:id,
                         pre_id:$("#"+currentSetType+"Old").val(),
                         new_id:valueArray.join(","),
                         type:currentSetType
