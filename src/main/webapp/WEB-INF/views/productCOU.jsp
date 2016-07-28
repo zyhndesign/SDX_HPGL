@@ -125,7 +125,7 @@
                             <label class="control-label col-md-2">图*</label>
                             <div class="col-md-10" id="uploadContainer">
                                 <p class="help-block">请上传4:3的jpg，png，宽度400px-800px</p>
-                                <a href="#" class="btn btn-success" id="uploadBtn1">
+                                <a href="#" id="uploadBtn1">
                                     <c:if test="${empty hp.imageUrl1}">
                                     <img  id="image1"  style="width:100px"
                                     src="resources/images/app/defaultThumb.png"/>
@@ -138,7 +138,7 @@
                                     <input type="hidden" id="imageUrl1" value="${hp.imageUrl1}" name="imageUrl1">
                                     </c:if>
                                 </a>
-                                <a href="#" class="btn btn-success" id="uploadBtn2">
+                                <a href="#" id="uploadBtn2">
                                     <c:if test="${empty hp.imageUrl2}">
                                     <img  id="image2"  style="width:100px"
                                     src="resources/images/app/defaultThumb.png"/>
@@ -151,7 +151,7 @@
                                     <input type="hidden" id="imageUrl2" value="${hp.imageUrl2}" name="imageUrl2">
                                     </c:if>
                                 </a>
-                                <a href="#" class="btn btn-success" id="uploadBtn3">
+                                <a href="#" id="uploadBtn3">
                                     <c:if test="${empty hp.imageUrl3}">
                                     <img  id="image3"  style="width:100px"
                                     src="resources/images/app/defaultThumb.png"/>
