@@ -3,6 +3,7 @@ package com.cidic.sdx.service;
 import java.util.List;
 
 import com.cidic.sdx.model.HPModel;
+import com.cidic.sdx.util.UploadVo;
 
 public interface HpManageService {
 
@@ -15,4 +16,6 @@ public interface HpManageService {
 	public void deleteHpData(String id);
 	
 	public HPModel getHpDataById(int id);
+	
+	public boolean uploadForm(UploadVo uploadVo) throws Exception;
 }

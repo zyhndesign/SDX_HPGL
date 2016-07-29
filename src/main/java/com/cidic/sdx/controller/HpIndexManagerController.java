@@ -25,6 +25,7 @@ import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpIndexService;
+import com.cidic.sdx.util.RedisVariableUtil;
 import com.cidic.sdx.util.WebRequestUtil;
 
 @Controller
@@ -65,29 +66,33 @@ public class HpIndexManagerController {
 			List<String> tagList = new ArrayList<>();
 			if (brand != null){
 				String[] brandArray = brand.split("\\,");
+				String prefix = RedisVariableUtil.BRAND_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
 				Arrays.asList(brandArray).stream().forEach((b)->{
-					tagList.add(b);
+					tagList.add(prefix + b);
 				});
 			}
 			
 			if (color != null){
 				String[] colorArray = color.split("\\,");
+				String prefix = RedisVariableUtil.COLOR_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
 				Arrays.asList(colorArray).stream().forEach((b)->{
-					tagList.add(b);
+					tagList.add(prefix + b);
 				});
 			}
 			
 			if (size != null){
 				String[] sizeArray = size.split("\\,");
+				String prefix = RedisVariableUtil.SIZE_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
 				Arrays.asList(sizeArray).stream().forEach((b)->{
-					tagList.add(b);
+					tagList.add(prefix + b);
 				});
 			}
 			
 			if (category != null){
 				String[] categoryArray = category.split("\\,");
+				String prefix = RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR;
 				Arrays.asList(categoryArray).stream().forEach((b)->{
-					tagList.add(b);
+					tagList.add(prefix + b);
 				});
 			}
 			
