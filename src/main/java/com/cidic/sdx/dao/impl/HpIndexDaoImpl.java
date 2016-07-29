@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -32,6 +33,10 @@ public class HpIndexDaoImpl implements HpIndexDao {
 	@Override
 	public List<HPModel> getIndexDataByTag(List<String> tagList,int pageNum, int limit) {
 		
+		StringBuilder tagListStr = new StringBuilder();
+		tagList.stream().forEach((s)->tagListStr.append(s));
+		String cacheKey = DigestUtils.md5Hex(tagListStr.toString());
+		
 		return redisTemplate.execute(new RedisCallback<List<HPModel>>() {
 			
 			@Override
@@ -39,7 +44,15 @@ public class HpIndexDaoImpl implements HpIndexDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
-				List<byte[]> id_list = null;//connection.lRange(ser.serialize(id_key), (pageNum - 1) * limit, pageNum * limit);
+				if (!connection.exists(ser.serialize(cacheKey))){
+					Set<String> result = redisTemplate.opsForSet().intersect(tagList.get(0), tagList);
+					result.stream().forEach((s)->{
+						connection.lPush(ser.serialize(cacheKey), ser.serialize(s));
+					});
+					connection.expire(ser.serialize(cacheKey), 300);
+				}
+				
+				List<byte[]> id_list = connection.lRange(ser.serialize(cacheKey), (pageNum - 1) * limit, pageNum * limit);
 				
 
 				Map<byte[],byte[]> brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
@@ -136,8 +149,7 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					hpModelList.add(hpModel);
 				}
 				
-				
-				
+			
 				return hpModelList;
 			}
 		});
