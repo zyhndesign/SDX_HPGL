@@ -55,7 +55,20 @@ public class TagSettingController {
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
 		
 		try{
-			tagServiceImpl.updateBrandTag(hp_id, pre_id, new_id);
+			
+			if (type.equals("brand")){
+				tagServiceImpl.updateBrandTag(hp_id, pre_id, new_id);
+			}
+			else if (type.equals("category")){
+				tagServiceImpl.updateCategoryTag(hp_id, pre_id, new_id);
+			}
+			else if (type.equals("color")){
+				tagServiceImpl.updateColorTag(hp_id, pre_id, new_id);
+			}
+			else if (type.equals("size")){
+				tagServiceImpl.updateSizeTag(hp_id, pre_id, new_id);
+			}
+			
 			resultModel = new ResultModel();
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);

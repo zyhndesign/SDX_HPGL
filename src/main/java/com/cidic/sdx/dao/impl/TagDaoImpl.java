@@ -29,7 +29,10 @@ public class TagDaoImpl implements TagDao {
 			public Object doInRedis(RedisConnection connection) throws DataAccessException {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
-				connection.sAdd(ser.serialize(key), ser.serialize(value));
+				String[] insertId = value.split("\\,");
+				for (String id : insertId){
+					connection.sAdd(ser.serialize(key), ser.serialize(id));
+				}
 				return null;
 			}
 		});
@@ -43,8 +46,15 @@ public class TagDaoImpl implements TagDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				connection.multi();
-				connection.sRem(ser.serialize(key), ser.serialize(old_value));
-				connection.sAdd(ser.serialize(key), ser.serialize(new_value));
+				String[] delId = old_value.split("\\,");
+				for (String id : delId){
+					connection.sRem(ser.serialize(key), ser.serialize(id));
+				} 
+				
+				String[] newId = new_value.split("\\,");
+				for (String id : newId){
+					connection.sAdd(ser.serialize(key), ser.serialize(id));
+				}
 				connection.exec();
 				return null;
 			}
