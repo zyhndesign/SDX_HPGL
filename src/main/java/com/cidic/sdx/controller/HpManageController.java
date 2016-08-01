@@ -2,6 +2,7 @@ package com.cidic.sdx.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,7 +60,13 @@ public class HpManageController {
 	public ModelAndView userMgr(Locale locale, Model model) {
 		ModelAndView view = new ModelAndView();
 		view.setViewName("/productMgr");
-		view.addObject("tagList", tagServiceImpl.getAllTag());
+		List<Map<String,String>> list = tagServiceImpl.getAllTag();
+		
+		view.addObject("brand",list.get(0));
+		view.addObject("category",list.get(1));
+		view.addObject("color",list.get(2));
+		view.addObject("size",list.get(3));
+		
 		return view;
 	}
 
@@ -83,6 +90,30 @@ public class HpManageController {
 		view.addObject("hp", hpModel);
 		return view;
 	}
+	
+	@RequestMapping(value = "/getTestDate", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultModel getTestDate(HttpServletRequest request, HttpServletResponse response) {
+
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
+		resultModel = new ResultModel();
+		try {
+			List<Map<String,String>> list = tagServiceImpl.getAllTag();
+			System.out.println(list.size());
+			
+			resultModel.setResultCode(200);
+			resultModel.setSuccess(true);
+			resultModel.setObject(list);
+		}
+
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			throw new SdxException(500, "获取数据失败");
+		}
+		return resultModel;
+	}
+
 
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)
 	@ResponseBody
@@ -90,7 +121,7 @@ public class HpManageController {
 			@RequestParam int limit) {
 
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
-
+		resultModel = new ResultModel();
 		try {
 			List<HPModel> resultData = hpManageServiceImpl.getHpData(pageNum, limit);
 			resultModel.setResultCode(200);
