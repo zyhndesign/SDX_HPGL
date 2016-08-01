@@ -50,9 +50,9 @@
                     <div class="row">
                         <label class="control-label col-md-1">品牌</label>
                         <div class="col-md-11">
-                            <span class="item" data-type="brand" data-id="1">商务系列</span>
-                            <span class="item" data-type="brand" data-id="2">自在系列</span>
-                            <span class="item" data-type="brand" data-id="3">时尚系列</span>
+                            <c:forEach var="b" items="tagList">
+                               <span class="item" data-type="brand" data-id="${b.id}">${b.name}</span>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="row">
