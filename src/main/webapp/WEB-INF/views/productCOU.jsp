@@ -57,7 +57,7 @@
                             <label  class="control-label col-md-2">品牌*</label>
                             <div class="col-md-6">
                                 <input type="text" id="brand" class="form-control" value="${hp.brandList}">
-                                <input type="hidden" id="brandId" name="brand">
+                                <input type="hidden" id="brandId" name="brand" value="${hp.brand}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="brandOld" value="${hp.brand}">
                                 </c:if>
@@ -72,7 +72,7 @@
                             <label  class="control-label col-md-2">品类*</label>
                             <div class="col-md-6">
                                 <input type="text" id="category" class="form-control" value="${hp.categoryList}">
-                                <input type="hidden" id="categoryId" name="category">
+                                <input type="hidden" id="categoryId" name="category" value="${hp.category}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="categoryOld" value="${hp.category}">
                                 </c:if>
@@ -87,7 +87,7 @@
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
                                 <input type="text" id="size" class="form-control" value="${hp.sizeList}">
-                                <input type="hidden" id="sizeId" name="size">
+                                <input type="hidden" id="sizeId" name="size" value="${hp.size}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="sizeOld" value="${hp.size}">
                                 </c:if>
@@ -102,7 +102,7 @@
                             <label  class="control-label col-md-2">颜色*</label>
                             <div class="col-md-6">
                                 <input type="text" id="color" class="form-control"  value="${hp.colorList}">
-                                <input type="hidden" id="colorId" name="color">
+                                <input type="hidden" id="colorId" name="color" value="${hp.color}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="colorOld" value="${hp.color}">
                                 </c:if>
