@@ -10,6 +10,11 @@ public class ResultModel {
 	private Object object;
 	private String uptoken;
 	
+	private Object brand;
+	private Object category;
+	private Object color;
+	private Object size;
+	
 	public int getResultCode() {
 		return resultCode;
 	}
@@ -56,6 +61,38 @@ public class ResultModel {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public Object getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Object brand) {
+		this.brand = brand;
+	}
+
+	public Object getCategory() {
+		return category;
+	}
+
+	public void setCategory(Object category) {
+		this.category = category;
+	}
+
+	public Object getColor() {
+		return color;
+	}
+
+	public void setColor(Object color) {
+		this.color = color;
+	}
+
+	public Object getSize() {
+		return size;
+	}
+
+	public void setSize(Object size) {
+		this.size = size;
 	}	
 	
 }

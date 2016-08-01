@@ -87,29 +87,25 @@ public class TagDaoImpl implements TagDao {
 				
 				Map<String, String> resultBrandMap = new HashMap<>();
 				brandMapList.forEach((k, v) -> {
-					String[] ids = ser.deserialize(k).split("\\:");
-					resultBrandMap.put(ids[1], ser.deserialize(v));
+					resultBrandMap.put(ser.deserialize(k), ser.deserialize(v));
 				});
 				list.add(resultBrandMap);
 				
 				Map<String, String> resultCategoryMap = new HashMap<>();
 				categoryMapList.forEach((k, v) -> {
-					String[] ids = ser.deserialize(k).split("\\:");
-					resultCategoryMap.put(ids[1], ser.deserialize(v));
+					resultCategoryMap.put(ser.deserialize(k), ser.deserialize(v));
 				});
 				list.add(resultCategoryMap);
 				
 				Map<String, String> resultColorMap = new HashMap<>();
 				colorMapList.forEach((k, v) -> {
-					String[] ids = ser.deserialize(k).split("\\:");
-					resultColorMap.put(ids[1], ser.deserialize(v));
+					resultColorMap.put(ser.deserialize(k), ser.deserialize(v));
 				});
 				list.add(resultColorMap);
 				
 				Map<String, String> resultSizeMap = new HashMap<>();
 				sizeMapList.forEach((k, v) -> {
-					String[] ids = ser.deserialize(k).split("\\:");
-					resultSizeMap.put(ids[1], ser.deserialize(v));
+					resultSizeMap.put(ser.deserialize(k), ser.deserialize(v));
 				});
 				list.add(resultSizeMap);
 				return list;

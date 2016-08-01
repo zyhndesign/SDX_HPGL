@@ -1,5 +1,6 @@
 package com.cidic.sdx.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cidic.sdx.exception.SdxException;
+import com.cidic.sdx.model.BrandModel;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpManageService;
@@ -62,10 +64,17 @@ public class HpManageController {
 		view.setViewName("/productMgr");
 		List<Map<String,String>> list = tagServiceImpl.getAllTag();
 		
-		view.addObject("brand",list.get(0));
-		view.addObject("category",list.get(1));
-		view.addObject("color",list.get(2));
-		view.addObject("size",list.get(3));
+		list.stream().forEach((map)->{
+			List<BrandModel> listModle = new ArrayList<>();
+			map.forEach((k,v)->{
+				String[] ids = k.split("\\:");
+				BrandModel brandModel = new BrandModel();
+				brandModel.setId(Integer.parseInt(ids[1]));
+				brandModel.setName(v);
+				listModle.add(brandModel);
+				view.addObject(ids[0],listModle);
+			});
+		});
 		
 		return view;
 	}
@@ -91,30 +100,6 @@ public class HpManageController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/getTestDate", method = RequestMethod.GET)
-	@ResponseBody
-	public ResultModel getTestDate(HttpServletRequest request, HttpServletResponse response) {
-
-		WebRequestUtil.AccrossAreaRequestSet(request, response);
-		resultModel = new ResultModel();
-		try {
-			List<Map<String,String>> list = tagServiceImpl.getAllTag();
-			System.out.println(list.size());
-			
-			resultModel.setResultCode(200);
-			resultModel.setSuccess(true);
-			resultModel.setObject(list);
-		}
-
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SdxException(500, "获取数据失败");
-		}
-		return resultModel;
-	}
-
-
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultModel getDate(HttpServletRequest request, HttpServletResponse response, @RequestParam int pageNum,
@@ -245,18 +230,45 @@ public class HpManageController {
 		String errorMessage = "";
 		try {
 			flag = hpManageServiceImpl.uploadForm(demo);
-			errorMessage += "�ļ���ַ��"
+			errorMessage += ""
 					+ demo.getImgFile().getOriginalFilename();
 		} catch (SdxException serviceE) {
 			logger.error("firstUpload failed!", serviceE);
 			errorMessage = serviceE.getMessage();
 		} catch (Exception e) {
 			logger.error("firstUpload failed!", e);
-			errorMessage = "�����ļ�ʧ��!";
+			errorMessage = "";
 		}
 		if (flag) {
 			return "<script>window.parent.uploadSucced('" + errorMessage + "');</script>";
 		}
 		return "<script>window.parent.uploadFailed('" + errorMessage + "');</script>";
 	}
+	
+
+	@RequestMapping(value = "/getTestDate", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultModel getTestDate(HttpServletRequest request, HttpServletResponse response) {
+
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
+		resultModel = new ResultModel();
+		try {
+			List<Map<String,String>> list = tagServiceImpl.getAllTag();
+			System.out.println(list.size());
+			
+			
+			
+			resultModel.setResultCode(200);
+			resultModel.setSuccess(true);
+			resultModel.setObject(list);
+		}
+
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			throw new SdxException(500, "获取数据失败");
+		}
+		return resultModel;
+	}
+
 }
