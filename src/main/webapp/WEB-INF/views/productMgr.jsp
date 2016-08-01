@@ -50,7 +50,7 @@
                     <div class="row">
                         <label class="control-label col-md-1">品牌</label>
                         <div class="col-md-11">
-                            <%= brand %>
+                            <c:out value="brand">
                             <c:forEach var="b" items="brand">
                                <span class="item" data-type="brand" data-id="${b.id}">${b.name}</span>
                             </c:forEach>
