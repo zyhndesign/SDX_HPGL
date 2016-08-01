@@ -50,6 +50,7 @@
                     <div class="row">
                         <label class="control-label col-md-1">品牌</label>
                         <div class="col-md-11">
+                            <%= brand %>
                             <c:forEach var="b" items="brand">
                                <span class="item" data-type="brand" data-id="${b.id}">${b.name}</span>
                             </c:forEach>
@@ -58,33 +59,26 @@
                     <div class="row">
                         <label class="control-label col-md-1">品类</label>
                         <div class="col-md-11">
-                            <span class="item" data-type="category" data-id="1">裤装</span>
-                            <span class="item" data-type="category" data-id="2">外套</span>
-                            <span class="item" data-type="category" data-id="3">内搭</span>
+                            <c:forEach var="c" items="category">
+                               <span class="item" data-type="category" data-id="${c.id}">${c.name}</span>
+                            </c:forEach>
                         </div>
                     </div>
-                    <div class="row">
-                        <label class="control-label col-md-1">时间</label>
-                        <div class="col-md-11">
-                            <span class="item" data-type="date" data-id="1">2017</span>
-                            <span class="item" data-type="date" data-id="2">2016</span>
-                            <span class="item" data-type="date" data-id="3">2015</span>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <label class="control-label col-md-1">颜色</label>
                         <div class="col-md-11">
-                            <span class="item" data-type="color" data-id="1">蓝色</span>
-                            <span class="item" data-type="color" data-id="2">黑色</span>
-                            <span class="item" data-type="color" data-id="3">白色</span>
+                            <c:forEach var="cl" items="color">
+                                <span class="item" data-type="color" data-id="${cl.id}">${cl.name}</span>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="row">
                         <label class="control-label col-md-1">尺码</label>
                         <div class="col-md-11">
-                            <span class="item" data-type="size" data-id="1">A</span>
-                            <span class="item" data-type="size" data-id="2">B</span>
-                            <span class="item" data-type="size" data-id="3">C</span>
+                            <c:forEach var="s" items="size">
+                                <span class="item" data-type="size" data-id="${s.id}">${s.name}</span>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="ctrl" id="searchPanelCtrl" data-target="down">
