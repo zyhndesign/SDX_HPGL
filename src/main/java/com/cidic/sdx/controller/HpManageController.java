@@ -24,6 +24,7 @@ import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpManageService;
+import com.cidic.sdx.service.TagService;
 import com.cidic.sdx.util.UploadVo;
 import com.cidic.sdx.util.WebRequestUtil;
 import com.qiniu.util.Auth;
@@ -39,6 +40,10 @@ public class HpManageController {
 	@Qualifier(value = "hpManageServiceImpl")
 	private HpManageService hpManageServiceImpl;
 
+	@Autowired
+	@Qualifier(value = "tagServiceImpl")
+	private TagService tagServiceImpl;
+	
 	private ResultModel resultModel = null;
 
 	@ExceptionHandler(SdxException.class)
@@ -51,8 +56,11 @@ public class HpManageController {
 	}
 
 	@RequestMapping(value = "/productMgr", method = RequestMethod.GET)
-	public String userMgr(Locale locale, Model model) {
-		return "productMgr";
+	public ModelAndView userMgr(Locale locale, Model model) {
+		ModelAndView view = new ModelAndView();
+		view.setViewName("/productMgr");
+		view.addObject("tagList", tagServiceImpl.getAllTag());
+		return view;
 	}
 
 	@RequestMapping(value = "/productCOU", method = RequestMethod.GET)

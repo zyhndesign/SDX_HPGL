@@ -1,5 +1,10 @@
 package com.cidic.sdx.dao.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -11,6 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.cidic.sdx.dao.TagDao;
+import com.cidic.sdx.model.HPModel;
+import com.cidic.sdx.util.RedisVariableUtil;
 
 @Repository
 @Component
@@ -61,6 +68,47 @@ public class TagDaoImpl implements TagDao {
 				
 				connection.exec();
 				return null;
+			}
+		});
+	}
+
+	@Override
+	public List<Map<String, String>> getAllTag() {
+		return redisTemplate.execute(new RedisCallback<List<Map<String, String>>>() {
+			@Override
+			public  List<Map<String, String>> doInRedis(RedisConnection connection) throws DataAccessException {
+				List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
+				
+				Map<byte[],byte[]> brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> categoryMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> colorMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> sizeMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				
+				Map<String, String> resultBrandMap = new HashMap<>();
+				brandMapList.forEach((k, v) -> {
+					resultBrandMap.put(ser.deserialize(k), ser.deserialize(v));
+				});
+				list.add(resultBrandMap);
+				
+				Map<String, String> resultCategoryMap = new HashMap<>();
+				categoryMapList.forEach((k, v) -> {
+					resultCategoryMap.put(ser.deserialize(k), ser.deserialize(v));
+				});
+				list.add(resultBrandMap);
+				
+				Map<String, String> resultColorMap = new HashMap<>();
+				colorMapList.forEach((k, v) -> {
+					resultColorMap.put(ser.deserialize(k), ser.deserialize(v));
+				});
+				list.add(resultColorMap);
+				
+				Map<String, String> resultSizeMap = new HashMap<>();
+				sizeMapList.forEach((k, v) -> {
+					resultSizeMap.put(ser.deserialize(k), ser.deserialize(v));
+				});
+				list.add(resultSizeMap);
+				return list;
 			}
 		});
 	}

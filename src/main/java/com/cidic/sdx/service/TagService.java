@@ -1,5 +1,8 @@
 package com.cidic.sdx.service;
 
+import java.util.List;
+import java.util.Map;
+
 public interface TagService {
 
 	public void insertBrandTag(String key,String value);
@@ -17,4 +20,6 @@ public interface TagService {
 	public void insertSizeTag(String key,String value);
 	
 	public void updateSizeTag(String key, String oldValue, String newValue);
+	
+	public List<Map<String, String>> getAllTag();
 }

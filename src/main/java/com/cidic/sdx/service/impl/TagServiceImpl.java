@@ -1,5 +1,8 @@
 package com.cidic.sdx.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -69,6 +72,12 @@ public class TagServiceImpl implements TagService {
 	public void updateSizeTag(String key, String oldValue, String newValue) {
 		String sizeKey = size_tag_prefix + key;
 		tagDaoImpl.updateTag(sizeKey, oldValue, newValue);
+	}
+
+	@Override
+	public List<Map<String, String>> getAllTag() {
+		// TODO Auto-generated method stub
+		return tagDaoImpl.getAllTag();
 	}
 
 }
