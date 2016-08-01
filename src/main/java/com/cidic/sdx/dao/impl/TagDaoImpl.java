@@ -55,6 +55,10 @@ public class TagDaoImpl implements TagDao {
 				for (String id : newId){
 					connection.sAdd(ser.serialize(key), ser.serialize(id));
 				}
+				
+				String[] tempKey = key.split("\\:");
+				connection.hSet(ser.serialize("hp:"+tempKey[1]), ser.serialize(tempKey[0].substring(4, tempKey[0].length())), ser.serialize(new_value));
+				
 				connection.exec();
 				return null;
 			}

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.service.HpManageService;
+import com.cidic.sdx.service.TagService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
@@ -22,6 +23,10 @@ public class HpManageTest {
 	@Autowired
 	@Qualifier(value = "hpManageServiceImpl")
 	private HpManageService hpManageServiceImpl;
+	
+	@Autowired
+	@Qualifier(value = "tagServiceImpl")
+	private TagService tagServiceImpl;
 	
 	//@Test
 	public void testInsertHp(){
@@ -38,11 +43,16 @@ public class HpManageTest {
 		hpManageServiceImpl.insertHpData(hpModel);
 	}
 	
-	@Test
+	//@Test
 	public void testHpDataById(){
 		HPModel hPModel = hpManageServiceImpl.getHpDataById(7);
 		System.out.println(hPModel.getHp_num());
 		System.out.println(hPModel.getBrandList());
 		System.out.println(hPModel.getColorList());
+	}
+	
+	@Test
+	public void tagTest(){
+		tagServiceImpl.updateBrandTag("7", "1", "2");
 	}
 }

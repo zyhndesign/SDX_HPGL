@@ -203,24 +203,21 @@ public class HpManageController {
 	public Object firstUpload(HttpServletRequest request, UploadVo demo) {
 		logger.info("firstUpload info:" + demo.toString());
 		boolean flag = false;
-		// errorMessage：上传失败，则是错误信息；上传成功，则提示成功以及显示文件上传后的地址
 		String errorMessage = "";
 		try {
 			flag = hpManageServiceImpl.uploadForm(demo);
-			errorMessage += "文件地址："
+			errorMessage += "锟侥硷拷锟斤拷址锟斤拷"
 					+ demo.getImgFile().getOriginalFilename();
 		} catch (SdxException serviceE) {
 			logger.error("firstUpload failed!", serviceE);
 			errorMessage = serviceE.getMessage();
 		} catch (Exception e) {
 			logger.error("firstUpload failed!", e);
-			errorMessage = "新增文件失败!";
+			errorMessage = "锟斤拷锟斤拷锟侥硷拷失锟斤拷!";
 		}
 		if (flag) {
-			// 上传成功，返回到前台，调用uploadSucced()这个方法
 			return "<script>window.parent.uploadSucced('" + errorMessage + "');</script>";
 		}
-		// 上传失败，返回到前台，调用uploadFailed()这个方法
 		return "<script>window.parent.uploadFailed('" + errorMessage + "');</script>";
 	}
 }

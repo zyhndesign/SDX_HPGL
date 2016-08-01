@@ -55,7 +55,6 @@ public class TagSettingController {
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
 		
 		try{
-			
 			if (type.equals("brand")){
 				tagServiceImpl.updateBrandTag(hp_id, pre_id, new_id);
 			}

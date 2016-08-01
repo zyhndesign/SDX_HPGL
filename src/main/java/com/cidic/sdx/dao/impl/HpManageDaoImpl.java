@@ -186,7 +186,7 @@ public class HpManageDaoImpl implements HpManageDao {
 					map.forEach((k, v) -> {
 						resultMap.put(ser.deserialize(k), ser.deserialize(v));
 					});
-					
+					hpModel.setId(Integer.parseInt(ser.deserialize(id)));
 					hpModel.setHp_num(resultMap.get("hp_num"));
 					hpModel.setBrand(resultMap.get("brand"));
 					hpModel.setCategory(resultMap.get("category"));
@@ -275,7 +275,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				map.forEach((k, v) -> {
 					resultMap.put(ser.deserialize(k), ser.deserialize(v));
 				});
-				
+				hpModel.setId(id);
 				hpModel.setHp_num(resultMap.get("hp_num"));
 				hpModel.setBrand(resultMap.get("brand"));
 				hpModel.setCategory(resultMap.get("category"));
