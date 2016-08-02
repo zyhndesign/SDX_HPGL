@@ -58,26 +58,26 @@
                     <div class="row">
                         <label class="control-label col-md-1">品类</label>
                         <div class="col-md-11">
-                            /**<c:forEach var="c" items="category">
+                            <!--<c:forEach var="c" items="category">
                                <span class="item" data-type="category" data-id="${c.id}">${c.name}</span>
-                            </c:forEach>**/
+                            </c:forEach>-->
                         </div>
                     </div>
 
                     <div class="row">
                         <label class="control-label col-md-1">颜色</label>
                         <div class="col-md-11">
-                            /**<c:forEach var="cl" items="color">
+                            <!--<c:forEach var="cl" items="color">
                                 <span class="item" data-type="color" data-id="${cl.id}">${cl.name}</span>
-                            </c:forEach>**/
+                            </c:forEach>-->
                         </div>
                     </div>
                     <div class="row">
                         <label class="control-label col-md-1">尺码</label>
                         <div class="col-md-11">
-                            /**<c:forEach var="s" items="size">
+                            <!--<c:forEach var="s" items="size">
                                 <span class="item" data-type="size" data-id="${s.id}">${s.name}</span>
-                            </c:forEach>**/
+                            </c:forEach>-->
                         </div>
                     </div>
                     <div class="ctrl" id="searchPanelCtrl" data-target="down">
