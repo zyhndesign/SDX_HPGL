@@ -28,12 +28,12 @@ var productMgr=(function(config,functions){
                 "sUrl":config.dataTable.langUrl
             },
             "aoColumns": [
-                { "mDataProp": "productNo"},
-                { "mDataProp": "brand"},
-                { "mDataProp": "type"},
-                { "mDataProp": "date"},
-                { "mDataProp": "size"},
-                { "mDataProp": "color"},
+                { "mDataProp": "hp_num"},
+                { "mDataProp": "brandList"},
+                { "mDataProp": "categoryList"},
+                { "mDataProp": "dateList"},
+                { "mDataProp": "sizeList"},
+                { "mDataProp": "colorList"},
                 { "mDataProp": "price"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
@@ -44,7 +44,7 @@ var productMgr=(function(config,functions){
             ] ,
             "fnServerParams": function ( aoData ) {
                 aoData.push({
-                    name:"no",
+                    name:"hp_num",
                     value:$("#searchNo").val()
                 },{
                     name:"status",
@@ -84,6 +84,7 @@ var productMgr=(function(config,functions){
 
                             for (var i = 0, iLen = response.aaData.length; i < iLen; i++) {
                                 response.aaData[i].opt="opt";
+                                response.aaData[i].dateList="暂无";
                             }
 
                             json.aaData=response.aaData;
