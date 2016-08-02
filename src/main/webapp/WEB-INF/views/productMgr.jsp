@@ -38,11 +38,11 @@
                         <div class="col-md-2">
                             <input class="form-control" id="searchNo" type="text" placeholder="货号">
                         </div>
-                        <div class="col-md-2">
+                        <!--<div class="col-md-2">
                             <select class="form-control" id="searchStatus">
                                 <option value="">全部</option>
                             </select>
-                        </div>
+                        </div>-->
                         <div class="col-md-1">
                             <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
                         </div>

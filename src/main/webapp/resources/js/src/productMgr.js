@@ -37,8 +37,8 @@ var productMgr=(function(config,functions){
                 { "mDataProp": "price"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
-                        return '<a href="'+oObj.aData.id+'" class="edit">修改</a>&nbsp;' +
-                            '<a href="'+oObj.aData.id+'" class="remove">删除</a>';
+                        return '<a href="hpManage/productCOU/'+oObj.aData.id+'">修改</a>&nbsp;';
+                            //'<a href="'+oObj.aData.id+'" class="remove">删除</a>';
                     }
                 }
             ] ,
@@ -151,6 +151,13 @@ $(document).ready(function(){
     });
 
     $("#searchBtn").click(function(){
+        productMgr.searchParams={
+            brand:[],
+            category:[],
+            date:[],
+            color:[],
+            size:[]
+        };
         productMgr.tableRedraw();
     });
 
@@ -159,6 +166,8 @@ $(document).ready(function(){
         var type=el.data("type");
         var id= el.data("id");
         var index;
+
+        $("#searchNo").val("");
 
         if(el.hasClass("active")){
             index=productMgr.searchParams[type].indexOf(id);
