@@ -302,8 +302,15 @@ public class HpManageDaoImpl implements HpManageDao {
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 
 				byte[] bId = connection.hGet(ser.serialize("HpIDNum"), ser.serialize(hp_num));
-				int id = Integer.parseInt(ser.deserialize(bId));
-				return getHPModelById(id,connection,ser);
+				if (bId == null){
+					return null;
+				}
+				else{
+					int id = Integer.parseInt(ser.deserialize(bId));
+					
+					return getHPModelById(id,connection,ser);
+				}
+				
 			}
 		});
 	}

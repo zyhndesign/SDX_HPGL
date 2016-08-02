@@ -114,12 +114,21 @@ public class HpIndexManagerController {
 			}
 			else{
 				HPModel hpModel = hpManageServiceImpl.getHpDataByHpNum(hp_num);
+				
 				List<HPModel> list = new ArrayList<>(1);
-				list.add(hpModel);
+				if (hpModel != null){
+					list.add(hpModel);
+					listResultModel.setiTotalRecords(1);
+					listResultModel.setiTotalDisplayRecords(1);
+				}
+				else{
+					listResultModel.setiTotalRecords(0);
+					listResultModel.setiTotalDisplayRecords(0);
+				}
+				
 				listResultModel.setAaData(list);
 				listResultModel.setsEcho(sEcho);
-				listResultModel.setiTotalRecords(1);
-				listResultModel.setiTotalDisplayRecords(1);
+				
 				listResultModel.setSuccess(true);
 			}
 			

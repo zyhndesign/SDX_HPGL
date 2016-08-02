@@ -65,7 +65,7 @@ public class HpManageTest {
 		tagServiceImpl.updateBrandTag("7", "1", "2");
 	}
 	
-	@Test
+	//@Test
 	public void listTest(){
 		List<String> conditionList = new ArrayList<String>();
 		conditionList.add("tag_brand:2");
@@ -75,5 +75,11 @@ public class HpManageTest {
 		List<HPModel> list = hpListModel.getList();
 		System.out.println(list.size());
 		list.stream().forEach((hpModel)->{System.out.println(hpModel.getHp_num());});
+	}
+	
+	@Test
+	public void getDataByNum(){
+		HPModel hpModel = hpManageServiceImpl.getHpDataByHpNum("000012");
+		System.out.println(hpModel.getId());
 	}
 }
