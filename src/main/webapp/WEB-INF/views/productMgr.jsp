@@ -10,6 +10,9 @@
     <link href="resources/css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
     <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
     <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
+    <script>
+        var brand="${brand}";
+    </script>
 </head>
 <body>
 
