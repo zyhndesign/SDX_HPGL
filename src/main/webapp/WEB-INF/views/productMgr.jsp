@@ -10,9 +10,6 @@
     <link href="resources/css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
     <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
     <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
-    <script>
-        var brand="${brand}";
-    </script>
 </head>
 <body>
 
@@ -53,8 +50,8 @@
                     <div class="row">
                         <label class="control-label col-md-1">品牌</label>
                         <div class="col-md-11">
-                            <c:forEach var="b" items="brand">
-                               <span class="item" data-type="brand" data-id="1">${b}</span>
+                            <c:forEach var="b" items="${brand}">
+                               <span class="item" data-type="brand" data-id="${b.id}">${b.name}</span>
                             </c:forEach>
                         </div>
                     </div>
