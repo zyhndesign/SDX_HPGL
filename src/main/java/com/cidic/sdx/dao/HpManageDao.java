@@ -1,11 +1,10 @@
 package com.cidic.sdx.dao;
 
-import java.util.List;
-
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
 
 public interface HpManageDao {
-	public List<HPModel> getHpData(int pageNum, int limit);
+	public HPListModel getHpData(int iDisplayStart,int iDisplayLength);
 	
 	public void insertHpData(HPModel hpModel);
 	
@@ -14,4 +13,6 @@ public interface HpManageDao {
 	public void deleteHpData(String id);
 	
 	public HPModel getHpDataById(int id);
+	
+	public HPModel getHpDataByHpNum(String hp_num);
 }

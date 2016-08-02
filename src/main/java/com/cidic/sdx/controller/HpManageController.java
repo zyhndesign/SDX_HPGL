@@ -1,9 +1,11 @@
 package com.cidic.sdx.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cidic.sdx.exception.SdxException;
 import com.cidic.sdx.model.BrandModel;
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
+import com.cidic.sdx.model.ListResultModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpManageService;
 import com.cidic.sdx.service.TagService;
@@ -66,14 +70,24 @@ public class HpManageController {
 		
 		list.stream().forEach((map)->{
 			List<BrandModel> listModle = new ArrayList<>();
+			Set<String> keys = map.keySet();
+			Iterator<String> iterator = keys.iterator();
+			String key = "";
+			while(iterator.hasNext()){
+				String tempkey = (String)iterator.next();
+				key = tempkey.split("\\:")[0];
+				break;
+			}
+
 			map.forEach((k,v)->{
 				String[] ids = k.split("\\:");
 				BrandModel brandModel = new BrandModel();
 				brandModel.setId(Integer.parseInt(ids[1]));
 				brandModel.setName(v);
 				listModle.add(brandModel);
-				view.addObject(ids[0],listModle);
 			});
+			
+			view.addObject(key,listModle);
 		});
 		
 		return view;
@@ -102,24 +116,49 @@ public class HpManageController {
 	
 	@RequestMapping(value = "/getData", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultModel getDate(HttpServletRequest request, HttpServletResponse response, @RequestParam int pageNum,
-			@RequestParam int limit) {
+	public ListResultModel getData(HttpServletRequest request, HttpServletResponse response, @RequestParam int iDisplayLength, @RequestParam int iDisplayStart,@RequestParam String sEcho) {
 
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
-		resultModel = new ResultModel();
+		ListResultModel listResultModel = new ListResultModel();
 		try {
-			List<HPModel> resultData = hpManageServiceImpl.getHpData(pageNum, limit);
-			resultModel.setResultCode(200);
-			resultModel.setSuccess(true);
-			resultModel.setObject(resultData);
+			HPListModel resultData = hpManageServiceImpl.getHpData(iDisplayStart, iDisplayLength);
+			listResultModel.setAaData(resultData.getList());
+			listResultModel.setsEcho(sEcho);
+			listResultModel.setiTotalRecords((int)resultData.getCount());
+			listResultModel.setiTotalDisplayRecords((int)resultData.getCount());
+			listResultModel.setSuccess(true);
 		}
 
 		catch (Exception e) {
-			throw new SdxException(500, "获取数据失败");
+			listResultModel.setSuccess(false);
 		}
-		return resultModel;
+		return listResultModel;
 	}
 
+	@RequestMapping(value = "/getDataByHpNum", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResultModel getDataByHpNum(HttpServletRequest request, HttpServletResponse response, @RequestParam String hp_num,
+			@RequestParam int iDisplayLength, @RequestParam int iDisplayStart,@RequestParam String sEcho) {
+
+		WebRequestUtil.AccrossAreaRequestSet(request, response);
+		ListResultModel listResultModel = new ListResultModel();
+		try {
+			HPModel hpModel = hpManageServiceImpl.getHpDataByHpNum(hp_num);
+			List<HPModel> list = new ArrayList<>(1);
+			list.add(hpModel);
+			listResultModel.setAaData(list);
+			listResultModel.setsEcho(sEcho);
+			listResultModel.setiTotalRecords(1);
+			listResultModel.setiTotalDisplayRecords(1);
+			listResultModel.setSuccess(true);
+		}
+
+		catch (Exception e) {
+			listResultModel.setSuccess(false);
+		}
+		return listResultModel;
+	}
+	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultModel insert(HttpServletRequest request, HttpServletResponse response, @RequestParam String hp_num,
@@ -254,13 +293,42 @@ public class HpManageController {
 		resultModel = new ResultModel();
 		try {
 			List<Map<String,String>> list = tagServiceImpl.getAllTag();
-			System.out.println(list.size());
 			
-			
+			list.stream().forEach((map)->{
+				List<BrandModel> listModle = new ArrayList<>();
+				Set<String> keys = map.keySet();
+				Iterator<String> iterator = keys.iterator();
+				String key = "";
+				while(iterator.hasNext()){
+					String tempkey = (String)iterator.next();
+					key = tempkey.split("\\:")[0];
+					break;
+				}
+
+				map.forEach((k,v)->{
+					String[] ids = k.split("\\:");
+					BrandModel brandModel = new BrandModel();
+					brandModel.setId(Integer.parseInt(ids[1]));
+					brandModel.setName(v);
+					listModle.add(brandModel);
+				});
+				
+				if (key.equals("brand")){
+					resultModel.setBrand(listModle);
+				}
+				else if (key.equals("category")){
+					resultModel.setCategory(listModle);
+				}
+				else if (key.equals("color")){
+					resultModel.setColor(listModle);
+				}
+				else if (key.equals("size")){
+					resultModel.setSize(listModle);
+				}
+			});
 			
 			resultModel.setResultCode(200);
 			resultModel.setSuccess(true);
-			resultModel.setObject(list);
 		}
 
 		catch (Exception e) {

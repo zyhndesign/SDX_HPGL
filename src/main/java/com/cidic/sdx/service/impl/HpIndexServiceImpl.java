@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cidic.sdx.dao.HpIndexDao;
-import com.cidic.sdx.model.HPModel;
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.service.HpIndexService;
 
 @Service
@@ -21,8 +21,8 @@ public class HpIndexServiceImpl implements HpIndexService {
 	private HpIndexDao hpIndexDaoImpl;
 	
 	@Override
-	public List<HPModel> getIndexDataByTag(List<String> tagList,int pageNum, int limit) {
-		return hpIndexDaoImpl.getIndexDataByTag(tagList,pageNum,limit);
+	public HPListModel getIndexDataByTag(List<String> tagList,int iDisplayStart,int iDisplayLength) {
+		return hpIndexDaoImpl.getIndexDataByTag(tagList,iDisplayStart,iDisplayLength);
 	}
 
 }

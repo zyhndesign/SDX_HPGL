@@ -1,5 +1,6 @@
 package com.cidic.sdx.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
@@ -22,7 +23,8 @@ public class RedisInterTest {
 	@Test
 	public void testInterTemplate(){
 		String[] keys = {"tag_brand_2","tag_color_2","tag_size_2","tag_size_5","tag_category_1"};
-		Set result = redisTemplate.opsForSet().intersect("tag_brand_1", Arrays.asList(keys));
+		//Set result = redisTemplate.opsForSet().intersect("tag_brand_1", Arrays.asList(keys));
+		Set result = redisTemplate.opsForSet().intersect("tag_brand:1", new ArrayList<String>());
 		for (Object data : result){
 			System.out.println(data);
 		}

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.cidic.sdx.dao.HpIndexDao;
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.util.RedisVariableUtil;
 
@@ -30,30 +31,41 @@ public class HpIndexDaoImpl implements HpIndexDao {
 	@Qualifier(value = "redisTemplate")
 	private RedisTemplate<String, String> redisTemplate;
 	
+	private String cacheKey;
+	
 	@Override
-	public List<HPModel> getIndexDataByTag(List<String> tagList,int pageNum, int limit) {
-		
+	public HPListModel getIndexDataByTag(List<String> tagList,int iDisplayStart,int iDisplayLength) {
+		String id_key = "HpIDList";
 		StringBuilder tagListStr = new StringBuilder();
 		tagList.stream().forEach((s)->tagListStr.append(s));
-		String cacheKey = DigestUtils.md5Hex(tagListStr.toString());
+		cacheKey = DigestUtils.md5Hex(tagListStr.toString());
 		
-		return redisTemplate.execute(new RedisCallback<List<HPModel>>() {
+		return redisTemplate.execute(new RedisCallback<HPListModel>() {
 			
 			@Override
-			public  List<HPModel> doInRedis(RedisConnection connection) throws DataAccessException {
-
+			public  HPListModel doInRedis(RedisConnection connection) throws DataAccessException {
+				
+				HPListModel hpListModel = new HPListModel();
+				
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
+				List<byte[]> id_list = null;
 				
-				if (!connection.exists(ser.serialize(cacheKey))){
-					Set<String> result = redisTemplate.opsForSet().intersect(tagList.get(0), tagList);
-					result.stream().forEach((s)->{
-						connection.lPush(ser.serialize(cacheKey), ser.serialize(s));
-					});
-					connection.expire(ser.serialize(cacheKey), 300);
+				if (tagList.size() == 0){
+					id_list = connection.lRange(ser.serialize(id_key), iDisplayStart, iDisplayStart + iDisplayLength - 1);
+					hpListModel.setCount(connection.lLen(ser.serialize(id_key)));
 				}
-				
-				List<byte[]> id_list = connection.lRange(ser.serialize(cacheKey), (pageNum - 1) * limit, pageNum * limit);
-				
+				else{
+					if (!connection.exists(ser.serialize(cacheKey))){
+						Set result = redisTemplate.opsForSet().intersect(tagList.get(0), tagList);
+						for (Object data : result){
+							connection.lPush(ser.serialize(cacheKey), ser.serialize(String.valueOf(data)));
+						}
+						
+						connection.expire(ser.serialize(cacheKey), 300);
+					}
+					id_list = connection.lRange(ser.serialize(cacheKey), iDisplayStart, iDisplayStart + iDisplayLength - 1);
+					hpListModel.setCount(connection.lLen(ser.serialize(cacheKey)));
+				}
 
 				Map<byte[],byte[]> brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
 				Map<byte[],byte[]> categoryMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
@@ -148,9 +160,9 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					
 					hpModelList.add(hpModel);
 				}
-				
+				hpListModel.setList(hpModelList);
 			
-				return hpModelList;
+				return hpListModel;
 			}
 		});
 	}

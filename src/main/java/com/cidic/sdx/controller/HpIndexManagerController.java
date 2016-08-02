@@ -1,6 +1,5 @@
 package com.cidic.sdx.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cidic.sdx.exception.SdxException;
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
+import com.cidic.sdx.model.ListResultModel;
 import com.cidic.sdx.model.ResultModel;
 import com.cidic.sdx.service.HpIndexService;
+import com.cidic.sdx.service.HpManageService;
 import com.cidic.sdx.util.RedisVariableUtil;
 import com.cidic.sdx.util.WebRequestUtil;
 
@@ -37,6 +39,10 @@ public class HpIndexManagerController {
 	@Autowired
 	@Qualifier(value = "hpIndexServiceImpl")
 	private HpIndexService hpIndexServiceImpl;
+	
+	@Autowired
+	@Qualifier(value = "hpManageServiceImpl")
+	private HpManageService hpManageServiceImpl;
 	
 	private ResultModel resultModel = null;
 	
@@ -54,57 +60,75 @@ public class HpIndexManagerController {
 		return "hpIndex";
 	}
 	
-	@RequestMapping(value = "/getData", method = RequestMethod.GET)  
+	@RequestMapping(value = "/getData", method = RequestMethod.GET, produces="application/json")  
 	@ResponseBody
-	public ResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String brand,
+	public ListResultModel getDate(HttpServletRequest request,HttpServletResponse response,@RequestParam(required=false) String brand,
 			@RequestParam(required=false) String color,@RequestParam(required=false) String size,@RequestParam(required=false) String category,
-			@RequestParam int pageNum,@RequestParam int limit){
+			@RequestParam int iDisplayLength, @RequestParam int iDisplayStart,@RequestParam String sEcho, @RequestParam(required=false) String hp_num){
 		
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
-	    
+		ListResultModel listResultModel = new ListResultModel();
 		try{
-			List<String> tagList = new ArrayList<>();
-			if (brand != null){
-				String[] brandArray = brand.split("\\,");
-				String prefix = RedisVariableUtil.BRAND_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
-				Arrays.asList(brandArray).stream().forEach((b)->{
-					tagList.add(prefix + b);
-				});
+			if (hp_num == null || hp_num.equals("")){
+				List<String> tagList = new ArrayList<>();
+				
+				if (brand != null && !brand.equals("")){
+					String[] brandArray = brand.split("\\,");
+					String prefix = RedisVariableUtil.BRAND_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+					Arrays.asList(brandArray).stream().forEach((b)->{
+						tagList.add(prefix + b);
+					});
+				}
+				
+				if (color != null && !color.equals("")){
+					String[] colorArray = color.split("\\,");
+					String prefix = RedisVariableUtil.COLOR_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+					Arrays.asList(colorArray).stream().forEach((b)->{
+						tagList.add(prefix + b);
+					});
+				}
+				
+				if (size != null && !size.equals("")){
+					String[] sizeArray = size.split("\\,");
+					String prefix = RedisVariableUtil.SIZE_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+					Arrays.asList(sizeArray).stream().forEach((b)->{
+						tagList.add(prefix + b);
+					});
+				}
+				
+				if (category != null && !category.equals("")){
+					String[] categoryArray = category.split("\\,");
+					String prefix = RedisVariableUtil.CATEGORY_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
+					Arrays.asList(categoryArray).stream().forEach((b)->{
+						tagList.add(prefix + b);
+					});
+				}
+
+				HPListModel resultData = hpIndexServiceImpl.getIndexDataByTag(tagList,iDisplayStart,iDisplayLength);
+				
+				listResultModel.setAaData(resultData.getList());
+				listResultModel.setsEcho(sEcho);
+				listResultModel.setiTotalRecords((int)resultData.getCount());
+				listResultModel.setiTotalDisplayRecords((int)resultData.getCount());
+				listResultModel.setSuccess(true);
+			}
+			else{
+				HPModel hpModel = hpManageServiceImpl.getHpDataByHpNum(hp_num);
+				List<HPModel> list = new ArrayList<>(1);
+				list.add(hpModel);
+				listResultModel.setAaData(list);
+				listResultModel.setsEcho(sEcho);
+				listResultModel.setiTotalRecords(1);
+				listResultModel.setiTotalDisplayRecords(1);
+				listResultModel.setSuccess(true);
 			}
 			
-			if (color != null){
-				String[] colorArray = color.split("\\,");
-				String prefix = RedisVariableUtil.COLOR_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
-				Arrays.asList(colorArray).stream().forEach((b)->{
-					tagList.add(prefix + b);
-				});
-			}
-			
-			if (size != null){
-				String[] sizeArray = size.split("\\,");
-				String prefix = RedisVariableUtil.SIZE_TAG_PREFIX + RedisVariableUtil.DIVISION_CHAR;
-				Arrays.asList(sizeArray).stream().forEach((b)->{
-					tagList.add(prefix + b);
-				});
-			}
-			
-			if (category != null){
-				String[] categoryArray = category.split("\\,");
-				String prefix = RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR;
-				Arrays.asList(categoryArray).stream().forEach((b)->{
-					tagList.add(prefix + b);
-				});
-			}
-			
-			List<HPModel> resultData = hpIndexServiceImpl.getIndexDataByTag(tagList,pageNum,limit);
-			resultModel.setResultCode(200);
-			resultModel.setSuccess(true);
-			resultModel.setObject(resultData);
 		}
 		
 		catch(Exception e){
-			throw new SdxException(500, "获取数据失败");
+			listResultModel.setSuccess(false);
 		}
-		return resultModel;
+		return listResultModel;
 	}
+	
 }

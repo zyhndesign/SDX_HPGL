@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cidic.sdx.dao.HpManageDao;
+import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
 import com.cidic.sdx.service.HpManageService;
 import com.cidic.sdx.util.UploadVo;
@@ -26,9 +27,9 @@ public class HpManageServiceImpl implements HpManageService {
 	private HpManageDao hpManageDaoImpl;
 
 	@Override
-	public List<HPModel> getHpData(int pageNum, int limit) {
+	public HPListModel getHpData(int iDisplayStart,int iDisplayLength) {
 
-		return hpManageDaoImpl.getHpData(pageNum, limit);
+		return hpManageDaoImpl.getHpData(iDisplayStart, iDisplayLength);
 	}
 
 	@Override
@@ -90,6 +91,12 @@ public class HpManageServiceImpl implements HpManageService {
 		}
 		outputStream.close();
 		stream.close();
+	}
+
+	@Override
+	public HPModel getHpDataByHpNum(String hp_num) {
+		// TODO Auto-generated method stub
+		return hpManageDaoImpl.getHpDataByHpNum(hp_num);
 	}
 
 }
