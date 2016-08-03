@@ -24,7 +24,7 @@
     <div class="main">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">品牌设置</h1>
+                <h1 class="panel-title">货品管理</h1>
             </div>
             <div class="panel-body" id="opt-body">
                 <a class="btn btn-success" href="hpManage/productCOU">
