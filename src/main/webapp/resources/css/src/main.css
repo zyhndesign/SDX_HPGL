@@ -270,5 +270,11 @@ table.dataTable .thumb{
 }
 /*****************覆盖tree样式*************************/
 .ztree li a{
-    height: 30px;
+    height: auto;
+    min-height: 30px;
+}
+.ztree li span{
+    white-space: nowrap;
+    word-break: break-all;
+    word-wrap: break-word;
 }
