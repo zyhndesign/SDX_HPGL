@@ -274,7 +274,7 @@ table.dataTable .thumb{
     min-height: 30px;
 }
 .ztree li span{
-    white-space: nowrap;
+    white-space: normal;
     word-break: break-all;
     word-wrap: break-word;
 }
