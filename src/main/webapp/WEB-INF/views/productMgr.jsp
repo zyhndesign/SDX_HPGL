@@ -27,7 +27,7 @@
                 <h1 class="panel-title">品牌设置</h1>
             </div>
             <div class="panel-body" id="opt-body">
-                <a class="btn btn-success" href="productCOU.html">
+                <a class="btn btn-success" href="hpManage/productCOU">
                     <span class="glyphicon glyphicon-plus"></span> 新建
                 </a>
                 <!--<a class="btn btn-success" href="productCOU.html">
