@@ -161,8 +161,7 @@ var colorMgr=(function(config,functions){
             data: {
                 keep:{
                     parent:true,
-                    editNameSelectAll: true,
-                    drag:false
+                    editNameSelectAll: true
                 },
                 simpleData: {
                     enable: true,
@@ -178,7 +177,10 @@ var colorMgr=(function(config,functions){
                 beforeRemove: beforeRemove,
                 onRemove:onRemove,
                 onRename:onRename,
-                beforeRename: beforeRename
+                beforeRename: beforeRename,
+                beforeDrag: function(treeId, treeNodes){
+                    return false;
+                }
             }
         }
     }

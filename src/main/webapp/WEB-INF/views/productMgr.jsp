@@ -30,9 +30,9 @@
                 <a class="btn btn-success" href="productCOU.html">
                     <span class="glyphicon glyphicon-plus"></span> 新建
                 </a>
-                <a class="btn btn-success" href="productCOU.html">
+                <!--<a class="btn btn-success" href="productCOU.html">
                     <span class="glyphicon glyphicon-save"></span> 导入
-                </a>
+                </a>-->
                 <div id="searchPanel" class="searchPanel">
                     <div class="row">
                         <div class="col-md-2">

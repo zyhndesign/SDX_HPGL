@@ -171,14 +171,16 @@ var sizeMgr=(function(config,functions){
             },
             edit: {
                 enable: true,
-                editNameSelectAll: true,
-                drag:false
+                editNameSelectAll: true
             },
             callback: {
                 beforeRemove: beforeRemove,
                 onRemove:onRemove,
                 onRename:onRename,
-                beforeRename: beforeRename
+                beforeRename: beforeRename,
+                beforeDrag: function(treeId, treeNodes){
+                    return false;
+                }
             }
         }
     }
