@@ -12,7 +12,7 @@
         <ul class="subMenu">
             <li class="sItem">
                 <span class="circle">原点</span>
-                <a class="sLink" href="brand/brandMgr">系列设置</a>
+                <a class="sLink" href="brand/brandMgr">品牌系列设置</a>
             </li>
             <li class="sItem">
                 <span class="circle">原点</span>
