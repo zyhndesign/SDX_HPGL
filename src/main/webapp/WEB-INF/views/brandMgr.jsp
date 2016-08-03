@@ -23,7 +23,7 @@
     <div class="main">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">品牌设置</h1>
+                <h1 class="panel-title">系列设置</h1>
             </div>
             <div class="panel-body" id="opt-body">
                 <ul id="treeDemo" class="ztree"></ul>

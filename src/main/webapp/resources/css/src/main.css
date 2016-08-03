@@ -268,3 +268,7 @@ table.dataTable .thumb{
     top:50%;
     color:#fff;
 }
+/*****************覆盖tree样式*************************/
+.ztree li a{
+    height: 30px;
+}
