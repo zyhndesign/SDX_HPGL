@@ -170,7 +170,9 @@ var brandMgr=(function(config,functions){
                 }
             },
             edit: {
-                enable: true
+                enable: true,
+                editNameSelectAll: true,
+                drag:false
             },
             callback: {
                 beforeRemove: beforeRemove,

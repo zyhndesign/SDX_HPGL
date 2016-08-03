@@ -160,7 +160,9 @@ var colorMgr=(function(config,functions){
             },
             data: {
                 keep:{
-                    parent:true
+                    parent:true,
+                    editNameSelectAll: true,
+                    drag:false
                 },
                 simpleData: {
                     enable: true,
