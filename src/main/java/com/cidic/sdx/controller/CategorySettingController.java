@@ -62,7 +62,7 @@ public class CategorySettingController {
 				List<CategoryModel> list = new ArrayList<>();
 				CategoryModel categoryModel = new CategoryModel();
 				categoryModel.setId(0);
-				categoryModel.setName("圣德西");
+				categoryModel.setName("品类");
 				list.add(categoryModel);
 				resultModel.setObject(list);
 			}

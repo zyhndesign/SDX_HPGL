@@ -63,7 +63,7 @@ public class BrandSettingController {
 				List<BrandModel> list = new ArrayList<>();
 				BrandModel brandModel = new BrandModel();
 				brandModel.setId(0);
-				brandModel.setName("圣德西");
+				brandModel.setName("品牌系列");
 				list.add(brandModel);
 				resultModel.setObject(list);
 			}

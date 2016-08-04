@@ -64,7 +64,7 @@ public class SizeSettingController {
 				List<SizeModel> list = new ArrayList<>();
 				SizeModel sizeModel = new SizeModel();
 				sizeModel.setId(0);
-				sizeModel.setName("圣德西");
+				sizeModel.setName("尺码");
 				list.add(sizeModel);
 				resultModel.setObject(list);
 			}

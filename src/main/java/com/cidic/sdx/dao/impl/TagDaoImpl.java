@@ -105,7 +105,7 @@ public class TagDaoImpl implements TagDao {
 				
 				Map<String, String> resultSizeMap = new HashMap<>();
 				sizeMapList.forEach((k, v) -> {
-					resultSizeMap.put(ser.deserialize(k), ser.deserialize(v));
+					resultSizeMap.put(ser.deserialize(k), String.valueOf(ser.deserialize(v).charAt(0)));
 				});
 				list.add(resultSizeMap);
 				return list;

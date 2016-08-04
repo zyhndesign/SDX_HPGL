@@ -18,7 +18,7 @@
     </h1>
 </div>
 
-<form class="pCenter" id="myForm" method="post" action="login">
+<form class="pCenter" id="myForm" method="post" action="dologin">
     <h2 class="title">系统登陆</h2>
     <div class="row">
         <div><label class="ctrlLabel icon-portrait"></label></div>

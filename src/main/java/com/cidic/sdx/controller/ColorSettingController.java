@@ -63,7 +63,7 @@ public class ColorSettingController {
 				List<ColorModel> list = new ArrayList<>();
 				ColorModel colorModel = new ColorModel();
 				colorModel.setId(0);
-				colorModel.setName("圣德西");
+				colorModel.setName("颜色");
 				list.add(colorModel);
 				resultModel.setObject(list);
 			}

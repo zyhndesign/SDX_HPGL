@@ -21,4 +21,9 @@ public class RedisVariableUtil {
 	public final static String COLOR_TAG_PREFIX = "tag_color"; //颜色标签前缀
 	public final static String SIZE_TAG_PREFIX = "tag_size"; //尺寸标签前缀
 	
+	public final static String USER_PRIFIX = "user";
+	public final static String ROLE_PRIFIX = "role";
+	public final static String PERMISSION_PRIFIX = "permission";
+	
+	
 }
