@@ -7,11 +7,16 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.cidic.sdx.dao.RoleDao;
 import com.cidic.sdx.model.RoleModel;
 import com.cidic.sdx.util.RedisVariableUtil;
 
+@Repository
+@Component
+@Qualifier(value = "roleDaoImpl")
 public class RoleDaoImpl implements RoleDao {
 
 	@Autowired
@@ -81,7 +86,7 @@ public class RoleDaoImpl implements RoleDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				byte[] roleKey = ser
-						.serialize(RedisVariableUtil.USER_PRIFIX + ":" + roleId +":"+ RedisVariableUtil.PERMISSION_PRIFIX);
+						.serialize(RedisVariableUtil.ROLE_PRIFIX + ":" + roleId +":"+ RedisVariableUtil.PERMISSION_PRIFIX);
 				connection.openPipeline();
 				for (long id : permissionIds) {
 					connection.sRem(roleKey, ser.serialize(String.valueOf(id)));

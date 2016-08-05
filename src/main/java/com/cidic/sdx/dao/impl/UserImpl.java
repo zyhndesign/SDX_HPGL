@@ -46,10 +46,10 @@ public class UserImpl implements UserDao {
 				connection.hSet(roleKey, ser.serialize("slot"), ser.serialize(user.getSlot()));
 				connection.hSet(roleKey, ser.serialize("locked"), ser.serialize(String.valueOf(user.isLocked())));
 				
-				connection.hSet(ser.serialize(USER_ID_USERNAME_MAP), ser.serialize("username"), ser.serialize(String.valueOf(id)));
+				connection.hSet(ser.serialize(USER_ID_USERNAME_MAP), ser.serialize(user.getUsername()), ser.serialize(String.valueOf(id)));
 				if (user.getRoleList() != null){
 					user.getRoleList().stream().forEach((i)->{
-						connection.sAdd(ser.serialize(USER_ROLE_LIST + user.getUsername()), ser.serialize(String.valueOf(i)));
+						connection.sAdd(ser.serialize(USER_ROLE_LIST + id + ":" + RedisVariableUtil.ROLE_PRIFIX), ser.serialize(String.valueOf(i)));
 					});;
 				}
 				connection.closePipeline();
@@ -87,8 +87,11 @@ public class UserImpl implements UserDao {
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
 				byte[] roleKey = ser.serialize(RedisVariableUtil.USER_PRIFIX + ":" + userId);
+				byte[] username = connection.hGet(roleKey, ser.serialize("username"));
 				connection.openPipeline();
 				connection.hDel(roleKey, ser.serialize("username"), ser.serialize("password"),ser.serialize("slot"),ser.serialize("locked"));
+				connection.del(ser.serialize(USER_ROLE_LIST+ser.deserialize(username)));
+				connection.hDel(ser.serialize(USER_ID_USERNAME_MAP), username);
 				connection.closePipeline();
 				return null;
 			}
@@ -103,10 +106,10 @@ public class UserImpl implements UserDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				byte[] roleKey = ser
-						.serialize(RedisVariableUtil.USER_PRIFIX + ":" + userId + RedisVariableUtil.ROLE_PRIFIX);
+						.serialize(RedisVariableUtil.USER_PRIFIX + ":" + userId + ":" + RedisVariableUtil.ROLE_PRIFIX);
 				connection.openPipeline();
 				for (long id : roleIds) {
-					connection.lPush(roleKey, ser.serialize(String.valueOf(id)));
+					connection.sAdd(roleKey, ser.serialize(String.valueOf(id)));
 				}
 
 				connection.closePipeline();
@@ -124,10 +127,10 @@ public class UserImpl implements UserDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				byte[] roleKey = ser
-						.serialize(RedisVariableUtil.USER_PRIFIX + ":" + userId + RedisVariableUtil.ROLE_PRIFIX);
+						.serialize(RedisVariableUtil.USER_PRIFIX + ":" + userId + ":" + RedisVariableUtil.ROLE_PRIFIX);
 				connection.openPipeline();
 				for (long id : roleIds) {
-					connection.lRem(roleKey, 0, ser.serialize(String.valueOf(id)));
+					connection.sRem(roleKey, ser.serialize(String.valueOf(id)));
 				}
 				connection.closePipeline();
 
@@ -203,27 +206,43 @@ public class UserImpl implements UserDao {
 
 	@Override
 	public Set<String> findRoles(String username) {
-		Set<String> idSet = redisTemplate.opsForSet().members(USER_ROLE_LIST + username);
-		Set<String> result = new TreeSet<>();
-		for (String id : idSet){
-			result.add((String)redisTemplate.opsForHash().get(RedisVariableUtil.ROLE_PRIFIX + ":" + id, "role"));
-		}
 		
-		return result;
+		return redisTemplate.execute(new RedisCallback<Set<String>>() {
+			@Override
+			public Set<String> doInRedis(RedisConnection connection) throws DataAccessException {
+
+				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
+				byte[] id = connection.hGet(ser.serialize(USER_ID_USERNAME_MAP), ser.serialize(username));
+				Set<byte[]> idSet= connection.sMembers(ser.serialize(USER_ROLE_LIST + ser.deserialize(id) + ":" + RedisVariableUtil.ROLE_PRIFIX));
+				Set<String> result = new TreeSet<>();
+				idSet.stream().forEach((ids)->{
+					result.add(ser.deserialize(connection.hGet(ser.serialize(RedisVariableUtil.ROLE_PRIFIX + ":" + ser.deserialize(ids)), ser.serialize("role"))));
+				});
+				return result;
+			}
+		});
 	}
 
 	@Override
 	public Set<String> findPermissions(String username) {
-		Set<String> roleIdSet = redisTemplate.opsForSet().members(USER_ROLE_LIST + username);
-		Set<String> result = new TreeSet<>();
-		for (String roleId : roleIdSet){
-			Set<String> permissiomIdSet = redisTemplate.opsForSet().members(RedisVariableUtil.ROLE_PRIFIX + ":" + roleId +":"+ RedisVariableUtil.PERMISSION_PRIFIX);
-			for (String permissiomId : permissiomIdSet){
-				result.add((String)redisTemplate.opsForHash().get(RedisVariableUtil.PERMISSION_PRIFIX + ":" + permissiomId, "permission"));
-			}
-		}
 		
-		return result;
+		return redisTemplate.execute(new RedisCallback<Set<String>>() {
+			@Override
+			public Set<String> doInRedis(RedisConnection connection) throws DataAccessException {
+
+				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
+				byte[] id = connection.hGet(ser.serialize(USER_ID_USERNAME_MAP), ser.serialize(username));
+				Set<byte[]> roleIdSet= connection.sMembers(ser.serialize(USER_ROLE_LIST + ser.deserialize(id) + ":" + RedisVariableUtil.ROLE_PRIFIX));
+				Set<String> result = new TreeSet<>();
+				roleIdSet.stream().forEach((roleId)->{
+					Set<byte[]> permissiomIdSet =  connection.sMembers(ser.serialize(RedisVariableUtil.ROLE_PRIFIX + ":" + ser.deserialize(roleId) +":"+ RedisVariableUtil.PERMISSION_PRIFIX));
+					permissiomIdSet.stream().forEach((permissiomId)->{
+						result.add(ser.deserialize(connection.hGet(ser.serialize(RedisVariableUtil.PERMISSION_PRIFIX + ":" + ser.deserialize(permissiomId)), ser.serialize("permission"))));
+					});
+				});
+				return result;
+			}
+		});
 	}
 
 }

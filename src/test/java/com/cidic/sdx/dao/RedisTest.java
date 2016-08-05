@@ -40,7 +40,7 @@ public class RedisTest {
 	    listValue.add("002");
 	    value.set("list", listValue);
 	    System.out.println(value.get("list"));
-	    */
+	    
 		
 	    ValueOperations<String, User> valueOper = redisTemplate.opsForValue();  
         User u1 = new User("zhangsan",12);  
@@ -49,6 +49,6 @@ public class RedisTest {
         valueOper.set("u:u2", u2);  
         System.out.println(valueOper.get("u:u1").getName());  
         System.out.println(valueOper.get("u:u2").getName());  
-	    
+	    */
 	}
 }
