@@ -14,9 +14,9 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.cidic.sdx.dao.UserDao;
 import com.cidic.sdx.model.UserModel;
 import com.cidic.sdx.service.UserService;
+
 
 public class UserRealm extends AuthorizingRealm{
 
@@ -40,7 +40,7 @@ public class UserRealm extends AuthorizingRealm{
 		String username = (String)token.getPrincipal();
 		
         UserModel user = userServiceImpl.findByUsername(username);
-
+        
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
@@ -53,7 +53,7 @@ public class UserRealm extends AuthorizingRealm{
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getSlot()),//salt=username+salt
+                ByteSource.Util.bytes(user.getCredentialsSalt()),
                 getName()  //realm name
         );
         return authenticationInfo;

@@ -4,6 +4,8 @@ import java.util.Set;
 
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.cidic.sdx.dao.UserDao;
 import com.cidic.sdx.model.UserModel;
 import com.cidic.sdx.service.UserService;
+import com.cidic.sdx.util.PasswordHelper;
 
 @Service
 @Component
@@ -22,19 +25,10 @@ public class UserServiceImpl implements UserService {
 	@Qualifier(value = "userDaoImpl")
 	private UserDao userDaoImpl;
 	
-	
 	@Override
 	public UserModel createUser(UserModel user) {
-
-		String password = user.getPassword();
-	 
-		SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();  
-		randomNumberGenerator.setSeed("SDX_HPGL".getBytes());  
-		String salt = randomNumberGenerator.nextBytes().toHex(); 
-		String md5_password = new Md5Hash(password, salt).toString();
-		user.setSlot(salt);
-		user.setPassword(md5_password);
 		
+		PasswordHelper.encryptPassword(user);
 		return userDaoImpl.createUser(user);
 	}
 

@@ -182,16 +182,16 @@ public class UserImpl implements UserDao {
 					Map<byte[], byte[]> userModelMap = connection.hGetAll(roleKey);
 					UserModel userModel = new UserModel();
 					userModelMap.forEach((k,v)->{
-						if (k.equals("username")){
+						if (ser.deserialize(k).equals("username")){
 							userModel.setUsername(ser.deserialize(v));
 						}
-						else if (k.equals("password")){
+						else if (ser.deserialize(k).equals("password")){
 							userModel.setPassword(ser.deserialize(v));
 						}
-						else if (k.equals("slot")){
+						else if (ser.deserialize(k).equals("slot")){
 							userModel.setSlot(ser.deserialize(v));
 						}
-						else if (k.equals("locked")){
+						else if (ser.deserialize(k).equals("locked")){
 							userModel.setLocked(Boolean.parseBoolean(ser.deserialize(v)));
 						}
 					});

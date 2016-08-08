@@ -61,13 +61,19 @@ public class UserTest {
 	
 	//@Test
 	public void findRoles(){
-		Set<String> roles = userServiceImpl.findRoles("cidic4");
+		Set<String> roles = userServiceImpl.findRoles("cidic");
 		roles.stream().forEach(System.out::println);
 	}
 	
-	@Test 
+	//@Test
+	public void findByUsername(){
+		UserModel userModel = userServiceImpl.findByUsername("cidic");
+		System.out.println(userModel.getSlot());
+	}
+	
+	//@Test 
 	public void findPermissions(){
-		Set<String> permissions = userServiceImpl.findPermissions("cidic4");
+		Set<String> permissions = userServiceImpl.findPermissions("cidic");
 		permissions.stream().forEach(System.out::println);
 	}
 	
