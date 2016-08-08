@@ -30,6 +30,11 @@ public class HomeController {
 	public String home(HttpServletRequest request, Model model) {
 		return "login";
 	}
+	
+	@RequestMapping(value = "/login")
+	public String login(HttpServletRequest request, Model model) {
+		return "login";
+	}
 
 	@RequestMapping(value = "/dologin")
 	public String doLogin(HttpServletRequest request, Model model) {
@@ -76,6 +81,13 @@ public class HomeController {
 			model.addAttribute("message", msg);
 			System.out.println(msg);
 		}
+		return "login";
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String doLogout(HttpServletRequest request, Model model) {
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
 		return "login";
 	}
 

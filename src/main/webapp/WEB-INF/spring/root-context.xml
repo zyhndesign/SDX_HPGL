@@ -63,7 +63,13 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/security/*=anon
-				/tag=authc
+				/tag/*=authc
+				/hpManage/*=authc
+				/brand/*=authc
+				/category/*=authc
+				/color/*=authc
+				/hpIndexManage/*=authc
+				/size/*=authc
 			</value>
 		</property>
 	</bean>
