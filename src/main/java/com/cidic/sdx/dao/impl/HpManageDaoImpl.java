@@ -47,7 +47,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				byte[] bIdKey = ser.serialize(id_key);
 				long id = connection.incr(bIdKey);
 				
-				connection.openPipeline();
+				connection.multi();
 				connection.lPush(ser.serialize("HpIDList"), ser.serialize(String.valueOf(id)));
 				//将记录Id存入哈希表
 				byte[] hKey = ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id);
@@ -98,7 +98,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				
 				connection.hSet(ser.serialize("HpIDNum"),  ser.serialize(hpModel.getHp_num()), ser.serialize(String.valueOf(id)));
 
-				List<Object> resultList = connection.closePipeline();
+				List<Object> resultList = connection.exec();
 				
 				System.out.println("执行命令数量："+ resultList.size());
 				resultList.stream().forEach((o)->{
@@ -118,7 +118,7 @@ public class HpManageDaoImpl implements HpManageDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
-				connection.openPipeline();
+				connection.multi();
 				int id = hpModel.getId();
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
 						ser.serialize("hp_num"), ser.serialize(hpModel.getHp_num()));
@@ -131,7 +131,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
 						ser.serialize("imageUrl3"), ser.serialize(hpModel.getImageUrl3()));
 				
-				List<Object> resultList = connection.closePipeline();
+				List<Object> resultList = connection.exec();
 				logger.info("执行命令数量：", resultList.size());
 				resultList.stream().forEach((o)->{
 					logger.info("命令执行结果：",o.toString());
@@ -149,14 +149,14 @@ public class HpManageDaoImpl implements HpManageDao {
 
 				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
 				
-				connection.openPipeline();
+				connection.multi();
 				connection.del(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id));
 				connection.lRem(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + "Id"), 0, ser.serialize(id));
 				Set<byte[]> tagKeys = connection.keys(ser.serialize("tag_*"));
 				for (byte[] tagKey : tagKeys){
 					connection.sRem(tagKey, ser.serialize(id));
 				}
-				List<Object> resultList = connection.closePipeline();
+				List<Object> resultList = connection.exec();
 				logger.info("执行命令数量：", resultList.size());
 				resultList.stream().forEach((o)->{
 					logger.info("命令执行结果：",o.toString());
@@ -187,91 +187,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				
 				List<HPModel> hpModelList = new ArrayList<>();
 				HPModel hpModel = null;
-				for (byte[] id : id_list){
-					Map<byte[],byte[]> map = connection.hGetAll(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + ser.deserialize(id)));
-					
-					hpModel = new HPModel();
-					Map<String, String> resultMap = new HashMap<>();
-					map.forEach((k, v) -> {
-						resultMap.put(ser.deserialize(k), ser.deserialize(v));
-					});
-					hpModel.setId(Integer.parseInt(ser.deserialize(id)));
-					hpModel.setHp_num(resultMap.get("hp_num"));
-					hpModel.setBrand(resultMap.get("brand"));
-					hpModel.setCategory(resultMap.get("category"));
-					hpModel.setSize(resultMap.get("size"));
-					hpModel.setColor(resultMap.get("color"));
-					hpModel.setPrice(Float.parseFloat(resultMap.get("price")));
-					hpModel.setImageUrl1(resultMap.get("imageUrl1"));
-					hpModel.setImageUrl2(resultMap.get("imageUrl2"));
-					hpModel.setImageUrl3(resultMap.get("imageUrl3"));
-					
-					
-					StringBuilder brandList = new StringBuilder();
-					StringBuilder categoryList  = new StringBuilder();
-					StringBuilder sizeList = new StringBuilder();
-					StringBuilder colorList = new StringBuilder();
-					
-					String[] brandArray = resultMap.get("brand").split("\\,");
-					int brandCount = 0;
-					for (String brand : brandArray){
-						
-						String tempKey = RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR +brand;
-						brandList.append(ser.deserialize(brandMapList.get(ser.serialize(tempKey))));
-						++brandCount;
-						if (brandCount != brandArray.length){
-							brandList.append("/");
-						}
-						
-						brandMapList = connection.hGetAll(ser.serialize(tempKey));
-					}
-					
-					int categoryCount = 0;
-					String[] categoryArray = resultMap.get("category").split("\\,");
-					for (String category : categoryArray){
-						String tempKey = RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR +category;
-						categoryList.append(ser.deserialize(categoryMapList.get(ser.serialize(tempKey))));
-						++categoryCount;
-						if (categoryCount != categoryArray.length){
-							categoryList.append("/");
-						}
-						
-						categoryMapList = connection.hGetAll(ser.serialize(tempKey));
-					}
-					
-					int sizeCount = 0;
-					String[] sizeArray = resultMap.get("size").split("\\,");
-					for (String size : sizeArray){
-						String tempKey = RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR +size;
-						sizeList.append(ser.deserialize(sizeMapList.get(ser.serialize(tempKey))));
-						++sizeCount;
-						if (sizeCount != sizeArray.length){
-							sizeList.append("/");
-						}
-						
-						sizeMapList = connection.hGetAll(ser.serialize(tempKey));
-					}
-					
-					int colorCount = 0;
-					String[] colorArray = resultMap.get("color").split("\\,");
-					for (String color : colorArray){
-						String tempKey = RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR +color;
-						colorList.append(ser.deserialize(colorMapList.get(ser.serialize(tempKey))));
-						++colorCount;
-						if (colorCount != colorArray.length){
-							colorList.append("/");
-						}
-						
-						colorMapList = connection.hGetAll(ser.serialize(tempKey));
-					}
-					
-					hpModel.setBrandList(brandList.toString());
-					hpModel.setCategoryList(categoryList.toString());
-					hpModel.setColorList(colorList.toString());
-					hpModel.setSizeList(sizeList.toString());
-					
-					hpModelList.add(hpModel);
-				}
+				
 				
 				hpListModel.setList(hpModelList);
 				return hpListModel;
@@ -407,5 +323,44 @@ public class HpManageDaoImpl implements HpManageDao {
 			
 		
 		return hpModel;
+	}
+
+	@Override
+	public Map<String, String> initExcelBaseData() {
+		
+		return redisTemplate.execute(new RedisCallback<Map<String, String>>() {
+			@Override
+			public  Map<String, String> doInRedis(RedisConnection connection) throws DataAccessException {
+				RedisSerializer<String> ser = redisTemplate.getStringSerializer();
+
+				Map<byte[],byte[]> brandMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.BRAND_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> categoryMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.CATEGORY_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> colorMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.COLOR_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				Map<byte[],byte[]> sizeMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
+				
+				Map<String, String> map = new HashMap<String,String>();
+				
+				brandMapList.forEach((k,v)->{
+					
+				});
+				
+				categoryMapList.forEach((k,v)->{
+									
+				});
+				
+				colorMapList.forEach((k,v)->{
+					
+				});
+				
+				sizeMapList.forEach((k,v)->{
+					
+				});
+				
+				return map;
+				
+			}
+		});
+		
+		
 	}
 }

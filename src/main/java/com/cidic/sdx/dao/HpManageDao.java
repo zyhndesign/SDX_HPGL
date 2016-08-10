@@ -1,5 +1,7 @@
 package com.cidic.sdx.dao;
 
+import java.util.Map;
+
 import com.cidic.sdx.model.HPListModel;
 import com.cidic.sdx.model.HPModel;
 
@@ -15,4 +17,6 @@ public interface HpManageDao {
 	public HPModel getHpDataById(int id);
 	
 	public HPModel getHpDataByHpNum(String hp_num);
+	
+	public Map<String,String> initExcelBaseData();
 }
