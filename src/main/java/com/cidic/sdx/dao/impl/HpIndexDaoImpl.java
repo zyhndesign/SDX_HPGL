@@ -94,7 +94,7 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					hpModel.setHp_num(resultMap.get("hp_num"));
 					hpModel.setBrand(resultMap.get("brand"));
 					hpModel.setCategory(resultMap.get("category"));
-					hpModel.setSize(resultMap.get("size"));
+					hpModel.setSize(String.valueOf(resultMap.get("size").charAt(0)));
 					hpModel.setColor(resultMap.get("color"));
 					hpModel.setPrice(Float.parseFloat(resultMap.get("price")));
 					hpModel.setImageUrl1(resultMap.get("imageUrl1"));
@@ -148,7 +148,7 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					String[] sizeArray = resultMap.get("size").split("\\,");
 					for (String size : sizeArray){
 						String tempKey = RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR +size;
-						sizeList.append(ser.deserialize(sizeMapList.get(ser.serialize(tempKey))));
+						sizeList.append(ser.deserialize(sizeMapList.get(ser.serialize(tempKey))).charAt(0));
 						++sizeCount;
 						if (sizeCount != sizeArray.length){
 							sizeList.append("/");
