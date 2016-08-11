@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">图*</label>
                             <div class="col-md-10" id="uploadContainer">
-                                <p class="help-block">请上传4:3的jpg，png，宽度400px-800px</p>
+                                <p class="help-block">请上传jpg，png</p>
                                 <a href="#" id="uploadBtn1">
                                     <c:if test="${empty hp.imageUrl1}">
                                     <img  id="image1"  style="width:100px"
