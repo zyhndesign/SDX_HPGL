@@ -37,7 +37,7 @@ var productMgr=(function(config,functions){
                 { "mDataProp": "price"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
-                        return '<a href="hpManage/productCOU/'+oObj.aData.id+'">修改</a>&nbsp;';
+                        return '<a href="hpManage/productCOU/'+oObj.aData.id+'">查看</a>&nbsp;';
                             //'<a href="'+oObj.aData.id+'" class="remove">删除</a>';
                     }
                 }
