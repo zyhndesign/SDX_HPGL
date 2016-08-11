@@ -243,7 +243,7 @@ public class HpManageDaoImpl implements HpManageDao {
 			Map<byte[],byte[]> subColorMap = connection.hGetAll(k);
 			colorMapList.putAll(subColorMap);
 		});
-		
+
 		Map<byte[],byte[]> sizeMapList = connection.hGetAll(ser.serialize(RedisVariableUtil.SIZE_PREFIX + RedisVariableUtil.DIVISION_CHAR + "0"));
 		
 		HPModel hpModel = null;
