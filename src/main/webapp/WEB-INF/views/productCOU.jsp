@@ -68,7 +68,7 @@
                                     <input type="text" id="brand" class="form-control" value="${hp.brandList}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default showTreePanel" data-type="brand" type="button">
-                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <span class="glyphicon glyphicon-option-vertical"></span>
                                         </button>
                                     </div>
                                 </div>
