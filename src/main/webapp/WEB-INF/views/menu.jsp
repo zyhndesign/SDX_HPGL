@@ -2,11 +2,11 @@
 
 <ul class="menu">
     <li class="item">
-        <span class="glyphicon glyphicon-flag"></span>
+        <span class="glyphicon glyphicon-th-list"></span>
         <a class="link" href="hpManage/productMgr">货品检索</a>
     </li>
     <li class="item">
-        <span class="glyphicon glyphicon-flag"></span>
+        <span class="glyphicon glyphicon-edit"></span>
         <a class="link" href="hpManage/productCOU">货品录入</a>
     </li>
     <li class="item">
