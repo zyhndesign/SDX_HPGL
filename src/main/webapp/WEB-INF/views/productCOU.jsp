@@ -54,15 +54,15 @@
                     </c:otherwise>
                 </c:choose>
 
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label  class="control-label col-md-2">货号*</label>
-                            <div class="col-md-8">
+                            <label  class="control-label col-md-3">货号*</label>
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" value="${hp.hp_num}" name="hp_num">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">品牌系列*</label>
+                            <label  class="control-label col-md-3">品牌系列*</label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <input type="text" id="brand" class="form-control" value="${hp.brandList}">
@@ -79,53 +79,61 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">品类*</label>
+                            <label  class="control-label col-md-3">品类*</label>
                             <div class="col-md-6">
-                                <input type="text" id="category" class="form-control" value="${hp.categoryList}">
+                                <div class="input-group">
+                                    <input type="text" id="category" class="form-control" value="${hp.categoryList}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default showTreePanel" data-type="category" type="button">
+                                            <span class="glyphicon glyphicon-option-vertical"></span>
+                                        </button>
+                                    </div>
+                                </div>
                                 <input type="hidden" id="categoryId" name="category" value="${hp.category}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="categoryOld" value="${hp.category}">
                                 </c:if>
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default showTreePanel" data-type="category">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label  class="control-label col-md-2">尺寸*</label>
                             <div class="col-md-6">
-                                <input type="text" id="size" class="form-control" value="${hp.sizeList}">
+                                <div class="input-group">
+                                    <input type="text" id="size" class="form-control" value="${hp.sizeList}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default showTreePanel" data-type="size" type="button">
+                                            <span class="glyphicon glyphicon-option-vertical"></span>
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <input type="hidden" id="sizeId" name="size" value="${hp.size}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="sizeOld" value="${hp.size}">
                                 </c:if>
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default showTreePanel" data-type="size">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label  class="control-label col-md-2">颜色*</label>
                             <div class="col-md-6">
-                                <input type="text" id="color" class="form-control"  value="${hp.colorList}">
+                                <div class="input-group">
+                                    <input type="text" id="color" class="form-control"  value="${hp.colorList}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default showTreePanel" data-type="color" type="button">
+                                            <span class="glyphicon glyphicon-option-vertical"></span>
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <input type="hidden" id="colorId" name="color" value="${hp.color}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="colorOld" value="${hp.color}">
                                 </c:if>
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default showTreePanel" data-type="color">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label  class="control-label col-md-2">吊牌价*</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" value="${hp.price}" name="price">
                             </div>
                         </div>
