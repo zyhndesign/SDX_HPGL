@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">尺寸*</label>
+                            <label  class="control-label col-md-3">尺寸*</label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <input type="text" id="size" class="form-control" value="${hp.sizeList}">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">颜色*</label>
+                            <label  class="control-label col-md-3">颜色*</label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <input type="text" id="color" class="form-control"  value="${hp.colorList}">
@@ -132,13 +132,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">吊牌价*</label>
+                            <label  class="control-label col-md-3">吊牌价*</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" value="${hp.price}" name="price">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-2">图*</label>
                             <div class="col-md-10" id="uploadContainer">
