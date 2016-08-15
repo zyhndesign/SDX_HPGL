@@ -66,11 +66,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <input type="text" id="brand" class="form-control" value="${hp.brandList}">
-                                    <span class="input-group-btn">
+                                    <div class="input-group-btn">
                                         <button class="btn btn-default showTreePanel" data-type="brand" type="button">
                                             <span class="glyphicon glyphicon-option-vertical"></span>
                                         </button>
-                                    </span>
+                                    </div>
                                 </div>
                                 <input type="hidden" id="brandId" name="brand" value="${hp.brand}">
                                 <c:if test="${!empty hp.id}">
