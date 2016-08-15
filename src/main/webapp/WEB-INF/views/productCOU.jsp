@@ -54,7 +54,7 @@
                     </c:otherwise>
                 </c:choose>
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="form-group">
                             <label  class="control-label col-md-2">货号*</label>
                             <div class="col-md-8">
@@ -67,8 +67,8 @@
                                 <div class="input-group">
                                     <input type="text" id="brand" class="form-control" value="${hp.brandList}">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                        <button class="btn btn-default showTreePanel" data-type="brand" type="button">
+                                            <span class="glyphicon glyphicon-option-vertical"></span>
                                         </button>
                                     </span>
                                 </div>
@@ -76,11 +76,6 @@
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="brandOld" value="${hp.brand}">
                                 </c:if>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default showTreePanel" data-type="brand">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -135,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label col-md-2">图*</label>
                             <div class="col-md-10" id="uploadContainer">
