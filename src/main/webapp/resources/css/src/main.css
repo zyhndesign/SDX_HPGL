@@ -178,6 +178,11 @@ label.error{
     color: #5dc05f;
 }
 
+.uploadImg{
+    width: 100px;
+    vertical-align: bottom;
+}
+
 /**
 *复写datatable
 */

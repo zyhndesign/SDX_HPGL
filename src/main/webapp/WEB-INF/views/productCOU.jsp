@@ -145,39 +145,39 @@
                                 <p class="help-block">请上传jpg，png</p>
                                 <a href="#" id="uploadBtn1">
                                     <c:if test="${empty hp.imageUrl1}">
-                                    <img  id="image1"  style="width:100px"
+                                    <img  id="image1"   class="uploadImg"
                                     src="resources/images/app/image1.png"/>
                                     <input type="hidden" id="imageUrl1" name="imageUrl1">
                                     </c:if>
 
                                     <c:if test="${!empty hp.imageUrl1}">
-                                    <img  id="image1"  style="width:100px"
+                                    <img  id="image1"   class="uploadImg"
                                     src="${hp.imageUrl1}"/>
                                     <input type="hidden" id="imageUrl1" value="${hp.imageUrl1}" name="imageUrl1">
                                     </c:if>
                                 </a>
                                 <a href="#" id="uploadBtn2">
                                     <c:if test="${empty hp.imageUrl2}">
-                                    <img  id="image2"  style="width:100px"
-                                    src="resources/images/app/image1.png"/>
+                                    <img  id="image2"   class="uploadImg"
+                                    src="resources/images/app/image2.png"/>
                                     <input type="hidden" id="imageUrl2" name="imageUrl2">
                                     </c:if>
 
                                     <c:if test="${!empty hp.imageUrl2}">
-                                    <img  id="image2"  style="width:100px"
+                                    <img  id="image2"  class="uploadImg"
                                     src="${hp.imageUrl2}"/>
                                     <input type="hidden" id="imageUrl2" value="${hp.imageUrl2}" name="imageUrl2">
                                     </c:if>
                                 </a>
                                 <a href="#" id="uploadBtn3">
                                     <c:if test="${empty hp.imageUrl3}">
-                                    <img  id="image3"  style="width:100px"
+                                    <img  id="image3"  class="uploadImg"
                                     src="resources/images/app/image3.png"/>
                                     <input type="hidden" id="imageUrl3" name="imageUrl3">
                                     </c:if>
 
                                     <c:if test="${!empty hp.imageUrl3}">
-                                    <img  id="image3"  style="width:100px"
+                                    <img  id="image3"   class="uploadImg"
                                     src="${hp.imageUrl3}"/>
                                     <input type="hidden" id="imageUrl3" value="${hp.imageUrl3}" name="imageUrl3">
                                     </c:if>
