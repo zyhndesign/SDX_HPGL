@@ -32,7 +32,15 @@
     <div class="main">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">货品录入/修改</h1>
+                <c:choose>
+                    <c:when test="${empty hp}">
+                    <h1 class="panel-title">货品录入</h1>
+                    </c:when>
+                    <c:otherwise>
+                    <h1 class="panel-title">货品修改</h1>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
             <div class="panel-body" id="opt-body">
 
@@ -54,9 +62,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="control-label col-md-2">品牌*</label>
+                            <label  class="control-label col-md-2">品牌系列*</label>
                             <div class="col-md-6">
-                                <input type="text" id="brand" class="form-control" value="${hp.brandList}">
+                                <div class="input-group">
+                                    <input type="text" id="brand" class="form-control" value="${hp.brandList}">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                                </div>
                                 <input type="hidden" id="brandId" name="brand" value="${hp.brand}">
                                 <c:if test="${!empty hp.id}">
                                     <input type="hidden" id="brandOld" value="${hp.brand}">
@@ -167,10 +182,10 @@
 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-8">
-                                <button type="submit" class="btn btn-success form-control">保存</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <button type="submit" class="btn btn-success form-control">保存</button>
                         </div>
                     </div>
                 </form>

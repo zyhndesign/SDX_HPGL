@@ -3,7 +3,11 @@
 <ul class="menu">
     <li class="item">
         <span class="glyphicon glyphicon-flag"></span>
-        <a class="link" href="hpManage/productMgr">货品管理</a>
+        <a class="link" href="hpManage/productMgr">货品检索</a>
+    </li>
+    <li class="item">
+        <span class="glyphicon glyphicon-flag"></span>
+        <a class="link" href="hpManage/productCOU">货品录入</a>
     </li>
     <li class="item">
         <span class="glyphicon glyphicon-th-list"></span>

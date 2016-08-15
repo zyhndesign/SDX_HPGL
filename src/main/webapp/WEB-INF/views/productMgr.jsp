@@ -24,11 +24,11 @@
     <div class="main">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">货品管理</h1>
+                <h1 class="panel-title">货品检索</h1>
             </div>
             <div class="panel-body" id="opt-body">
                 <a class="btn btn-success" href="hpManage/productCOU">
-                    <span class="glyphicon glyphicon-plus"></span> 新建
+                    <span class="glyphicon glyphicon-plus"></span> 录入
                 </a>
                 <!--<a class="btn btn-success" href="productCOU.html">
                     <span class="glyphicon glyphicon-save"></span> 导入
