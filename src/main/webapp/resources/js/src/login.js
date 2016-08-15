@@ -55,10 +55,10 @@ $(document).ready(function(){
             form.submit();
             login.rememberMe([{
                 name:"username",
-                el:$("#username").val()
+                value:$("#username").val()
             },{
                 name:"password",
-                el:$("#password").val()
+                value:$("#password").val()
             }])
         }
     });
