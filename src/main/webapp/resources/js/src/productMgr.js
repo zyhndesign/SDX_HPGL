@@ -36,7 +36,7 @@ var productMgr=(function(config,functions){
                 { "mDataProp": "colorList"},
                 { "mDataProp": "price",
                     "fnRender":function(oObj){
-                        return oObj.aData.price?oObj.aData.price:"无";
+                        return oObj.aData.price?oObj.aData.price:"暂无";
                 }},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
