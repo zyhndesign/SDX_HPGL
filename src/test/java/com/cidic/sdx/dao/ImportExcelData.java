@@ -267,7 +267,37 @@ public class ImportExcelData {
 					XSSFCell cell5 = xssfRow.getCell(4);
 					XSSFCell cell6 = xssfRow.getCell(5);
 					XSSFCell cell7 = xssfRow.getCell(6);
-					
+					XSSFCell cell8 = xssfRow.getCell(7);
+					XSSFCell cell9 = xssfRow.getCell(8);
+					XSSFCell cell10 = xssfRow.getCell(9);
+					XSSFCell cell11 = xssfRow.getCell(10);
+					XSSFCell cell12 = xssfRow.getCell(11);
+					XSSFCell cell13 = xssfRow.getCell(12);
+					XSSFCell cell14 = xssfRow.getCell(13);
+					XSSFCell cell15 = xssfRow.getCell(14);
+					XSSFCell cell16 = xssfRow.getCell(15);
+					XSSFCell cell17 = xssfRow.getCell(16);
+					XSSFCell cell18 = xssfRow.getCell(17);
+					XSSFCell cell19 = xssfRow.getCell(18);
+					XSSFCell cell20 = xssfRow.getCell(19);
+					XSSFCell cell21 = xssfRow.getCell(30);
+					XSSFCell cell22 = xssfRow.getCell(21);
+					XSSFCell cell23 = xssfRow.getCell(22);
+					XSSFCell cell24 = xssfRow.getCell(23);
+					XSSFCell cell25 = xssfRow.getCell(24);
+					XSSFCell cell26 = xssfRow.getCell(25);
+					XSSFCell cell27 = xssfRow.getCell(26);
+					XSSFCell cell28 = xssfRow.getCell(27);
+					XSSFCell cell29 = xssfRow.getCell(28);
+					XSSFCell cell30 = xssfRow.getCell(29);
+					XSSFCell cell31 = xssfRow.getCell(30);
+					XSSFCell cell32 = xssfRow.getCell(31);
+					XSSFCell cell33 = xssfRow.getCell(32);
+					XSSFCell cell34 = xssfRow.getCell(33);
+					XSSFCell cell35 = xssfRow.getCell(34);
+					XSSFCell cell36 = xssfRow.getCell(35);
+					XSSFCell cell37 = xssfRow.getCell(36);
+					XSSFCell cell38 = xssfRow.getCell(37);
 					//System.out.println(getValue(cell1)+"	"+getValue(cell2)+"	"+getValue(cell3)+"	"+getValue(cell4)+"	"+getValue(cell5)+"	"+getValue(cell6)+"	"+getValue(cell7));
 					
 					hPModel.setHp_num(getValue(cell1));
@@ -311,11 +341,118 @@ public class ImportExcelData {
 					hPModel.setCategory(categoryBuilder.toString());
 					
 					if (getValue(cell7) !=null && !getValue(cell7).equals("")){
-						hPModel.setPrice(Float.parseFloat(getValue(cell7)));
+						hPModel.setPrice(getValue(cell7));
 					}
 					else{
-						hPModel.setPrice(0.0f);
+						hPModel.setPrice("无");
 					}
+					
+					String timeCategory = getValue(cell3);
+					if (timeCategory != null && !timeCategory.equals("")){
+						String[] temp = timeCategory.split("\\/");
+						StringBuilder timeCategoryValue = new StringBuilder();
+						if (temp.length > 0){
+							timeCategoryValue.append(temp[0]);
+						}
+						if (temp.length > 1){
+							timeCategoryValue.append("/");
+							timeCategoryValue.append(temp[1]);
+						}
+						hPModel.setTimeCategory(timeCategoryValue.toString());
+					}
+					
+					String state = getValue(cell8);
+					hPModel.setState(state);
+					
+					String hpName = getValue(cell9);
+					hPModel.setHpName(hpName);
+					
+					String createTime = getValue(cell10);
+					hPModel.setCreateTime(createTime);
+					
+					String remark = getValue(cell11);
+					hPModel.setRemark(remark);
+					
+					String unit = getValue(cell12);
+					hPModel.setUnit(unit);
+					
+					String isPanDian = getValue(cell13);
+					hPModel.setIsPanDian(isPanDian);
+					
+					String kuanXing = getValue(cell14);
+					hPModel.setKuanXing(kuanXing);
+					
+					String banXing = getValue(cell15);
+					hPModel.setBanXing(banXing);
+					
+					String proxyPrice = getValue(cell16);
+					hPModel.setProxyPrice(proxyPrice);
+					
+					String fPrice = getValue(cell17);
+					hPModel.setfPrice(fPrice);
+					
+					String sPrice = getValue(cell18);
+					hPModel.setsPrice(sPrice);
+					
+					String tPrice = getValue(cell19);
+					hPModel.settPrice(tPrice);
+					
+					String f1Price = getValue(cell20);
+					hPModel.setF1Price(f1Price);
+					
+					String f2Price = getValue(cell21);
+					hPModel.setF2Price(f2Price);
+					
+					String f3Price = getValue(cell22);
+					hPModel.setF3Price(f3Price);
+					
+					String upDown = getValue(cell23);
+					hPModel.setUpDown(upDown);
+					
+					String huoPan = getValue(cell24);
+					hPModel.setHuoPan(huoPan);
+					
+					String cunhuo_type = getValue(cell25);
+					hPModel.setCunhuo_type(cunhuo_type);
+					
+					String priceSegment = getValue(cell26);
+					hPModel.setPriceSegment(priceSegment);
+					
+					String productionType = getValue(cell27);
+					hPModel.setProductionType(productionType);
+					
+					String releventMetting = getValue(cell28);
+					hPModel.setReleventMetting(releventMetting);
+					
+					String mettingTime = getValue(cell29);
+					hPModel.setMettingTime(mettingTime);
+					
+					String productionArea = getValue(cell30);
+					hPModel.setProductionArea(productionArea);
+					
+					String entryPerson = getValue(cell31);
+					hPModel.setEntryPerson(entryPerson);
+					
+					String entryTime = getValue(cell32);
+					hPModel.setEntryTime(entryTime);
+					
+					String updatePerson = getValue(cell33);
+					hPModel.setUpdatePerson(updatePerson);
+					
+					String updateTime = getValue(cell34);
+					hPModel.setUpdateTime(updateTime);
+					
+					String effectPerson = getValue(cell35);
+					hPModel.setEffectPerson(effectPerson);
+					
+					String effectTime = getValue(cell36);
+					hPModel.setEffectTime(effectTime);
+					
+					String failurePerson = getValue(cell37);
+					hPModel.setFailurePerson(failurePerson);
+					
+					String failureTime = getValue(cell38);
+					hPModel.setFailureTime(failureTime);
 					list.add(hPModel);
 				}
 			}

@@ -163,7 +163,7 @@ public class HpManageController {
 	@ResponseBody
 	public ResultModel insert(HttpServletRequest request, HttpServletResponse response, @RequestParam String hp_num,
 			@RequestParam String brand, @RequestParam String category, @RequestParam String size,
-			@RequestParam String color, @RequestParam float price, @RequestParam String imageUrl1,
+			@RequestParam String color, @RequestParam String price, @RequestParam String imageUrl1,
 			@RequestParam String imageUrl2, @RequestParam String imageUrl3) {
 
 		WebRequestUtil.AccrossAreaRequestSet(request, response);
@@ -193,7 +193,7 @@ public class HpManageController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultModel update(HttpServletRequest request, HttpServletResponse response, @RequestParam String id,
-			@RequestParam String hp_num, @RequestParam float price, @RequestParam String imageUrl1,
+			@RequestParam String hp_num, @RequestParam String price, @RequestParam String imageUrl1,
 			@RequestParam String imageUrl2, @RequestParam String imageUrl3) {
 
 		WebRequestUtil.AccrossAreaRequestSet(request, response);

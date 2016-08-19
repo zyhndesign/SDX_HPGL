@@ -96,7 +96,7 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					hpModel.setCategory(resultMap.get("category"));
 					hpModel.setSize(String.valueOf(resultMap.get("size").charAt(0)));
 					hpModel.setColor(resultMap.get("color"));
-					hpModel.setPrice(Float.parseFloat(resultMap.get("price")));
+					hpModel.setPrice(resultMap.get("price"));
 					hpModel.setImageUrl1(resultMap.get("imageUrl1"));
 					hpModel.setImageUrl2(resultMap.get("imageUrl2"));
 					hpModel.setImageUrl3(resultMap.get("imageUrl3"));

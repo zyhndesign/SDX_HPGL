@@ -57,7 +57,40 @@ public class HpManageDaoImpl implements HpManageDao {
 				connection.hSet(hKey,ser.serialize("category"), ser.serialize(hpModel.getCategory()));
 				connection.hSet(hKey,ser.serialize("size"), ser.serialize(hpModel.getSize()));
 				connection.hSet(hKey,ser.serialize("color"), ser.serialize(hpModel.getColor()));
-				connection.hSet(hKey,ser.serialize("price"), ser.serialize(String.valueOf(hpModel.getPrice())));
+				connection.hSet(hKey,ser.serialize("price"), ser.serialize(hpModel.getPrice()));
+				
+				connection.hSet(hKey,ser.serialize("state"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("hpName"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("createTime"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("remark"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("unit"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("isPanDian"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("kuanXing"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("banXing"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("fPrice"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("sPrice"), ser.serialize(hpModel.getPrice()));
+				
+				connection.hSet(hKey,ser.serialize("tPrice"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("f1Price"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("f2Price"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("f3Price"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("upDown"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("huoPan"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("cunhuo_type"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("priceSegment"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("productionType"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("releventMetting"), ser.serialize(hpModel.getPrice()));
+				
+				connection.hSet(hKey,ser.serialize("mettingTime"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("productionArea"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("entryPerson"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("entryTime"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("updatePerson"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("updateTime"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("effectPerson"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("effectTime"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("failurePerson"), ser.serialize(hpModel.getPrice()));
+				connection.hSet(hKey,ser.serialize("failureTime"), ser.serialize(hpModel.getPrice()));
 				
 				if (hpModel.getImageUrl1() != null && !hpModel.getImageUrl1().equals("")){
 					connection.hSet(hKey,ser.serialize("imageUrl1"), ser.serialize(hpModel.getImageUrl1()));
@@ -123,7 +156,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
 						ser.serialize("hp_num"), ser.serialize(hpModel.getHp_num()));
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
-						ser.serialize("price"), ser.serialize(String.valueOf(hpModel.getPrice())));
+						ser.serialize("price"), ser.serialize(hpModel.getPrice()));
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
 						ser.serialize("imageUrl1"), ser.serialize(hpModel.getImageUrl1()));
 				connection.hSet(ser.serialize(RedisVariableUtil.HP_RECORD_PREFIX + RedisVariableUtil.DIVISION_CHAR + id),
@@ -259,7 +292,7 @@ public class HpManageDaoImpl implements HpManageDao {
 		hpModel.setCategory(resultMap.get("category"));
 		hpModel.setSize(resultMap.get("size"));
 		hpModel.setColor(resultMap.get("color"));
-		hpModel.setPrice(Float.parseFloat(resultMap.get("price")));
+		hpModel.setPrice(resultMap.get("price"));
 		hpModel.setImageUrl1(resultMap.get("imageUrl1"));
 		hpModel.setImageUrl2(resultMap.get("imageUrl2"));
 		hpModel.setImageUrl3(resultMap.get("imageUrl3"));

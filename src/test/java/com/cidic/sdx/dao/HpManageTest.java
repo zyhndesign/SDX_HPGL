@@ -45,7 +45,7 @@ public class HpManageTest {
 		hpModel.setColor("2");
 		hpModel.setSize("1");
 		hpModel.setCategory("4,5");
-		hpModel.setPrice(99.99f);
+		hpModel.setPrice("");
 		hpModel.setImageUrl1("http://oaycvzlnh.bkt.clouddn.com/2939181802662.jpg");
 		hpModel.setImageUrl2("http://oaycvzlnh.bkt.clouddn.com/2939181802662.jpg");
 		hpModel.setImageUrl3("");
