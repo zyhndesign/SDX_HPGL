@@ -212,7 +212,7 @@ public class ImportExcelData {
 	public void testInsertHp(){
 
 		try{
-			List<HPModel> list = this.readXlsx("d:\\sdx.xlsx");
+			List<HPModel> list = this.readXlsx("d:\\sdx2.xlsx");
 			System.out.println("总共有:"+list.size()+"条数据");
 			/*
 			if (list.size() > 1){
@@ -239,6 +239,7 @@ public class ImportExcelData {
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}
@@ -314,7 +315,7 @@ public class ImportExcelData {
 					}
 					hPModel.setBrand(brandBuilder.toString());
 
-					hPModel.setColor(map.get(getValue(cell6).trim()));
+					hPModel.setColor(getValue(cell6).trim());
 					
 					String size = getValue(cell2);
 					if (size != null && !size.equals("")){
