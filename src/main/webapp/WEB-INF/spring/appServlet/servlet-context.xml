@@ -55,7 +55,7 @@
 
 	<beans:bean id="jedisConnectionFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:hostName="192.168.2.110" p:port="6379" p:usePool="true"
+		p:hostName="192.168.3.110" p:port="6379" p:usePool="true"
 		p:pool-config-ref="jedisPoolConfig" p:timeout="15000" />
 
 	<beans:bean id="keySerializer"

@@ -281,7 +281,7 @@ public class ImportExcelData {
 					XSSFCell cell18 = xssfRow.getCell(17);
 					XSSFCell cell19 = xssfRow.getCell(18);
 					XSSFCell cell20 = xssfRow.getCell(19);
-					XSSFCell cell21 = xssfRow.getCell(30);
+					XSSFCell cell21 = xssfRow.getCell(20);
 					XSSFCell cell22 = xssfRow.getCell(21);
 					XSSFCell cell23 = xssfRow.getCell(22);
 					XSSFCell cell24 = xssfRow.getCell(23);

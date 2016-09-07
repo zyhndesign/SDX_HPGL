@@ -92,6 +92,7 @@ public class HpManageDaoImpl implements HpManageDao {
 				connection.hSet(hKey,ser.serialize("effectTime"), ser.serialize(hpModel.getEffectTime()));
 				connection.hSet(hKey,ser.serialize("failurePerson"), ser.serialize(hpModel.getFailurePerson()));
 				connection.hSet(hKey,ser.serialize("failureTime"), ser.serialize(hpModel.getFailureTime()));
+				connection.hSet(hKey,ser.serialize("timeCategory"), ser.serialize(hpModel.getTimeCategory()));
 				
 				if (hpModel.getImageUrl1() != null && !hpModel.getImageUrl1().equals("")){
 					connection.hSet(hKey,ser.serialize("imageUrl1"), ser.serialize(hpModel.getImageUrl1()));
