@@ -8,7 +8,7 @@ body{
     height: 100%;
     position: relative;
     font-family: "Arail","微软雅黑","Heiti";
-    background: #f2f3ea!important;
+    background: #efefef!important;
 }
 ul{
     padding:0px;
@@ -24,17 +24,303 @@ label.error{
 .hidden{
     display: none;
 }
+/**
+*复写datatable
+*/
+.dataTables_wrapper{
+    position: relative;
+}
+table.dataTable{
+    margin-top: 20px;
+    width: 100%;
+    border-bottom: #efefef solid 1px;
+    margin-bottom: 60px;
+}
+table.dataTable thead {
+    background: #fff;
+}
+table.dataTable thead th{
+    color: #333;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    line-height: 30px!important;
+}
+table.dataTable tr{
+    line-height: 25px!important;
+    border-top: #efefef solid 1px;
+}
+table.dataTable tr.odd{
+    background:#fff;
+}
+table.dataTable tr.even{
+    background:#fff;
+}
+table.dataTable td {
+    padding: 5px!important;
+    text-align: center;
+}
+table.dataTable .thumb{
+    width: 100px;
+    height: auto;
+}
+.dataTables_paginate{
+    position: absolute;
+    bottom:-55px;
+    right:0;
+    height:40px;
+    line-height: 40px;
+}
+.dataTables_info{
+    position: absolute;
+    bottom:-55px;
+    left:0;
+    height:40px;
+    line-height: 40px;
+}
+.paging_full_numbers{
+    height: 40px;
+    line-height: 1;
+}
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active{
+    height:40px;
+    line-height: 40px;
+    min-width: 40px;
+    text-align: center;
+    border-radius: 2px;
+    display: inline-block;
+    padding:0 5px;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+.paging_full_numbers a.paginate_active{
+    
+    border: #07ab74 1px solid;
+    color: #07ab74 !important;
+}
+.paging_full_numbers a.paginate_button{
+    background:#fff;
+    border: #999 1px solid;
+    color: #727171;
+    cursor: pointer;
+}
+.paging_full_numbers a.paginate_button:hover{
+    background:#ddd;
+}
+/********覆写bootstrap*************/
+.table>tbody>tr>td{
+    vertical-align: middle;
+}
+.panel{
+    border-radius: 0;
+}
+.btn {
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding: 0;
+}
+.btn-primary{
+    background: #07ab74;
+    height: 40px;
+    line-height: 40px;
+    min-width: 40px;
+    border: none;
+}
+.btn-primary:hover{
+    background:#009966;
+}
+.btn-default{
+    border-radius: 2px;
+    height: 40px;
+    min-width: 40px;
+    line-height: 40px;
+}
+.btn-default:hover{
+    background:#efefef;
+}
+.form-control{
+    height: 40px;
+    border-color: #ddd;
+    border-radius: 2px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    background: #f4f5f7;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
+}
+.form-horizontal .control-label{
+    padding-top: 0;
+}
+.form-horizontal .form-group{
+    margin: 0 auto 15px;
+}
+.form-horizontal .form-group .col-md-10{
+    padding-left: 0;
+    padding-right: 0;
+}
+.input-group-btn{
+    z-index: 2;
+}
+.control-label{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}
+.help-block{
+    height: 40px;
+    line-height: 40px;
+    margin:0;
+}
+.modal-header{
+    position: relative;
+}
+.close{
+    float: none;
+    width:40px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+.close:hover{
+    background:#ddd;
+}
+.modal-header .close{
+    position: absolute;
+    top: 10px;
+    right: 20px
+}
+.modal-content{
+    border-radius: 0;
+}
+
+/********覆写ztree*************/
+.ztree li a{
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+}
+.ztree li a.curSelectedNode{
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    background:#efefef;
+}
+.ztree li span{
+    height: 30px;
+    line-height: 30px;
+}
+.ztree li span.button{
+    height: 30px;
+    font-family: 'sundance' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-align: center;
+    
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    
+    background: none;
+    font-size: 0;
+}
+.ztree li span.button.add,
+.ztree li span.button.edit,
+.ztree li span.button.remove,
+.ztree li span.button.ico_open,
+.ztree li span.button.ico_close{
+    width:30px;
+    height: 30px;
+}
+.ztree li span.button::before{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+}
+.ztree li span.button.switch{
+    width:30px;
+    height: 30px;
+    font-size: 20px;
+}
+.ztree li span.button.root_open::before{
+    content:"\e906";
+    font-size: 0.7em;
+}
+.ztree li span.button.bottom_open::before{
+    content:"\e906";
+    font-size: 0.7em;
+}
+.ztree li span.button.center_open::before{
+    content:"\e906";
+    font-size: 0.7em;
+}
+.ztree li span.button.root_close::before{
+    content:"\e903";
+    font-size: 0.7em;
+}
+.ztree li span.button.bottom_close::before{
+    content:"\e903";
+    font-size: 0.7em;
+}
+.ztree li span.button.center_close::before{
+    content:"\e903";
+    font-size: 0.7em;
+}
+.ztree li span.button.ico_open::before{
+    content:"\e909";
+}
+.ztree li span.button.ico_close::before{
+    content:"\e909";
+}
+
+.ztree li span.button.add::before{
+    content:"\e90c";
+}
+.ztree li span.button.edit::before{
+    content:"\e907";
+}
+.ztree li span.button.remove::before{
+    content:"\e902";
+}
+.ztree li span.button.add:hover::before{
+    color: #fff;
+    background: #07ab74;
+    border-radius: 4px;
+}
+.ztree li span.button.edit:hover::before{
+    color: #fff;
+    background: #07ab74;
+    border-radius: 4px;
+}
+.ztree li span.button.remove:hover::before{
+    color: #fff;
+    background: #c00;
+    border-radius: 4px;
+}
+.ztree li span.node_name{
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-family: "Arail","微软雅黑","Heiti";
+}
+
+/********layout*************/
 .left{
     width: 180px;
 }
 .right{
-    border-left: 1px solid #ccccc8;
+    border-left: 1px solid #ddd;
     background: #efefef;
-    padding:50px 30px;
-    border-top:3px solid #5dc05f;
+    padding:20px;
     position: absolute;
     left:180px;
-    top:70px;
+    top:64px;
     bottom: 0px;
     right: 0px;
     overflow: auto;
@@ -43,16 +329,56 @@ label.error{
     width: 100%;
     margin: 0px auto 0px auto;
 }
+.main .row{
+    margin: 10px auto;
+    position: relative;
+    clear: both;
+}
+.main .row .item{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    cursor: pointer;
+    min-width: 40px;
+    text-align: center;
+}
+.main .row .item.active{
+    background: #07ab74;
+    color: #fff;
+}
+
+.searchPanel{
+    border-bottom: #ddd solid 1px;
+    position: relative;
+    margin-bottom: 60px;
+}
+.searchPanel .collapseBtnCtrl{
+    width:120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border:#ddd solid 1px;
+    position: absolute;
+    bottom:-40px;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: .3em;
+    cursor: pointer;
+}
 .hasRightBorder{
-    border-right:1px solid #ccc;
+    border-right:1px solid #ddd;
 }
 .hasLeftBorder{
-    border-left:1px solid #ccc;
+    border-left:1px solid #ddd;
 }
+
 .header{
     position: relative;
-    background: #f0f0f0;
-    height: 70px;
+    z-index: 99;
+    background: #333;
+    height: 64px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 /**
@@ -60,39 +386,55 @@ label.error{
 */
 .logo{
     width: 100%;
-    height: 100px;
+    height: 64px;
     margin: 0px;
     display: inline-block;
     color: #fff;
-    line-height: 70px;
-    padding-left: 20px;
+    line-height: 64px;
+    font-size: 20px;
+    letter-spacing: .05em;
+    vertical-align: middle;
+    padding-left: 120px;
+    position: relative;
 }
-/**
-顶部userMenu
-*/
-.userMenu{
-    position: absolute;
-    right:80px;
-    bottom:0px;
-}
-.userMenu .item{
+.logo .icon{
+    font-size: 32px;
     display: inline-block;
-    float: left;
+    width:120px;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../../images/app/sundance_logo.svg) no-repeat center;
+    background-size: 80%;
 }
-.userMenu .item .link{
-    color: #808080;
-    font-size: 16px;
-    line-height: 60px;
-    padding: 0px 15px;
+/*topNav*/
+.topNav{
+    position: absolute;
+    top:0;
+    right: 0;
+    height: 64px;
+    width:160px;
 }
-.userMenu .item:first-child .link{
-    color: #ccccc8;
+.topNav ul{
+    display: flex;
 }
-.userMenu .item .link:hover{
-    color: #000;
+.topNav ul li{
+    flex:1;
 }
-.userMenu .item .link:hover{
-    color: #ccccc8;
+.topNav ul li a{
+    display: block;
+    width:100%;
+    height: 100%;
+    line-height: 64px;
+    text-align: center;
+    font-size: 12px;
+    color: #efefef;
+}
+.topNav ul li a:hover{
+    color: #ccc;
 }
 /**
 *menu
@@ -107,21 +449,21 @@ label.error{
 .menu .item {
     min-height: 40px;
     width: 100%;
-    border: 1px solid #edece3;
+    border-bottom: 1px solid #ddd;
     line-height: 40px;
     position: relative;
+    font-size: 0;
 }
 .menu .item .glyphicon{
     padding: 0px 10px;
-    cursor: pointer;
 }
 .menu .item .rightIcon{
-    margin-left: 100px;
+    position: absolute;
+    right: 0;
 }
 .menu .item .link{
     font-size: 16px;
     color: #727171;
-    border-left: 1px solid #edece3;
     display: inline-block;
     position: absolute;
     left:34px;
@@ -133,23 +475,23 @@ label.error{
     cursor: pointer;
 }
 .menu .item:hover{
-    background: #f9f9f2;
+    background: #ffffff;
 }
 .menu .item:hover .link{
-    color: #5dc05f;
+    color: #07ab74;
 }
-/*.menu .item:hover .subMenu{
+.menu .item:hover .subMenu{
     display: block;
-}*/
-.subMenu{
-    background: #f9f9f2;
+}
+.menu .subMenu{
+    background: #ffffff;
     display: none;
 }
-.subMenu .sItem{
+.menu .subMenu .sItem{
     height: 35px;
     position: relative;
 }
-.subMenu .sItem .circle {
+.menu .subMenu .sItem .circle {
     width: 10px;
     height: 10px;
     border-radius: 5px;
@@ -159,7 +501,7 @@ label.error{
     margin-left: 30px;
     margin-top: 15px;
 }
-.subMenu .sItem .sLink{
+.menu .subMenu .sItem .sLink{
     font-size: 12px;
     color: #727171;
     display: inline-block;
@@ -171,88 +513,51 @@ label.error{
     height: 100%;
     padding-left: 25px;
 }
-.subMenu .sItem:hover .circle {
-    background: #5dc05f;
+.menu .subMenu .sItem:hover .circle {
+    background: #07ab74;
 }
-.subMenu .sItem:hover .sLink{
-    color: #5dc05f;
-}
-
-.uploadImg{
-    width: 100px;
-    vertical-align: bottom;
+.menu .subMenu .sItem:hover .sLink{
+    color: #07ab74;
 }
 
-/**
-*复写datatable
-*/
-.searchPanel{
-    margin: 5px 0px 40px 0px;
-    position: relative;
-    border-bottom: 1px solid #ccc;
+.welcome{
+    color: #07ab74;
 }
-.searchPanel .ctrl{
-    position: absolute;
-    left:50%;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    bottom:-29px;
-    margin: 0px 0px 0px -40px;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    background: #fff;
+
+.newBtn {
     text-align: center;
-    cursor: pointer;
-}
-.searchPanel .row{
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
-    padding:5px 0px;
-}
-.searchPanel .row .item{
-    color: #808080;
-    margin: 0px 5px;
-}
-.searchPanel .row .item:hover,.searchPanel .row .item.active{
-    color: #5dc05f;
-    cursor: pointer;
-}
-table.dataTable{
-    margin-top: 20px;
-    width: 100%;
-}
-table.dataTable thead {
-    background: #f5f5f5;
-}
-table.dataTable thead th{
-    color: #00A67F;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 16px;
     border: none;
-    font-weight: normal;
-    padding: 5px;
-    text-align: center;
-    line-height: 30px!important;
+    background: #07ab74;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    
 }
-table.dataTable tr{
-    line-height: 25px!important;
+.newBtn:hover{
+    background: #009966;
+    cursor: pointer;
 }
-table.dataTable td {
-    padding: 5px!important;
-    text-align: center;
+.saveBtn{
+    width:120px;
 }
-table.dataTable .thumb{
-    width: 100px;
-    height: auto;
+.searchBtn{
+    width:80px;
 }
-.dataTables_paginate,.dataTables_info{
-    margin-top: 15px;
+.tableSearchContainer{
+    position: absolute;
+    top: 0;
+    right:0;
+    width:50%;
 }
-/********覆写bootstrap的table*************/
-.table>tbody>tr>td{
-    vertical-align: middle;
+.btn.showTreePanel{
+    font-size: 0;
 }
-
+.imgThumb{
+    background:#efefef;
+}
 /**
 *loading
 */
@@ -272,14 +577,4 @@ table.dataTable .thumb{
     left:50%;
     top:50%;
     color:#fff;
-}
-/*****************覆盖tree样式*************************/
-.ztree li a{
-    height: auto;
-    min-height: 30px;
-}
-.ztree li span{
-    white-space: normal;
-    word-break: break-all;
-    word-wrap: break-word;
 }

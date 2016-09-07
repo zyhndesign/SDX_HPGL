@@ -2,13 +2,16 @@
 
     <div class="header">
         <h1 class="logo">
-            <a href="#">
-                圣德西货品管理
-            </a>
+            
+                <span class="icon"></span>服装货品数据管理系统
+            
         </h1>
-        <ul class="userMenu">
-            <li class="item"><a class="link">立正（管理员）</a></li>
+        <nav class="topNav">
+           <ul class="userMenu">
+            <li class="item"><a class="link">管理员</a></li>
             <!--<li class="item"><a href="#" class="link">修改密码</a></li>-->
-            <li class="item"><a href="#" class="link">退出</a></li>
-        </ul>
+            <li class="item"><a href="#" class="logout">退出</a></li>
+        </ul> 
+        </nav>
+        
     </div>

@@ -47,7 +47,7 @@ var config={
         swfUrl:"resources/js/plupload/plupload.flash.swf",
         sizes:{
             all:"5120m",
-            img:"2m"
+            img:"5m"
         },
         filters:{
             all:"*",

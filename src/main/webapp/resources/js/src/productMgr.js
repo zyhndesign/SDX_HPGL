@@ -34,10 +34,7 @@ var productMgr=(function(config,functions){
                 { "mDataProp": "dateList"},
                 { "mDataProp": "sizeList"},
                 { "mDataProp": "colorList"},
-                { "mDataProp": "price",
-                    "fnRender":function(oObj){
-                        return oObj.aData.price?oObj.aData.price:"暂无";
-                }},
+                { "mDataProp": "price"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
                         return '<a href="hpManage/productCOU/'+oObj.aData.id+'">查看</a>&nbsp;';
@@ -188,12 +185,12 @@ $(document).ready(function(){
             $("#searchPanel .row").hide(400);
             $(this).find(".glyphicon").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
             $(this).data("target","up");
-            $(this).find(".text").text("展开");
+            $(this).find(".text").text("展开选项");
         }else{
             $("#searchPanel .row").show(400);
             $(this).find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
             $(this).data("target","down");
-            $(this).find(".text").text("收起");
+            $(this).find(".text").text("收起选项");
         }
 
     });

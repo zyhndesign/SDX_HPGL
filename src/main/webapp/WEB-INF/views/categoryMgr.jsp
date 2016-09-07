@@ -9,6 +9,7 @@
     <link href="resources/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="resources/css/lib/zTreeStyle.css" rel="stylesheet" type="text/css">
     <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/src/font.css" rel="stylesheet" type="text/css">
     <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>

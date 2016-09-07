@@ -4,22 +4,23 @@
     <!DOCTYPE html>
     <html>
     <head>
-    <%@ include file="head.jsp"%>
-
-    <link type="text/css" rel="stylesheet" href="resources/css/src/login.css">
-</head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="webkit" name="renderer">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <title>服装货品数据管理系统</title>
+        <base href="<%=request.getContextPath() %>/" />
+        <link type="text/css" rel="stylesheet" href="resources/css/src/login.css">
+    </head>
 <body>
 
-<div class="header">
-    <h1 class="logo">
-        <a href="#">
-            圣德西货品管理
-        </a>
-    </h1>
-</div>
+
 
 <form class="pCenter" id="myForm" method="post" action="dologin">
-    <h2 class="title">系统登陆</h2>
+   <div class="logo">
+        <span class="icon"></span>
+    </div>
+    <h2 class="appTitle">服装货品数据管理系统</h2>
     <div class="row">
         <div><label class="ctrlLabel icon-portrait"></label></div>
         <input class="ctrlInput" type="text" id="username" name="username" placeholder="请输入你的账号">
@@ -32,7 +33,7 @@
         <input type="checkbox" checked="checked" id="rememberMe" class="ctrlRemember" value="记住我">记住我
     </div>
     <div class="row">
-        <input type="submit" class="ctrlBtn" value="登陆">
+        <input type="submit" class="ctrlBtn" value="登录">
     </div>
      <c:if test="${!empty error}">
         <label class="error tCenter">用户名或者密码错误</label>

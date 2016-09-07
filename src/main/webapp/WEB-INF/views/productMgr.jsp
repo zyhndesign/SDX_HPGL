@@ -4,13 +4,8 @@
     <!DOCTYPE html>
     <html>
     <head>
-    <%@ include file="head.jsp"%>
-
-    <link href="resources/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="resources/css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
-    <link href="resources/css/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
-    <link href="resources/css/src/main.css" rel="stylesheet" type="text/css">
-</head>
+        <%@ include file="head.jsp"%>
+    </head>
 <body>
 
 <%@ include file="header.jsp"%>
@@ -24,29 +19,32 @@
     <div class="main">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">货品检索</h1>
+                <h1 class="panel-title">货品管理</h1>
             </div>
             <div class="panel-body" id="opt-body">
-                <a class="btn btn-success" href="hpManage/productCOU">
-                    <span class="glyphicon glyphicon-plus"></span> 录入
-                </a>
+                
                 <!--<a class="btn btn-success" href="productCOU.html">
                     <span class="glyphicon glyphicon-save"></span> 导入
                 </a>-->
-                <div id="searchPanel" class="searchPanel">
-                    <div class="row">
-                        <div class="col-md-2">
+                <div class="row">
+                        <a class="btn btn-primary newBtn" href="hpManage/productCOU">
+                            <span class="glyphicon glyphicon-plus"></span> 新建
+                        </a>
+                        <div class="input-group tableSearchContainer col-md-6">
                             <input class="form-control" id="searchNo" type="text" placeholder="货号">
+                            <span class="input-group-btn">
+                                <button id="searchBtn" class="btn btn-default searchBtn" type="button">搜索</button>
+                            </span>
                         </div>
                         <!--<div class="col-md-2">
                             <select class="form-control" id="searchStatus">
                                 <option value="">全部</option>
                             </select>
                         </div>-->
-                        <div class="col-md-1">
-                            <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
-                        </div>
                     </div>
+                <div id="searchPanel" class="searchPanel">
+                   
+                    
                     <div class="row">
                         <label class="control-label col-md-1">品牌</label>
                         <div class="col-md-11">
@@ -80,8 +78,8 @@
                            </c:forEach>
                         </div>
                     </div>
-                    <div class="ctrl" id="searchPanelCtrl" data-target="down">
-                        <span class="glyphicon glyphicon-chevron-up"></span><span class="text">收起</span>
+                    <div class="collapseBtnCtrl" id="searchPanelCtrl" data-target="down">
+                        <span class="glyphicon glyphicon-chevron-up"></span><span class="text">收起选项</span>
                     </div>
                 </div>
 
