@@ -56,7 +56,6 @@ public class HpManageDaoImpl implements HpManageDao {
 				connection.hSet(hKey,ser.serialize("brand"), ser.serialize(hpModel.getBrand()));
 				connection.hSet(hKey,ser.serialize("category"), ser.serialize(hpModel.getCategory()));
 				connection.hSet(hKey,ser.serialize("size"), ser.serialize(hpModel.getSize()));
-				System.out.println(hpModel.getColor());
 				connection.hSet(hKey,ser.serialize("color"), ser.serialize(hpModel.getColor()));
 				connection.hSet(hKey,ser.serialize("price"), ser.serialize(hpModel.getPrice()));
 				
@@ -298,8 +297,8 @@ public class HpManageDaoImpl implements HpManageDao {
 		hpModel.setImageUrl1(resultMap.get("imageUrl1"));
 		hpModel.setImageUrl2(resultMap.get("imageUrl2"));
 		hpModel.setImageUrl3(resultMap.get("imageUrl3"));
-		
-		
+		hpModel.setCreateTime(resultMap.get("createTime"));
+		hpModel.setTimeCategory(resultMap.get("timeCategory"));
 		StringBuilder brandList = new StringBuilder();
 		StringBuilder categoryList  = new StringBuilder();
 		StringBuilder sizeList = new StringBuilder();

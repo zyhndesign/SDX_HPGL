@@ -134,13 +134,18 @@ public class ImportExcelData {
 			put("内裤", "59");
 			put("0蓝", "1");
 			put("01鸭蓝", "11");
+			put("10鸭蓝", "11");
 			put("02矿物蓝", "12");
 			put("03冰蓝", "13");
+			put("A03蓝色", "15");
 			put("04蓝色", "15");
+			put("05宝蓝", "15");
 			put("1黑", "2");
 			put("11黑色", "16");
+			put("11黑", "16");
 			put("2白", "3");
 			put("21白色", "17");
+			put("21白", "17");
 			put("22米白", "18");
 			put("23米色", "19");
 			put("24米杏", "20");
@@ -166,6 +171,8 @@ public class ImportExcelData {
 			put("54紫色", "37");
 			put("6绿", "8");
 			put("60绿色", "38");
+			put("68鸭绿", "38");
+			put("01森林绿", "46");
 			put("61墨绿", "39");
 			put("62军绿", "40");
 			put("63松绿", "41");
@@ -177,6 +184,7 @@ public class ImportExcelData {
 			put("69橄榄绿", "48");
 			put("7蓝", "49");
 			put("70克莱因蓝", "53");
+			put("70克莱茵蓝", "53");
 			put("71藏青", "54");
 			put("72深蓝", "55");
 			put("73宝石蓝", "56");
@@ -186,12 +194,14 @@ public class ImportExcelData {
 			put("77孔雀蓝", "60");
 			put("78牛仔蓝", "61");
 			put("79石油蓝", "62");
+			put("11矿物蓝", "49");
 			put("8黄", "50");
 			put("81橙色", "64");
 			put("82黄色", "65");
 			put("83驼色", "66");
 			put("84芥末黄", "67");
 			put("85米黄", "68");
+			put("02黄色", "50");
 			put("9卡其", "51");
 			put("90卡其", "69");
 			put("91咖啡", "70");
@@ -200,7 +210,101 @@ public class ImportExcelData {
 			put("94浅卡", "73");
 			put("95米卡", "74");
 			put("96棕色", "75");
+			put("01棕色", "75");
 			put("其它色", "52");
+			put("其他色", "52");
+		}
+	};
+
+	private static final Map<String, String> map2 = new HashMap<String, String>() {
+		{
+			put("000_通用色", "04蓝色");
+			put("A01_黑色", "11黑色");
+			put("E01_绿色", "60绿色");
+			put("B03_米杏", "24米杏");
+			put("B01_白色", "21白色");
+			put("E02_卡绿", "66卡其绿");
+			put("B02_卡其", "90卡其");
+			put("A03_蓝色", "04蓝色");
+			put("D01_紫色", "54紫色");
+			put("C01_灰色", "34灰色");
+			put("C04_咖啡色", "91咖啡");
+			put("81_橙色", "81橙色");
+			put("D03_深红", "48深红");
+			put("G01_其他色", "其他色");
+			put("A09_紫罗兰", "53紫罗兰");
+			put("A08_湖蓝", "73宝石蓝");
+			put("42_粉红", "42粉红");
+			put("71_藏青", "71藏青");
+			put("11_黑", "11黑");
+			put("21_白", "21白");
+			put("11_黑色", "11黑");
+			put("21_白色", "21白");
+			put("72_深蓝", "72深蓝");
+			put("66_卡其绿", "66卡其绿");
+			put("75_浅蓝", "75浅蓝");
+			put("33_浅灰", "33浅灰");
+			put("77_孔雀蓝", "77孔雀蓝");
+			put("61_墨绿", "61墨绿");
+			put("41_酒红", "41酒红");
+			put("74_天蓝", "74天蓝");
+			put("47_大红", "47大红");
+			put("79_石油蓝", "79石油蓝");
+			put("31_深灰", "31深灰");
+			put("A03_蓝色", "A03蓝色");
+			put("82_黄色", "82黄色");
+			put("94_浅卡", "94浅卡");
+			put("64_浅绿", "64浅绿");
+			put("93_中卡", "93中卡");
+			put("73_宝石蓝", "73宝石蓝");
+			put("62_军绿", "62军绿");
+			put("32_中灰", "32中灰");
+			put("44西瓜红", "44西瓜红");
+			put("91_咖啡", "91咖啡");
+			put("32_中灰", "32中灰");
+			put("92_深卡", "92深卡");
+			put("70_克莱茵蓝", "70克莱茵蓝");
+			put("76_灰蓝", "76灰蓝");
+			put("95_米卡", "95米卡");
+			put("76_灰蓝", "76灰蓝");
+			put("83_驼色", "83驼色");
+			put("46_砖红", "46砖红");
+			put("78_牛仔蓝", "78牛仔蓝");
+			put("63_松绿", "63松绿");
+			put("52_浅紫", "52浅紫");
+			put("65_孔雀绿", "65孔雀绿");
+			put("J01_森林绿", "01森林绿");
+			put("69_橄榄绿", "69橄榄绿");
+			put("44_西瓜红", "44西瓜红");
+			put("43_紫红", "43紫红");
+			put("45_玫红", "45玫红");
+			put("K01_棕色", "01棕色");
+			put("51_深紫", "51深紫");
+			put("A05_宝蓝", "05宝蓝");
+			put("67_薄荷绿", "67薄荷绿");
+			put("A10_鸭蓝", "10鸭蓝");
+			put("A11_矿物蓝", "11矿物蓝");
+			put("67_薄荷绿", "67薄荷绿");
+			put("68_鸭绿", "68鸭绿");
+			put("A10_鸭蓝", "10鸭蓝");
+			put("A05_宝蓝", "05宝蓝");
+			put("F02_黄色", "02黄色");
+		}
+	};
+
+	private static final Map<String, String> map3 = new HashMap<String, String>() {
+		{
+			put("圣得西/都市系列(停用)", "圣得西/时尚系列/都市时尚");
+			put("圣得西/周末休闲", "圣得西/自在系列/轻休闲");
+			put("圣得西/假日系列(停用)", "圣得西/自在系列/轻休闲 ");
+			put("圣得西/正式商务", "圣得西/商务系列");
+			put("圣得西/特殊商务", "圣得西/商务系列");
+			put("圣得西/日常商务", "圣得西/商务系列/自在商务");
+			put("圣得西/旅行商务", "圣得西/自在系列/轻商务");
+			put("圣得西/商务系列(停用)", "圣得西/商务系列");
+			put("圣得西/时尚线", "圣得西/时尚系列");
+			put("圣得西/自在线", "圣得西/自在系列");
+			put("圣得西/商务线", "圣得西/商务系列");
 		}
 	};
 
@@ -209,39 +313,34 @@ public class ImportExcelData {
 	private HpManageService hpManageServiceImpl;
 
 	@Test
-	public void testInsertHp(){
+	public void testInsertHp() {
 
-		try{
+		try {
 			List<HPModel> list = this.readXlsx("d:\\sdx2.xlsx");
-			System.out.println("总共有:"+list.size()+"条数据");
+			System.out.println("总共有:" + list.size() + "条数据");
 			/*
-			if (list.size() > 1){
-				HPModel HPModel = list.get(0);
-				System.out.println(HPModel.getBrand());
-				System.out.println(HPModel.getColor());
-				System.out.println(HPModel.getSize());
-				hpManageServiceImpl.insertHpData(list.get(0));
-			}
-			*/
+			 * if (list.size() > 1){ HPModel HPModel = list.get(0);
+			 * System.out.println(HPModel.getBrand());
+			 * System.out.println(HPModel.getColor());
+			 * System.out.println(HPModel.getSize());
+			 * hpManageServiceImpl.insertHpData(list.get(0)); }
+			 */
 			int i = 0;
-			for (HPModel hpModel : list){
+			for (HPModel hpModel : list) {
 				hpManageServiceImpl.insertHpData(hpModel);
 				++i;
-				System.out.println("完成写入第:"+i+"条数据");
+				System.out.println("完成写入第:" + i + "条数据");
 			}
-			
-			
+
 			/*
-			list.parallelStream().forEach((hpModel)->{
-				hpManageServiceImpl.insertHpData(hpModel);
-			});
-			*/
-		}
-		catch(Exception e){
+			 * list.parallelStream().forEach((hpModel)->{
+			 * hpManageServiceImpl.insertHpData(hpModel); });
+			 */
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public List<HPModel> readXlsx(String path) throws IOException {
@@ -299,159 +398,183 @@ public class ImportExcelData {
 					XSSFCell cell36 = xssfRow.getCell(35);
 					XSSFCell cell37 = xssfRow.getCell(36);
 					XSSFCell cell38 = xssfRow.getCell(37);
-					//System.out.println(getValue(cell1)+"	"+getValue(cell2)+"	"+getValue(cell3)+"	"+getValue(cell4)+"	"+getValue(cell5)+"	"+getValue(cell6)+"	"+getValue(cell7));
-					
-					hPModel.setHp_num(getValue(cell1));
-					String brand = getValue(cell4);
-					String brandArray[] = brand.split("\\/");
-					StringBuilder brandBuilder = new StringBuilder();
-					int bi = 0;
-					for (String b : brandArray){
-						brandBuilder.append(map.get(b));
-						++bi;
-						if (bi != brandArray.length){
-							brandBuilder.append(",");
-						}
-					}
-					hPModel.setBrand(brandBuilder.toString());
+					// System.out.println(getValue(cell1)+" "+getValue(cell2)+"
+					// "+getValue(cell3)+" "+getValue(cell4)+"
+					// "+getValue(cell5)+" "+getValue(cell6)+"
+					// "+getValue(cell7));
 
-					hPModel.setColor(getValue(cell6).trim());
-					
+					hPModel.setHp_num(getValue(cell1));
+
+					String brand = map3.get(getValue(cell4));
+					if (brand != null) {
+						String brandArray[] = brand.split("\\/");
+						StringBuilder brandBuilder = new StringBuilder();
+						int bi = 0;
+						for (String b : brandArray) {
+							brandBuilder.append(map.get(b));
+							++bi;
+							if (bi != brandArray.length) {
+								brandBuilder.append(",");
+							}
+						}
+						hPModel.setBrand(brandBuilder.toString());
+					} else {
+						hPModel.setBrand("圣得西");
+					}
+
+					String color = map2.get(getValue(cell6).trim());
+					if (color == null) {
+						System.out.println(getValue(cell6).trim() + "|" + color);
+					}
+
+					if (color != null) {
+						if (map.get(color) == null){
+							System.out.println(color+"***"+map.get(color));
+						}
+						
+						hPModel.setColor(map.get(color));
+					} else {
+						String[] colorArray = getValue(cell6).trim().split("\\_");
+						StringBuilder colorBuilder = new StringBuilder();
+						for (String s : colorArray) {
+							colorBuilder.append(s);
+						}
+						System.out.println(color+"***"+map.get(colorBuilder.toString()));
+						hPModel.setColor(map.get(colorBuilder.toString()));
+					}
+
 					String size = getValue(cell2);
-					if (size != null && !size.equals("")){
+					if (size != null && !size.equals("")) {
 						String sizeValue = map.get(String.valueOf(size.charAt(0)));
 						hPModel.setSize(sizeValue);
-					}
-					else{
+					} else {
 						hPModel.setSize("");
 					}
-					
-					
+
 					String category = getValue(cell5);
 					String categoryArray[] = category.split("\\/");
 					StringBuilder categoryBuilder = new StringBuilder();
 					int ci = 0;
-					for (String b : categoryArray){
-						
+					for (String b : categoryArray) {
+
 						categoryBuilder.append(map.get(b));
 						++ci;
-						if (ci != categoryArray.length){
+						if (ci != categoryArray.length) {
 							categoryBuilder.append(",");
 						}
 					}
 					hPModel.setCategory(categoryBuilder.toString());
-					
-					if (getValue(cell7) !=null && !getValue(cell7).equals("")){
+
+					if (getValue(cell7) != null && !getValue(cell7).equals("")) {
 						hPModel.setPrice(getValue(cell7));
-					}
-					else{
+					} else {
 						hPModel.setPrice("无");
 					}
-					
+
 					String timeCategory = getValue(cell3);
-					if (timeCategory != null && !timeCategory.equals("")){
+					if (timeCategory != null && !timeCategory.equals("")) {
 						String[] temp = timeCategory.split("\\/");
 						StringBuilder timeCategoryValue = new StringBuilder();
-						if (temp.length > 0){
+						if (temp.length > 0) {
 							timeCategoryValue.append(temp[0]);
 						}
-						if (temp.length > 1){
+						if (temp.length > 1) {
 							timeCategoryValue.append("/");
 							timeCategoryValue.append(temp[1]);
 						}
 						hPModel.setTimeCategory(timeCategoryValue.toString());
 					}
-					
+
 					String state = getValue(cell8);
 					hPModel.setState(state);
-					
+
 					String hpName = getValue(cell9);
 					hPModel.setHpName(hpName);
-					
+
 					String createTime = getValue(cell10);
 					hPModel.setCreateTime(createTime);
-					
+
 					String remark = getValue(cell11);
 					hPModel.setRemark(remark);
-					
+
 					String unit = getValue(cell12);
 					hPModel.setUnit(unit);
-					
+
 					String isPanDian = getValue(cell13);
 					hPModel.setIsPanDian(isPanDian);
-					
+
 					String kuanXing = getValue(cell14);
 					hPModel.setKuanXing(kuanXing);
-					
+
 					String banXing = getValue(cell15);
 					hPModel.setBanXing(banXing);
-					
+
 					String proxyPrice = getValue(cell16);
 					hPModel.setProxyPrice(proxyPrice);
-					
+
 					String fPrice = getValue(cell17);
 					hPModel.setfPrice(fPrice);
-					
+
 					String sPrice = getValue(cell18);
 					hPModel.setsPrice(sPrice);
-					
+
 					String tPrice = getValue(cell19);
 					hPModel.settPrice(tPrice);
-					
+
 					String f1Price = getValue(cell20);
 					hPModel.setF1Price(f1Price);
-					
+
 					String f2Price = getValue(cell21);
 					hPModel.setF2Price(f2Price);
-					
+
 					String f3Price = getValue(cell22);
 					hPModel.setF3Price(f3Price);
-					
+
 					String upDown = getValue(cell23);
 					hPModel.setUpDown(upDown);
-					
+
 					String huoPan = getValue(cell24);
 					hPModel.setHuoPan(huoPan);
-					
+
 					String cunhuo_type = getValue(cell25);
 					hPModel.setCunhuo_type(cunhuo_type);
-					
+
 					String priceSegment = getValue(cell26);
 					hPModel.setPriceSegment(priceSegment);
-					
+
 					String productionType = getValue(cell27);
 					hPModel.setProductionType(productionType);
-					
+
 					String releventMetting = getValue(cell28);
 					hPModel.setReleventMetting(releventMetting);
-					
+
 					String mettingTime = getValue(cell29);
 					hPModel.setMettingTime(mettingTime);
-					
+
 					String productionArea = getValue(cell30);
 					hPModel.setProductionArea(productionArea);
-					
+
 					String entryPerson = getValue(cell31);
 					hPModel.setEntryPerson(entryPerson);
-					
+
 					String entryTime = getValue(cell32);
 					hPModel.setEntryTime(entryTime);
-					
+
 					String updatePerson = getValue(cell33);
 					hPModel.setUpdatePerson(updatePerson);
-					
+
 					String updateTime = getValue(cell34);
 					hPModel.setUpdateTime(updateTime);
-					
+
 					String effectPerson = getValue(cell35);
 					hPModel.setEffectPerson(effectPerson);
-					
+
 					String effectTime = getValue(cell36);
 					hPModel.setEffectTime(effectTime);
-					
+
 					String failurePerson = getValue(cell37);
 					hPModel.setFailurePerson(failurePerson);
-					
+
 					String failureTime = getValue(cell38);
 					hPModel.setFailureTime(failureTime);
 					list.add(hPModel);
@@ -462,7 +585,7 @@ public class ImportExcelData {
 	}
 
 	private String getValue(XSSFCell xssfRow) {
-		if (xssfRow != null){
+		if (xssfRow != null) {
 			if (xssfRow.getCellType() == xssfRow.CELL_TYPE_BOOLEAN) {
 				return String.valueOf(xssfRow.getBooleanCellValue());
 			} else if (xssfRow.getCellType() == xssfRow.CELL_TYPE_NUMERIC) {

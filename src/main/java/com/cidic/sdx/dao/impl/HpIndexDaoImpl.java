@@ -100,6 +100,8 @@ public class HpIndexDaoImpl implements HpIndexDao {
 					hpModel.setImageUrl1(resultMap.get("imageUrl1"));
 					hpModel.setImageUrl2(resultMap.get("imageUrl2"));
 					hpModel.setImageUrl3(resultMap.get("imageUrl3"));
+					hpModel.setCreateTime(resultMap.get("createTime"));
+					hpModel.setTimeCategory(resultMap.get("timeCategory"));
 					
 					
 					StringBuilder brandList = new StringBuilder();
