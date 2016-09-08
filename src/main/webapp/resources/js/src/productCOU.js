@@ -161,17 +161,22 @@ var productCOU=(function(config,functions){
                         fileAddCb:null,
                         progressCb:null,
                         uploadedCb:function(info,file,up){
+                            if(i==3){
+                                if(info.w!=1600&&info.h!=2040){
+                                    $().toastmessage("showErrorToast",config.messages.imageSizeError);
+                                    return ;
+                                }
+                            }else{
+                                if(info.w!=2000&&info.h!=4000){
+                                    $().toastmessage("showErrorToast",config.messages.imageSizeError);
+                                    return ;
+                                }
+                            }
                             $("#imageUrl"+i).val(info.url);
 
                             $("#image"+i).attr("src",info.url);
 
                             $(".error[for='imageUrl"+i+"']").remove();
-
-                            /*if(info.w/info.h==4/3&&info.w>=400&&info.w<=800){
-
-                            }else{
-                                $().toastmessage("showErrorToast",config.messages.imageSizeError);
-                            }*/
                         }
                     });
                 })(i);

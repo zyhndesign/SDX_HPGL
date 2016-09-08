@@ -103,11 +103,4 @@ $(document).ready(function(){
             return false;
         }
     });
-
-    $(".link,.glyphicon").click(function(){
-        var subMenu=$(this).parent().find(".subMenu");
-        if(subMenu){
-            subMenu.toggle();
-        }
-    })
 });

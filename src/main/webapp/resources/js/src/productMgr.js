@@ -31,10 +31,13 @@ var productMgr=(function(config,functions){
                 { "mDataProp": "hp_num"},
                 { "mDataProp": "brandList"},
                 { "mDataProp": "categoryList"},
-                { "mDataProp": "dateList"},
+                { "mDataProp": "timeCategory"},
                 { "mDataProp": "sizeList"},
                 { "mDataProp": "colorList"},
-                { "mDataProp": "price"},
+                { "mDataProp": "price",
+                    "fnRender":function(oObj){
+                        return oObj.aData.price?oObj.aData.price:"无";
+                    }},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
                         return '<a href="hpManage/productCOU/'+oObj.aData.id+'">查看</a>&nbsp;';
@@ -84,7 +87,6 @@ var productMgr=(function(config,functions){
 
                             for (var i = 0, iLen = response.aaData.length; i < iLen; i++) {
                                 response.aaData[i].opt="opt";
-                                response.aaData[i].dateList="暂无";
                             }
 
                             json.aaData=response.aaData;
