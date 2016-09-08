@@ -54,31 +54,31 @@ public class HomeController {
 			}
 		} catch (IncorrectCredentialsException e) {
 			msg = "登录密码错误.";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (ExcessiveAttemptsException e) {
 			msg = "登录失败次数过多";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (LockedAccountException e) {
 			msg = "帐号已被锁定.";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (DisabledAccountException e) {
 			msg = "帐号已被禁用. ";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (ExpiredCredentialsException e) {
 			msg = "帐号已过期.";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (UnknownAccountException e) {
 			msg = "帐号不存在.";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		} catch (UnauthorizedException e) {
 			msg = "您没有得到相应的授权！";
-			model.addAttribute("message", msg);
+			model.addAttribute("error", msg);
 			System.out.println(msg);
 		}
 		return "login";
