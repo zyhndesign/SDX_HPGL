@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">图片上传*</label>
                             <div class="col-md-9" id="uploadContainer">
-                                <p class="help-block">1.配装正面图，png格式，2000x4000像素</p>
+                                <p class="help-block">1.配装正面图，png格式，1400x2800像素</p>
                                 <a href="#" id="uploadBtn1">
                                     <c:if test="${empty hp.imageUrl1}">
                                     <img  id="image1" class="imgThumb"  style="width:100px"
@@ -136,7 +136,7 @@
                                     <input type="hidden" id="imageUrl1" value="${hp.imageUrl1}" name="imageUrl1">
                                     </c:if>
                                 </a>
-                                <p class="help-block">2.配装正面图，png格式，2000x4000像素</p>
+                                <p class="help-block">2.配装正面图，png格式，1400x2800像素</p>
                                 <a href="#" id="uploadBtn2">
                                     <c:if test="${empty hp.imageUrl2}">
                                     <img  id="image2" class="imgThumb"  style="width:100px"
@@ -150,7 +150,7 @@
                                     <input type="hidden" id="imageUrl2" value="${hp.imageUrl2}" name="imageUrl2">
                                     </c:if>
                                 </a>
-                                <p class="help-block">3.缩略图，png/jpg格式，1600x2040像素</p>
+                                <p class="help-block">3.缩略图，png/jpg格式，800x1200像素</p>
                                 <a href="#" id="uploadBtn3">
                                     <c:if test="${empty hp.imageUrl3}">
                                     <img  id="image3" class="imgThumb"  style="width:100px"

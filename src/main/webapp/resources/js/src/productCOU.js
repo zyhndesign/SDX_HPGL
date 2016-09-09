@@ -162,12 +162,12 @@ var productCOU=(function(config,functions){
                         progressCb:null,
                         uploadedCb:function(info,file,up){
                             if(i==3){
-                                if(info.w!=1600&&info.h!=2040){
+                                if(info.w!=800&&info.h!=1200){
                                     $().toastmessage("showErrorToast",config.messages.imageSizeError);
                                     return ;
                                 }
                             }else{
-                                if(info.w!=2000&&info.h!=4000){
+                                if(info.w!=1400&&info.h!=2800){
                                     $().toastmessage("showErrorToast",config.messages.imageSizeError);
                                     return ;
                                 }
