@@ -136,7 +136,7 @@
                                     <input type="hidden" id="imageUrl1" value="${hp.imageUrl1}" name="imageUrl1">
                                     </c:if>
                                 </a>
-                                <p class="help-block">2.配装正面图，png格式，1400x2800像素</p>
+                                <p class="help-block">2.配装反面图，png格式，1400x2800像素</p>
                                 <a href="#" id="uploadBtn2">
                                     <c:if test="${empty hp.imageUrl2}">
                                     <img  id="image2" class="imgThumb"  style="width:100px"
