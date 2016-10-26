@@ -200,7 +200,7 @@ table.dataTable .thumb{
     line-height: 30px;
     padding: 0;
 }
-.ztree li a.curSelectedNode{
+.ztree .radio_true_part+a,.ztree .radio_true_full+a,.ztree li a.curSelectedNode{
     height: 30px;
     line-height: 30px;
     border: none;

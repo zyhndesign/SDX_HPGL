@@ -7,6 +7,7 @@ var productCOU=(function(config,functions){
         color:[]
     };
     var currentSetType="brand";
+    var loadCount=0;
 
     function filter(treeId, parentNode, response) {
         if(!response.success){
@@ -19,19 +20,80 @@ var productCOU=(function(config,functions){
 
         if (!childNodes) return null;
         for (var i=0, l=childNodes.length; i<l; i++) {
+
             //根节点不需要checkbox
             if(childNodes[i].id==0){
                 childNodes[i].nocheck=true;
+                childNodes[i].checked=false;
+            }else{
+
+                //设置checkbox的选中状态
+                if(preValue[currentSetType].indexOf(String(childNodes[i].id))!=-1||
+                    preValue[currentSetType].indexOf(childNodes[i].id)!=-1){
+                    childNodes[i].checked=true;
+                }
             }
-            //设置checkbox的选中状态
-            if(preValue[currentSetType].indexOf(childNodes[i].id)!=-1){
-                childNodes[i].checked=true;
-            }
+
 
             childNodes[i].isParent=true;
             childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
         }
         return childNodes;
+    }
+
+    function asyncNodes(nodes) {
+        if (!nodes) return;
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        for (var i=0, l=nodes.length; i<l; i++) {
+            zTree.reAsyncChildNodes(nodes[i], "refresh", true);
+        }
+    }
+    function beforeAsync() {
+        loadCount++;
+    }
+    function onAsyncSuccess(event, treeId, treeNode, msg){
+        var zTree, nodes;
+
+        loadCount--;
+
+        if(!treeNode){
+            zTree=$.fn.zTree.getZTreeObj("treeDemo");
+            nodes=zTree.getNodes();
+        }else{
+            nodes=treeNode.children;
+        }
+
+        asyncNodes(nodes);
+
+        if(loadCount<=0){
+            zTree=$.fn.zTree.getZTreeObj("treeDemo");
+            nodes=zTree.getNodes();//这样获取出来的只有根节点
+            zTree.expandNode(nodes[0], true, false, true,true);
+
+            functions.hideLoading();
+        }
+    }
+    function onClick(event, treeId, treeNode){
+        var zTree=$.fn.zTree.getZTreeObj("treeDemo");
+        var checkeds=zTree.getCheckedNodes(true);
+
+        for(var i= 0,len=checkeds.length;i<len;i++){
+            zTree.checkNode(checkeds[i],false,true);
+        }
+        zTree.checkNode(treeNode, true, true,true);
+    }
+    function onCheck(event, treeId, treeNode){
+        var zTree=$.fn.zTree.getZTreeObj("treeDemo");
+
+        zTree.checkNode(treeNode.getParentNode(),true, true,true);
+
+    }
+    function onExpand(event, treeId, treeNode){
+        var zTree=$.fn.zTree.getZTreeObj("treeDemo");
+        var node=zTree.getNodesByFilter(function(node){
+            return node.checked;
+        },true,treeNode);
+        zTree.expandNode(node, true, false, true,true);
     }
     return {
         setting : {
@@ -47,7 +109,11 @@ var productCOU=(function(config,functions){
             check:{
                 enable:true,
                 chkStyle:"radio",
-                radioType:"all"
+                radioType:"level"
+            },
+            view:{
+                dblClickExpand:false,
+                selectedMulti:false
             },
             data: {
                 keep:{
@@ -59,6 +125,13 @@ var productCOU=(function(config,functions){
                     pIdKey: "pId",
                     rootPId: 0
                 }
+            },
+            callback: {
+                beforeAsync: beforeAsync,
+                onAsyncSuccess: onAsyncSuccess,
+                onClick:onClick,
+                onExpand:onExpand,
+                onCheck:onCheck
             }
         },
         submitForm:function(form){
@@ -89,22 +162,21 @@ var productCOU=(function(config,functions){
             me.setting.async.url=config.ajaxUrls[type+"GetAll"];
 
             if(zTree){
+                loadCount=0;
                 zTree.destroy();
             }
 
             $.fn.zTree.init($("#treeDemo"), me.setting);
 
             $("#showTreeModal").modal("show");
+
+            functions.showLoading();
         },
         saveTreeSelect:function(){
             var me=this;
             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-            var selects = zTree.getCheckedNodes();
+            var selects = zTree.getCheckedNodes(true);
             var valueArray=[],valueNameArray=[];
-
-            for(var i= 1,len=selects[0].level;i<len;i++){
-                selects.unshift(selects[0].getParentNode());
-            }
 
             for(var j= 0,length=selects.length;j<length;j++){
                 valueArray.push(selects[j].id);
@@ -113,7 +185,7 @@ var productCOU=(function(config,functions){
 
             if(!id){
                 //如果是在录入页面，直接设置值即可
-                preValue[currentSetType]=valueArray.join(",");
+                preValue[currentSetType]=valueArray;
                 $("#"+currentSetType).val(valueNameArray.join("/"));
                 $("#"+currentSetType+"Id").val(valueArray.join(","));
                 $("#showTreeModal").modal("hide");
@@ -133,7 +205,7 @@ var productCOU=(function(config,functions){
                         if(response.success){
                             $().toastmessage("showSuccessToast",config.messages.optSuccess);
                             functions.hideLoading();
-                            preValue[currentSetType]=valueArray.join(",");
+                            preValue[currentSetType]=valueArray;
                             $("#"+currentSetType).val(valueNameArray.join("/"));
                             $("#showTreeModal").modal("hide");
                         }else{
@@ -184,10 +256,10 @@ var productCOU=(function(config,functions){
             }
         },
         initValues:function(){
-            preValue.brand=preBrand;
-            preValue.category=preCategory;
-            preValue.size=preSize;
-            preValue.color=preColor;
+            preValue.brand=preBrand.split(",");
+            preValue.category=preCategory.split(",");
+            preValue.size=preSize.split(",");
+            preValue.color=preColor.split(",");
         }
     }
 })(config,functions);
