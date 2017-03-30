@@ -42,6 +42,7 @@ var productCOU=(function(config,functions){
     }
 
     function asyncNodes(nodes) {
+
         if (!nodes) return;
         var zTree = $.fn.zTree.getZTreeObj("treeDemo");
         for (var i=0, l=nodes.length; i<l; i++) {
